@@ -1,0 +1,9 @@
+body{
+  font-family: Roboto Mono,monospace;
+}
+
+.wallet {
+  flex-grow: 1;
+  font-family: monospace;
+  font-size: larger;
+}
