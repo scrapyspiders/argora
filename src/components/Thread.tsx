@@ -11,15 +11,13 @@ import ReplyForm from './forms/ReplyForm';
 import Replies from './Replies';
 
 function Thread() {
-  const {txid} = useParams<ThreadParams>();
+  const {pathBase, txid} = useParams<ThreadParams>();
 
   const [error, setError] = useState<string>();
   const [post, setPost] = useState<PostData>();
 
   useEffect(() => {
     (async () => {
-
-      // post
       try {
         const queryResult = await run(postGql(txid));
         const tx = queryResult.data.transaction;
@@ -50,8 +48,8 @@ function Thread() {
     <>
       {error && <Alert severity="error">{error}</Alert>}
       {post && post.replyTo
-        ? <Link to={`/${txid}/${post.replyTo}`}>Back to {post.replyTo}</Link>
-        : <Link to={`/${txid}`}>Back to timeline</Link>
+        ? <Link to={`/${pathBase}/${post.replyTo}`}>Back to {post.replyTo}</Link>
+        : <Link to={`/${pathBase}`}>Back to timeline</Link>
       }
       {post && 
         <>

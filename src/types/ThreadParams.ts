@@ -1,5 +1,5 @@
 type ThreadParams = {
-  basePath: string,
+  pathBase: string,
   txid: string
 }
 

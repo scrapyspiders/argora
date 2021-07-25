@@ -1,12 +1,15 @@
 import {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
+import {useParams, Link} from 'react-router-dom';
 import PostData from '../types/PostData';
 import {run} from "ar-gql";
 import {repliesGql} from '../api/queries';
 import arweave from '../api/arweave';
 import Comment from './ui/Comment';
+import ThreadParams from '../types/ThreadParams';
 
 function Replies({txid}: {txid: string}) {
+  const {pathBase} = useParams<ThreadParams>();
+
   const [replies, setReplies] = useState<(PostData)[]>();
 
   useEffect(() => {
@@ -36,7 +39,7 @@ function Replies({txid}: {txid: string}) {
   return(
     <>
       {replies?.map((post, i) => (
-        <Link to={`/${txid}/${post.id}`} key={i}>
+        <Link to={`/${pathBase}/${post.id}`} key={i}>
           <Comment
             id={post.id}
             content={post.content}
