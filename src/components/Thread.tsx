@@ -46,6 +46,7 @@ function Thread() {
 
   return(
     <>
+      {!error && !post && <>loading</>}
       {error && <Alert severity="error">{error}</Alert>}
       {post && post.replyTo
         ? <Link to={`/${pathBase}/${post.replyTo}`}>Back to {post.replyTo}</Link>

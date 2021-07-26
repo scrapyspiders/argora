@@ -1,10 +1,11 @@
 import {useEffect, useState} from 'react';
-import { useRouteMatch, Link } from 'react-router-dom';
+import {useRouteMatch, Link} from 'react-router-dom';
 import {run} from "ar-gql";
-import Post from './ui/TimelinePost';
 import PostData from '../types/PostData';
 import arweave from '../api/arweave';
 import {timelineGql} from '../api/queries';
+import Post from './ui/TimelinePost';
+import TimelineForm from './forms/TimelineForm';
 
 function Timeline() {
   const [posts, setPosts] = useState<(PostData)[]>();
@@ -37,6 +38,7 @@ function Timeline() {
 
   return(
     <>
+      <TimelineForm />
       {posts?.map((post, i) => (
         <Link to={`${match.url}/${post.id}`} key={i}>
           <Post 

@@ -2,7 +2,6 @@ import {useEffect, useState} from 'react';
 import { Toolbar, Button, AppBar } from '@material-ui/core';
 
 import useArConnect from 'use-arconnect';
-import TimelineForm from './forms/TimelineForm';
 
 const arConnectPermissions = [
   "ACCESS_ADDRESS",
@@ -10,7 +9,7 @@ const arConnectPermissions = [
   "SIGN_TRANSACTION",
 ];
 
-function Login() {
+function Header() {
 
   const arConnect = useArConnect();
   const [walletAddr, setWalletAddr] = useState("");
@@ -52,7 +51,7 @@ function Login() {
   };
 
   return (
-    <>
+    <header className="App-header">
       <AppBar position="static" color="primary">
         <Toolbar>
           <div className="wallet">
@@ -68,10 +67,10 @@ function Login() {
       </AppBar>
       {walletAddr !== "" && 
       <div>
-        <TimelineForm />
+        connected
       </div>}
-    </>
+    </header>
   );
 }
 
-export default Login;
+export default Header;
