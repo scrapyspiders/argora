@@ -1,5 +1,6 @@
-import {useEffect, useState} from 'react';
-import { Toolbar, Button, AppBar } from '@material-ui/core';
+import {useEffect, useState, useContext} from 'react';
+import {Toolbar, Button, AppBar} from '@material-ui/core';
+import walletAddrCtx from '../constants/ctx';
 
 import useArConnect from 'use-arconnect';
 
@@ -12,7 +13,7 @@ const arConnectPermissions = [
 function Header() {
 
   const arConnect = useArConnect();
-  const [walletAddr, setWalletAddr] = useState("");
+  const {walletAddr, setWalletAddr} = useContext(walletAddrCtx);
   const [walletName, setWalletName] = useState("");
 
   useEffect(() => {
@@ -28,7 +29,7 @@ function Header() {
         alert("Error: Could not get ACCESS_ADDRESS permission");
       }
     })();
-  }, [arConnect, walletAddr]);
+  }, [arConnect, walletAddr, setWalletAddr]);
 
   const connectWallet = async () => {
     if (!arConnect) return window.open("https://arconnect.io");

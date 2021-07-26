@@ -4,13 +4,13 @@ import {Alert} from '@material-ui/lab';
 import {run} from "ar-gql";
 import arweave from '../api/arweave';
 import {postGql} from '../api/queries';
-import {PostData, ThreadParams} from '../constants/types';
+import {PostData, PathParams} from '../constants/types';
 import Post from './ui/ThreadPost';
 import ReplyForm from './forms/ReplyForm';
 import Replies from './Replies';
 
 function Thread() {
-  const {pathBase, txid} = useParams<ThreadParams>();
+  const {pathBase, txid} = useParams<PathParams>();
 
   const [error, setError] = useState<string>();
   const [post, setPost] = useState<PostData>();

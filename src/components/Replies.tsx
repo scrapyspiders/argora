@@ -1,13 +1,13 @@
 import {useEffect, useState} from 'react';
 import {useParams, Link} from 'react-router-dom';
-import {PostData, ThreadParams} from '../constants/types';
+import {PostData, PathParams} from '../constants/types';
 import {run} from "ar-gql";
 import {repliesGql} from '../api/queries';
 import arweave from '../api/arweave';
 import Comment from './ui/Comment';
 
 function Replies({txid}: {txid: string}) {
-  const {pathBase} = useParams<ThreadParams>();
+  const {pathBase} = useParams<PathParams>();
 
   const [replies, setReplies] = useState<(PostData)[]>();
 
