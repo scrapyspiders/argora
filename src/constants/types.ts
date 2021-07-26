@@ -6,4 +6,9 @@ type PostData = {
   replyTo?: string
 };
 
-export default PostData;
+type ThreadParams = {
+  pathBase: string,
+  txid: string
+}
+
+export type { PostData, ThreadParams };

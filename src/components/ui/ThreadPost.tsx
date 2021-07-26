@@ -1,5 +1,5 @@
-import PostData from '../../types/PostData';
-import { Card, CardHeader, CardContent, Avatar } from '@material-ui/core';
+import {PostData} from '../../constants/types';
+import {Card, CardHeader, CardContent, Avatar} from '@material-ui/core';
 
 function ThreadPost({id, content, owner, time}: PostData) {
 
