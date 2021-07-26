@@ -1,8 +1,11 @@
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import {TextField, Button} from '@material-ui/core';
+import {Alert} from '@material-ui/lab';
 import arweave from '../../api/arweave';
+import walletAddrCtx from '../../constants/ctx';
 
 function Reply({to}: {to: string}) {
+  const {walletAddr} = useContext(walletAddrCtx);
   const [inputValue, setInputValue] = useState<string>("");
   
   const handleChange = (e: React.FormEvent<HTMLTextAreaElement | HTMLInputElement>) => {
@@ -23,20 +26,22 @@ function Reply({to}: {to: string}) {
   }
 
   return(
-    <form>
-      <TextField
-        label="Toot your reply!"
-        multiline
-        variant="outlined"
-        value={inputValue}
-        onChange={handleChange}
-        fullWidth={true}
-        style={{marginTop: '20px'}}
-      />
-      <Button variant="contained" color="primary" onClick={handleSubmit}>
-        Toot!
-      </Button>
-    </form>
+    walletAddr
+    ? <form>
+        <TextField
+          label="Toot your reply!"
+          multiline
+          variant="outlined"
+          value={inputValue}
+          onChange={handleChange}
+          fullWidth={true}
+          style={{marginTop: '20px'}}
+        />
+        <Button variant="contained" color="primary" onClick={handleSubmit}>
+          Toot!
+        </Button>
+      </form>
+    : <Alert severity="info">Wanna reply to this? Please log in.</Alert>
   );
 }
 
