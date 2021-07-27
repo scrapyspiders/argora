@@ -45,11 +45,11 @@ function Thread() {
 
   return(
     <>
+      <Link to={`/${pathBase}`}>Back to timeline</Link><br />
       {!error && !post && <>loading</>}
       {error && <Alert severity="error">{error}</Alert>}
-      {post && post.replyTo
-        ? <Link to={`/${pathBase}/${post.replyTo}`}>Back to {post.replyTo}</Link>
-        : <Link to={`/${pathBase}`}>Back to timeline</Link>
+      {post && post.replyTo &&
+        <Link to={`/${pathBase}/${post.replyTo}`}>Back to {post.replyTo}</Link>
       }
       {post && 
         <>
