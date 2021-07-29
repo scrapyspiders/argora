@@ -1,8 +1,10 @@
 import {createContext} from 'react';
 
-const walletAddrCtx = createContext({} as { 
+const ctx = createContext({} as { 
   walletAddr: string; 
-  setWalletAddr: (addr: string) => void; 
+  setWalletAddr: (addr: string) => void;
+  theme: boolean;
+  setTheme: (t: boolean) => void;
 });
 
-export default walletAddrCtx;
+export default ctx;

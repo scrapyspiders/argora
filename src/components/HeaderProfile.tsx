@@ -1,11 +1,11 @@
 import React, {useState, useContext} from 'react';
 import useArConnect from 'use-arconnect';
-import walletAddrCtx from '../constants/ctx';
+import ctx from '../constants/ctx';
 import {Menu, MenuItem, Avatar} from '@material-ui/core';
 
 function HeaderProfile(){
   const arConnect = useArConnect();
-  const {walletAddr, setWalletAddr} = useContext(walletAddrCtx);
+  const {walletAddr, setWalletAddr} = useContext(ctx);
   const [anchorEl, setAnchorEl] = useState<(EventTarget & HTMLElement | null)>(null);
 
   const disconnectWallet = async () => {

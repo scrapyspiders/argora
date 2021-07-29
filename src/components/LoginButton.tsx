@@ -1,7 +1,7 @@
 import {useEffect, useContext} from 'react';
 import {Button} from '@material-ui/core';
 import useArConnect from 'use-arconnect';
-import walletAddrCtx from '../constants/ctx';
+import ctx from '../constants/ctx';
 import HeaderProfile from './HeaderProfile';
 
 const arConnectPermissions = [
@@ -12,7 +12,7 @@ const arConnectPermissions = [
 
 function LoginButton() {
   const arConnect = useArConnect();
-  const {walletAddr, setWalletAddr} = useContext(walletAddrCtx);
+  const {walletAddr, setWalletAddr} = useContext(ctx);
 
   useEffect(() => {
     if (!arConnect) return;

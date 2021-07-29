@@ -2,10 +2,10 @@ import {useState, useContext} from 'react';
 import {TextField, Button} from '@material-ui/core';
 import {Alert} from '@material-ui/lab';
 import arweave from '../../api/arweave';
-import walletAddrCtx from '../../constants/ctx';
+import ctx from '../../constants/ctx';
 
 function Timeline() {
-  const {walletAddr} = useContext(walletAddrCtx);
+  const {walletAddr} = useContext(ctx);
   const [inputValue, setInputValue] = useState<string>("");
 
   const handleChange = (e: React.FormEvent<HTMLTextAreaElement | HTMLInputElement>) => {
