@@ -23,7 +23,7 @@ function HeaderProfile(){
 
   return(
     <>
-      <span>{walletAddr.slice(0,10)}...{walletAddr.slice(walletAddr.length-10, walletAddr.length)}</span>
+      {walletAddr.slice(0,10)}...{walletAddr.slice(walletAddr.length-10, walletAddr.length)}
       <Avatar onClick={handleClick} style={{cursor: "pointer"}}>
         {walletAddr.slice(0,3)}
       </Avatar>
@@ -32,7 +32,7 @@ function HeaderProfile(){
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Settings</MenuItem>
+        <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={disconnectWallet}>Logout</MenuItem>
       </Menu>
     </>

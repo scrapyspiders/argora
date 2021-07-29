@@ -1,29 +1,24 @@
-import {useContext} from 'react';
-import {Toolbar, AppBar, IconButton} from '@material-ui/core';
-import Brightness2Icon from '@material-ui/icons/Brightness2';
-import Brightness5Icon from '@material-ui/icons/Brightness5';
+import {Toolbar, AppBar, Grid} from '@material-ui/core';
 import LoginButton from './LoginButton';
-import ctx from '../constants/ctx';
+import ThemeButton from './ui/ThemeButton';
 
 function Header() {
-  const {theme, setTheme} = useContext(ctx);
-
-  const icon = theme ? <Brightness2Icon /> : <Brightness5Icon />
-
   return (
     <header className="App-header">
       <AppBar position="static">
         <Toolbar>
-          <div className="wallet">
+          <Grid
+            container
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
+          >
             <img src="/arweave.png" alt="arweave logo" height="50" />
-            <IconButton 
-              edge="end"
-              onClick={() => setTheme(!theme)}
-            >
-              {icon}
-            </IconButton>
-          </div>
-          <LoginButton />
+            <div>
+              <ThemeButton />
+              <LoginButton />
+            </div>
+          </Grid>
         </Toolbar>
       </AppBar>
     </header>
