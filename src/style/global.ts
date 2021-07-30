@@ -12,6 +12,10 @@ const GlobalStyles = createGlobalStyle`
   a {
     text-decoration: none;
   }
+
+  main {
+    padding: 10px;
+  }
 `;
 
 export default GlobalStyles;
