@@ -3,7 +3,8 @@ type PostData = {
   content: string | Uint8Array,
   owner: string,
   time: number,
-  replyTo?: string
+  replyTo?: string,
+  comment?: boolean
 };
 
 type PathParams = {

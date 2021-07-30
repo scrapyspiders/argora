@@ -12,9 +12,9 @@ import {
   Content
 } from '../../style/components/post';
 
-function TimelinePost({id, content, owner, time}: PostData) {
+function TimelinePost({id, content, owner, time, comment}: PostData) {
   return(
-    <Post>
+    <Post style={comment ? {maxWidth: '550px'} : {}}>
       <LeftSide>
         <Avatar>{owner.slice(0,2)}</Avatar>
       </LeftSide>
