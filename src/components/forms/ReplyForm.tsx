@@ -18,6 +18,7 @@ function Reply({to}: {to: string}) {
 
   return(
     <Form
+      comment
       handleSubmit={handleSubmit}
       placeholder="Toot your reply!"
       loginMessage="Wanna reply to this? Please log in."

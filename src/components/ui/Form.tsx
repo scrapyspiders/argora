@@ -7,7 +7,7 @@ import {Hr} from '../../style/components/decoration';
 import ctx from '../../constants/ctx';
 import {FormType} from '../../constants/types';
 
-function Form({handleSubmit, placeholder, loginMessage}: FormType){
+function Form({handleSubmit, placeholder, loginMessage, comment}: FormType){
   const {walletAddr} = useContext(ctx);
   const [inputValue, setInputValue] = useState<string>("");
 
@@ -17,7 +17,7 @@ function Form({handleSubmit, placeholder, loginMessage}: FormType){
 
   return(
     walletAddr
-    ? <Post>
+    ? <Post style={comment ? {maxWidth: '550px', marginTop: '-10px'} : {}}>
         <LeftSide>
           <Avatar>{walletAddr.slice(0,2)}</Avatar>
         </LeftSide>
