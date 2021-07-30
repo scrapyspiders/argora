@@ -18,4 +18,10 @@ type PostHeader = {
   time: number
 }
 
-export type {PostData, PostHeader, PathParams};
+type FormType = {
+  handleSubmit: (inputValue: string) => Promise<void>,
+  placeholder: string,
+  loginMessage: string
+}
+
+export type {PostData, PostHeader, PathParams, FormType};

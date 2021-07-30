@@ -1,21 +1,9 @@
-import {useState, useContext} from 'react';
-import {Avatar} from '@material-ui/core';
-import {Alert} from '@material-ui/lab';
 import arweave from '../../api/arweave';
-import ctx from '../../constants/ctx';
-import {Post, LeftSide, RightSide} from '../../style/components/post';
-import {ButtonS, TextareaAutosizeS} from '../../style/components/material-ui';
-import {Hr} from '../../style/components/decoration';
+import Form from '../ui/Form';
 
 function Timeline() {
-  const {walletAddr} = useContext(ctx);
-  const [inputValue, setInputValue] = useState<string>("");
 
-  const handleChange = (e: React.FormEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    setInputValue(e.currentTarget.value);
-  };
-
-  const handleSubmit = async () => {
+  const handleSubmit = async (inputValue: string) => {
     const tx = await arweave.createTransaction({
       data: inputValue
     });
@@ -29,30 +17,11 @@ function Timeline() {
   };
 
   return(
-    walletAddr
-    ? <Post>
-        <LeftSide>
-          <Avatar>{walletAddr.slice(0,2)}</Avatar>
-        </LeftSide>
-        <RightSide>
-          <TextareaAutosizeS
-            placeholder="What's happening?"
-            value={inputValue}
-            onChange={handleChange}
-          />
-          <Hr />
-          <ButtonS 
-            variant="outlined"
-            color="inherit"
-            onClick={handleSubmit}
-            style={{float: 'right'}}
-            disabled={!inputValue}
-          >
-            Toot!
-          </ButtonS>
-        </RightSide>
-      </Post>
-    : <Alert severity="info">Wanna toot something to the world? Please log in.</Alert>
+    <Form
+      handleSubmit={handleSubmit}
+      placeholder="What's happening?"
+      loginMessage="Wanna toot something to the world? Please log in."
+    />
   );
 }
 
