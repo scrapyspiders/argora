@@ -13,11 +13,14 @@ const Post = styled('div')`
   margin: auto;
   margin-top: 5px;
   max-width: 600px;
+  box-sizing: initial;
 `;
 const LeftSide = styled('div')`
   padding: 10px 20px 0px 20px;
 `;
-const RightSide = styled('div')``;
+const RightSide = styled('div')`
+  flex: 1;
+`;
 const Header = styled('div')`
 `;
 const UserAddr = styled('a')`
@@ -49,6 +52,7 @@ const Txid = styled('a')`
 const Content = styled('div')`
   padding: 20px 0px 20px 0px;
   font-size: larger;
+  font-family: Arial;
 `;
 
 export {

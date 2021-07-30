@@ -12,6 +12,7 @@ create-react-app - typescript - ArConnect support
 - "Tweet my toot" button: possibility to make a tweet of a toot when tooting
 - Desktop notifications
 - Possibility to toot pictures
+- Possibility to toot polls
 - Limit the number of characters per toot
 - Take in consideration carriage return
 - Emojis drawer

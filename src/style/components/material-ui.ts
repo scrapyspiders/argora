@@ -1,4 +1,4 @@
-import {AppBar, Button, IconButton, Card} from '@material-ui/core';
+import {AppBar, Button, IconButton, Card, TextareaAutosize} from '@material-ui/core';
 import styled from 'styled-components';
 import {colors, transition} from '../../constants/colors';
 
@@ -30,4 +30,19 @@ const CardPostS = styled(Card)`
   color: ${({theme}) => theme.text};
 `;
 
-export {AppBarS, ButtonS, IconButtonS, CardPostS};
+const TextareaAutosizeS = styled(TextareaAutosize)`
+  ${transition}
+  background-color: ${({theme}) => theme.postBackground};
+  color: ${({theme}) => theme.text};
+  width: 100%;
+  padding: 20px 0px 20px 0px;
+  font-size: larger;
+  resize: none;
+  font-family: Arial;
+  border: 0;
+  &:focus {
+    outline: none;
+  }
+`;
+
+export {AppBarS, ButtonS, IconButtonS, CardPostS, TextareaAutosizeS};

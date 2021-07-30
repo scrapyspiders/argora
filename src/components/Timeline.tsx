@@ -46,7 +46,7 @@ function Timeline() {
             content={post.content}
             owner={post.owner}
             time={post.time}
-          ></Post>
+          />
         </Link>
       ))}
     </>

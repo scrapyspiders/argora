@@ -14,4 +14,9 @@ const VertLine = styled('div')`
   }
 `;
 
-export {VertLine};
+const Hr = styled('div')`
+  border-bottom: 1px solid ${({theme}) => theme.blueInvert};
+  margin-bottom: 10px;
+`;
+
+export {VertLine, Hr};

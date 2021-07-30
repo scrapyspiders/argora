@@ -1,8 +1,11 @@
 import {useState, useContext} from 'react';
-import {TextField, Button} from '@material-ui/core';
+import {Avatar} from '@material-ui/core';
 import {Alert} from '@material-ui/lab';
 import arweave from '../../api/arweave';
 import ctx from '../../constants/ctx';
+import {Post, LeftSide, RightSide} from '../../style/components/post';
+import {ButtonS, TextareaAutosizeS} from '../../style/components/material-ui';
+import {Hr} from '../../style/components/decoration';
 
 function Timeline() {
   const {walletAddr} = useContext(ctx);
@@ -27,20 +30,28 @@ function Timeline() {
 
   return(
     walletAddr
-    ? <form>
-        <TextField
-          label="What's happening?"
-          multiline
-          variant="outlined"
-          value={inputValue}
-          onChange={handleChange}
-          fullWidth={true}
-          style={{marginTop: '20px'}}
-        />
-        <Button variant="contained" color="primary" onClick={handleSubmit}>
-          Toot!
-        </Button>
-      </form>
+    ? <Post>
+        <LeftSide>
+          <Avatar>{walletAddr.slice(0,2)}</Avatar>
+        </LeftSide>
+        <RightSide>
+          <TextareaAutosizeS
+            placeholder="What's happening?"
+            value={inputValue}
+            onChange={handleChange}
+          />
+          <Hr />
+          <ButtonS 
+            variant="outlined"
+            color="inherit"
+            onClick={handleSubmit}
+            style={{float: 'right'}}
+            disabled={!inputValue}
+          >
+            Toot!
+          </ButtonS>
+        </RightSide>
+      </Post>
     : <Alert severity="info">Wanna toot something to the world? Please log in.</Alert>
   );
 }

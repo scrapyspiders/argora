@@ -16,12 +16,6 @@ const GlobalStyles = createGlobalStyle`
   main {
     padding: 10px;
   }
-
-  /* CardHeader */
-  .MuiCardHeader-title {
-    font-family: monospace;
-    color: ${({ theme }) => theme.blue};
-  }
 `;
 
 export default GlobalStyles;
