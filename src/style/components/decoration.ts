@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+import {transition} from '../../constants/colors';
 
 const VertLine = styled('div')`
+  ${transition}
   &:after {
     content:"";
     position: relative;
@@ -15,6 +17,7 @@ const VertLine = styled('div')`
 `;
 
 const Hr = styled('div')`
+  ${transition}
   border-bottom: 1px solid ${({theme}) => theme.blueInvert};
   margin-bottom: 10px;
 `;

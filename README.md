@@ -13,6 +13,7 @@ create-react-app - typescript - ArConnect support
 - Desktop notifications
 - Possibility to toot pictures
 - Possibility to toot polls
+- retoot button
 - Limit the number of characters per toot
 - Take in consideration carriage return
 - Emojis drawer

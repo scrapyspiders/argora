@@ -8,13 +8,32 @@ const Post = styled('div')`
   border: 1px solid ${colors.blue[1]};
   border-radius: 5px;
   box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
-  display: flex;
   padding: 10px 10px 10px 0px;
   margin: auto;
   margin-top: 5px;
   max-width: 600px;
   box-sizing: initial;
 `;
+
+const Top = styled('div')`
+  ${transition}
+  font-size: small;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid ${({theme}) => theme.blueInvert};
+  & > a {
+    ${transition}
+    color: ${({theme}) => theme.green};
+  }
+  & > a:hover {
+    color: ${colors.green[1]};
+  }
+`;
+
+const Main = styled('div')`
+  display: flex;
+`;
+
 const LeftSide = styled('div')`
   padding: 10px 20px 0px 20px;
 `;
@@ -57,6 +76,8 @@ const Content = styled('div')`
 
 export {
   Post,
+  Top,
+  Main,
   LeftSide,
   RightSide,
   Header,

@@ -48,9 +48,6 @@ function Thread() {
       <Link to={`/${pathBase}`}>Back to timeline</Link><br />
       {!error && !post && <>loading</>}
       {error && <Alert severity="error">{error}</Alert>}
-      {post && post.replyTo &&
-        <Link to={`/${pathBase}/${post.replyTo}`}>Back to {post.replyTo}</Link>
-      }
       {post && 
         <>
           <Post
@@ -58,6 +55,7 @@ function Thread() {
             content={post.content}
             owner={post.owner}
             time={post.time}
+            replyTo={post.replyTo}
           />
           <ReplyForm to={post.id} />
           <Replies txid={post.id} />
