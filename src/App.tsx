@@ -7,7 +7,7 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyles from './style/global';
 import {light, dark} from './style/themes';
 
-import Header from './components/Header';
+import Header from './components/Header/AppBar';
 import Timeline from './components/Timeline';
 import Thread from './components/Thread';
 import DevMode from './components/ui/DevMode';

@@ -1,8 +1,8 @@
 import {useEffect, useContext} from 'react';
-import {ButtonS} from '../style/components';
+import {ButtonS} from '../../style/components';
 import useArConnect from 'use-arconnect';
-import ctx from '../constants/ctx';
-import HeaderProfile from './HeaderProfile';
+import ctx from '../../constants/ctx';
+import ProfileButton from './ProfileButton';
 
 const arConnectPermissions = [
   "ACCESS_ADDRESS",
@@ -45,7 +45,7 @@ function LoginButton() {
     ? <ButtonS variant="outlined" color="inherit" onClick={connectWallet}>
         {arConnect ? "Log In" : "Install ArConnect to log in"}
       </ButtonS>
-    : <HeaderProfile />
+    : <ProfileButton />
   );
 }
 

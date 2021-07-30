@@ -1,11 +1,11 @@
 import React, {useState, useContext} from 'react';
 import useArConnect from 'use-arconnect';
-import ctx from '../constants/ctx';
+import ctx from '../../constants/ctx';
 import {Menu, MenuItem} from '@material-ui/core';
-import {IconButtonS} from '../style/components';
+import {IconButtonS} from '../../style/components';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
-function HeaderProfile(){
+function ProfileButton(){
   const arConnect = useArConnect();
   const {setWalletAddr} = useContext(ctx);
   const [anchorEl, setAnchorEl] = useState<(EventTarget & HTMLElement | null)>(null);
@@ -40,4 +40,4 @@ function HeaderProfile(){
   ); 
 }
 
-export default HeaderProfile;
+export default ProfileButton;
