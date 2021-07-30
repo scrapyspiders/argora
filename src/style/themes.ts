@@ -4,16 +4,16 @@ const light = {
   bodyBackground: themes.light.background[0],
   postBackground: themes.light.background[1],
   text: themes.light.contrast[0],
-  toggleBorder: '#FFF',
-  gradient: 'linear-gradient(#39598A, #79D7ED)',
+  blue: themes.light.blue,
+  green: themes.light.green
 }
 
 const dark = {
   bodyBackground: themes.dark.background[0],
   postBackground: themes.dark.background[1],
   text: themes.dark.contrast[0],
-  toggleBorder: '#6B8096',
-  gradient: 'linear-gradient(#091236, #1E215D)',
+  blue: themes.dark.blue,
+  green: themes.dark.green
 }
 
 export {light, dark};

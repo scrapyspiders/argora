@@ -37,7 +37,9 @@ const themes = {
       '#18152E',
       '#231A53',
       '#64528C'
-    ]
+    ],
+    blue: '#485aff',
+    green: '#2eaf3e'
   },
   dark: {
     background: [
@@ -48,7 +50,9 @@ const themes = {
       '#FFFFFF',
       '#EBEBEC',
       '#B4B4B8'
-    ]
+    ],
+    blue: '#6aaee4',
+    green: '#b9f43e'
   },
 };
 
