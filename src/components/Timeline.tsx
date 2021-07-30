@@ -4,7 +4,7 @@ import {run} from "ar-gql";
 import {PostData} from '../constants/types';
 import arweave from '../api/arweave';
 import {timelineGql} from '../api/queries';
-import Post from './ui/TimelinePost';
+import Post from './ui/Post';
 import TimelineForm from './forms/TimelineForm';
 
 function Timeline() {

@@ -20,18 +20,30 @@ const LeftSide = styled('div')`
 const RightSide = styled('div')``;
 const Header = styled('div')`
 `;
-const UserAddr = styled('span')`
+const UserAddr = styled('a')`
+  ${transition}
   font-weight: bold;
   font-family: monospace;
+  color: ${colors.blue[1]};
+  &:hover {
+    color: ${colors.blue[2]};
+  }
 `;
 const Time = styled('span')`
 `;
 const SubHeader = styled('div')`
   font-size: small;
+  color: ${colors.purple[0]};
 `;
-const Txid = styled('span')`
+const Txid = styled('a')`
+  ${transition}
   font-family: monospace;
   font-size: larger;
+  margin-left: 5px;
+  color: ${colors.purple[0]};
+  &:hover {
+    color: ${colors.purple[1]};
+  }
 `;
 
 const Content = styled('div')`

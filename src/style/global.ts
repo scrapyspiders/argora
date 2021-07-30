@@ -9,7 +9,8 @@ const GlobalStyles = createGlobalStyle`
   }
 
   a {
-    text-decoration: none;
+    all: unset;
+    cursor: pointer;
   }
 
   main {
