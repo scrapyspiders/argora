@@ -1,10 +1,11 @@
 import {PostData} from '../../constants/types';
-import {Card, CardHeader, CardContent, Avatar} from '@material-ui/core';
+import {CardHeader, CardContent, Avatar} from '@material-ui/core';
+import {CardPostS} from '../../style/components';
 
 function TimelinePost({id, content, owner, time}: PostData) {
 
   return(
-    <Card style={{marginTop: '3px'}}>
+    <CardPostS>
       <CardHeader 
         avatar={<Avatar>{owner.slice(0,3)}</Avatar>}
         title={`@${owner.slice(0,5)}...${owner.slice(owner.length-5, owner.length)} - ${time}`}
@@ -13,7 +14,7 @@ function TimelinePost({id, content, owner, time}: PostData) {
       <CardContent>
         {content}
       </CardContent>
-    </Card>
+    </CardPostS>
   );
 }
 

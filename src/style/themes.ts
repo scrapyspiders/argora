@@ -3,10 +3,6 @@ const light = {
   text: '#18152e',
   toggleBorder: '#FFF',
   gradient: 'linear-gradient(#39598A, #79D7ED)',
-  // common
-  button: '#f817b6',
-  buttonHover: '#bc00ff',
-  shadow: '#f817b6',
 }
 
 const dark = {
@@ -14,10 +10,6 @@ const dark = {
   text: '#fcfcfc',
   toggleBorder: '#6B8096',
   gradient: 'linear-gradient(#091236, #1E215D)',
-  // common
-  button: '#f817b6',
-  buttonHover: '#bc00ff',
-  shadow: '#f817b6',
 }
 
 export {light, dark};

@@ -14,9 +14,5 @@ declare module 'styled-components' {
     // custom (see themes.ts)
     bodyBackground: string;
     text: string;
-    shadow: string;
-    // common
-    button: string;
-    buttonHover: string;
   }
 }

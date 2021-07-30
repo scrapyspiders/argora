@@ -1,24 +1,19 @@
-import {AppBar, Button, IconButton} from '@material-ui/core';
+import {AppBar, Button, IconButton, Card} from '@material-ui/core';
 import styled from 'styled-components';
-
-const Title = styled.h1`
-  font-size: 1.5em;
-  text-align: left;
-  color: ${({ theme }) => theme.text};
-`;
+import colors from '../constants/colors';
 
 const AppBarS = styled(AppBar)`
   transition: background 0.2s ease-in, color 0.2s ease-in;
   background-color: ${({ theme }) => theme.bodyBackground};
   color: ${({ theme }) => theme.text};
-  box-shadow: 0px 2px 4px -1px ${({ theme }) => theme.shadow};
+  box-shadow: 0px 2px 4px ${colors.purple[1]};
 `;
 
 const ButtonS = styled(Button)`
   transition: background 0.2s ease-in, color 0.2s ease-in;
-  color: ${({ theme }) => theme.button};
+  color: ${colors.purple[0]};
   &:hover {
-    color: ${({ theme }) => theme.buttonHover};
+    color: ${colors.purple[2]};
   }
 `;
 
@@ -26,4 +21,10 @@ const IconButtonS = styled(IconButton)`
   color: ${({ theme }) => theme.text};
 `;
 
-export {Title, AppBarS, ButtonS, IconButtonS};
+const CardPostS = styled(Card)`
+  margin-top: 3px;
+  border: 1px solid ${colors.purple[0]};
+  background-color: 
+`;
+
+export {AppBarS, ButtonS, IconButtonS, CardPostS};
