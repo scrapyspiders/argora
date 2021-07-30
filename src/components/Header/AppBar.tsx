@@ -2,6 +2,7 @@ import {Toolbar, Grid} from '@material-ui/core';
 import LoginButton from './LoginButton';
 import ThemeButton from './ThemeButton';
 import {AppBarS} from '../../style/components/material-ui';
+import img from '../../constants/img';
 
 function Header() {
   return (
@@ -13,7 +14,7 @@ function Header() {
           justifyContent="space-between"
           alignItems="center"
         >
-          <img src="/arweave.png" alt="arweave logo" height="50" />
+          <img src={img.logo} alt="arweave logo" height="50" />
           <div>
             <ThemeButton />
             <LoginButton />
