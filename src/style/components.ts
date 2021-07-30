@@ -1,6 +1,6 @@
 import {AppBar, Button, IconButton, Card} from '@material-ui/core';
 import styled from 'styled-components';
-import colors from '../constants/colors';
+import {colors} from '../constants/colors';
 
 const AppBarS = styled(AppBar)`
   transition: background 0.2s ease-in, color 0.2s ease-in;

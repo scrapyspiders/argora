@@ -1,13 +1,15 @@
+import {themes} from '../constants/colors';
+
 const light = {
-  bodyBackground: '#e4e5f6',
-  text: '#18152e',
+  bodyBackground: themes.light.background,
+  text: themes.light.contrast[0],
   toggleBorder: '#FFF',
   gradient: 'linear-gradient(#39598A, #79D7ED)',
 }
 
 const dark = {
-  bodyBackground: '#0c0e33',
-  text: '#fcfcfc',
+  bodyBackground: themes.dark.background,
+  text: themes.dark.contrast[0],
   toggleBorder: '#6B8096',
   gradient: 'linear-gradient(#091236, #1E215D)',
 }
@@ -29,11 +31,21 @@ blue: #485aff
 bright blue: #1a98ff
 blue other: #6aaee4
 
-black: #18152e
-almost black: #231a53 (text?)
-light black: #64528c
 
-background:
-light: #e4e5f6
-dark: #0c0e33
+-- light theme --
+bg: #e4e5f6
+text: from most contrasted to less contrasted
+#18152E
+#231A53
+#64528C
+
+-- dark theme --
+bg: #0c0e33
+text: from most contrasted to less contrasted
+#FFFFFF
+#EBEBEC
+#B4B4B8
+
+other:
+yellow: #fcef1f
 */

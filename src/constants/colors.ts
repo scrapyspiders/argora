@@ -1,6 +1,6 @@
 /*
  *  This palette is inspired from the 1984 theme on my vscode.
- *  Colors are sorted from darker to brighter
+ *  Colors are sorted from darker to brighter.
  */
 
 const colors = {
@@ -18,12 +18,31 @@ const colors = {
     '#485aff',
     '#1a98ff',
     '#6aaee4'
-  ],
-  black: [
-    '#18152e',
-    '#231a53',
-    '#64528c'
-  ],
+  ]
 };
 
-export default colors;
+/*
+ *  Contrasts are sorted from more contrasted 
+ *  to less contrasted with theme background.
+ */
+
+const themes = {
+  light: {
+    background: '#e4e5f6',
+    contrast: [
+      '#18152E',
+      '#231A53',
+      '#64528C'
+    ]
+  },
+  dark: {
+    background: '#0c0e33',
+    contrast: [
+      '#FFFFFF',
+      '#EBEBEC',
+      '#B4B4B8'
+    ]
+  },
+};
+
+export {colors, themes};
