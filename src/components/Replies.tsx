@@ -5,6 +5,7 @@ import {run} from "ar-gql";
 import {repliesGql} from '../api/queries';
 import arweave from '../api/arweave';
 import Post from './ui/Post';
+import {VertLine} from '../style/components/decoration';
 
 function Replies({txid}: {txid: string}) {
   const {pathBase} = useParams<PathParams>();
@@ -38,15 +39,18 @@ function Replies({txid}: {txid: string}) {
   return(
     <>
       {replies?.map((post, i) => (
-        <Link to={`/${pathBase}/${post.id}`} key={i}>
-          <Post
-            comment
-            id={post.id}
-            content={post.content}
-            owner={post.owner}
-            time={post.time}
-          />
-        </Link>
+        <>
+          <VertLine />
+          <Link to={`/${pathBase}/${post.id}`} key={i}>
+            <Post
+              comment
+              id={post.id}
+              content={post.content}
+              owner={post.owner}
+              time={post.time}
+            />
+          </Link>
+        </>
       ))}
     </>
   );

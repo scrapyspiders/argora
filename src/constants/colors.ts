@@ -31,15 +31,16 @@ const themes = {
   light: {
     background: [
       '#dfe0f1',
-      '#fff'
+      '#ffffff'
     ],
     contrast: [
       '#18152E',
       '#231A53',
       '#64528C'
     ],
-    blue: '#485aff',
-    green: '#2eaf3e'
+    purple: colors.purple[0],
+    green: colors.green[0],
+    blue: colors.blue[0]
   },
   dark: {
     background: [
@@ -51,8 +52,9 @@ const themes = {
       '#EBEBEC',
       '#B4B4B8'
     ],
-    blue: '#6aaee4',
-    green: '#b9f43e'
+    purple: colors.purple[2],
+    green: colors.green[2],
+    blue: colors.blue[2]
   },
 };
 

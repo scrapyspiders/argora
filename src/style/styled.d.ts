@@ -15,7 +15,11 @@ declare module 'styled-components' {
     bodyBackground: string;
     postBackground: string;
     text: string;
-    blue: string;
+    purple: string;
+    purpleInvert: string;
     green: string;
+    greenInvert: string;
+    blue: string;
+    blueInvert: string;
   }
 }

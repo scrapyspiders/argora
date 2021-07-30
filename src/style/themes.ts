@@ -4,16 +4,24 @@ const light = {
   bodyBackground: themes.light.background[0],
   postBackground: themes.light.background[1],
   text: themes.light.contrast[0],
+  purple: themes.light.purple,
+  purpleInvert: themes.dark.purple,
+  green: themes.light.green,
+  greenInvert: themes.dark.green,
   blue: themes.light.blue,
-  green: themes.light.green
+  blueInvert: themes.dark.blue
 }
 
 const dark = {
   bodyBackground: themes.dark.background[0],
   postBackground: themes.dark.background[1],
   text: themes.dark.contrast[0],
+  purple: themes.dark.purple,
+  purpleInvert: themes.light.purple,
+  green: themes.dark.green,
+  greenInvert: themes.light.green,
   blue: themes.dark.blue,
-  green: themes.dark.green
+  blueInvert: themes.light.blue
 }
 
 export {light, dark};

@@ -14,7 +14,7 @@ import {
 
 function TimelinePost({id, content, owner, time, comment}: PostData) {
   return(
-    <Post style={comment ? {maxWidth: '550px'} : {}}>
+    <Post style={comment ? {maxWidth: '550px', marginTop: '-10px'} : {}}>
       <LeftSide>
         <Avatar>{owner.slice(0,2)}</Avatar>
       </LeftSide>
