@@ -2,7 +2,7 @@ import React, {useState, useContext} from 'react';
 import useArConnect from 'use-arconnect';
 import ctx from '../../constants/ctx';
 import {Menu, MenuItem} from '@material-ui/core';
-import {IconButtonS} from '../../style/components';
+import {IconButtonS} from '../../style/components/material-ui';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 function ProfileButton(){

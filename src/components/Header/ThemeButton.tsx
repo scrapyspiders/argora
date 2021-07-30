@@ -1,5 +1,5 @@
 import {useContext} from 'react';
-import {IconButtonS} from '../../style/components';
+import {IconButtonS} from '../../style/components/material-ui';
 import Brightness2Icon from '@material-ui/icons/Brightness2';
 import Brightness5Icon from '@material-ui/icons/Brightness5';
 import ctx from '../../constants/ctx';

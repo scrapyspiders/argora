@@ -1,6 +1,6 @@
 import {AppBar, Button, IconButton, Card} from '@material-ui/core';
 import styled from 'styled-components';
-import {colors, transition} from '../constants/colors';
+import {colors, transition} from '../../constants/colors';
 
 const AppBarS = styled(AppBar)`
   ${transition}

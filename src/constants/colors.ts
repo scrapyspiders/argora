@@ -31,7 +31,7 @@ const themes = {
   light: {
     background: [
       '#dfe0f1',
-      '#e4e5f6'
+      '#fff'
     ],
     contrast: [
       '#18152E',

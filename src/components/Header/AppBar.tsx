@@ -1,7 +1,7 @@
 import {Toolbar, Grid} from '@material-ui/core';
 import LoginButton from './LoginButton';
 import ThemeButton from './ThemeButton';
-import {AppBarS} from '../../style/components';
+import {AppBarS} from '../../style/components/material-ui';
 
 function Header() {
   return (

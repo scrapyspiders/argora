@@ -11,4 +11,10 @@ type PathParams = {
   txid: string
 }
 
-export type { PostData, PathParams };
+type PostHeader = {
+  userAddr: string,
+  txid: string,
+  time: number
+}
+
+export type {PostData, PostHeader, PathParams};
