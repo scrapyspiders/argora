@@ -1,8 +1,7 @@
 import {useState, useContext} from 'react';
 import {Avatar} from '@material-ui/core';
-import {Alert} from '@material-ui/lab';
 import {Post, LeftSide, RightSide} from '../../style/components/post';
-import {ButtonS, TextareaAutosizeS} from '../../style/components/material-ui';
+import {ButtonS, TextareaAutosizeS, AlertS} from '../../style/components/material-ui';
 import {Hr} from '../../style/components/decoration';
 import ctx from '../../constants/ctx';
 import {FormType} from '../../constants/types';
@@ -39,7 +38,9 @@ function Form({handleSubmit, placeholder, loginMessage, comment}: FormType){
           </ButtonS>
         </RightSide>
       </Post>
-    : <Alert severity="info">{loginMessage}</Alert>
+    : <AlertS severity="info" style={comment ? {maxWidth: '550px'} : {maxWidth: '600px'}}>
+        {loginMessage}
+      </AlertS>
   );
 }
 

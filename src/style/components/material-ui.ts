@@ -1,4 +1,5 @@
 import {AppBar, Button, IconButton, Card, TextareaAutosize} from '@material-ui/core';
+import {Alert} from '@material-ui/lab';
 import styled from 'styled-components';
 import {colors, transition} from '../../constants/colors';
 
@@ -45,4 +46,8 @@ const TextareaAutosizeS = styled(TextareaAutosize)`
   }
 `;
 
-export {AppBarS, ButtonS, IconButtonS, CardPostS, TextareaAutosizeS};
+const AlertS = styled(Alert)`
+  margin: auto;
+`;
+
+export {AppBarS, ButtonS, IconButtonS, CardPostS, TextareaAutosizeS, AlertS};
