@@ -1,5 +1,5 @@
 import {useEffect, useContext} from 'react';
-import {Button} from '@material-ui/core';
+import {ButtonS} from '../style/components';
 import useArConnect from 'use-arconnect';
 import ctx from '../constants/ctx';
 import HeaderProfile from './HeaderProfile';
@@ -42,9 +42,9 @@ function LoginButton() {
 
   return(
     walletAddr === ""
-    ? <Button variant="outlined" color="inherit" onClick={connectWallet}>
+    ? <ButtonS variant="outlined" color="inherit" onClick={connectWallet}>
         {arConnect ? "Log In" : "Install ArConnect to log in"}
-      </Button>
+      </ButtonS>
     : <HeaderProfile />
   );
 }

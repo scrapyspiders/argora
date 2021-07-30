@@ -1,11 +1,13 @@
 import React, {useState, useContext} from 'react';
 import useArConnect from 'use-arconnect';
 import ctx from '../constants/ctx';
-import {Menu, MenuItem, Avatar} from '@material-ui/core';
+import {Menu, MenuItem} from '@material-ui/core';
+import {IconButtonS} from '../style/components';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 function HeaderProfile(){
   const arConnect = useArConnect();
-  const {walletAddr, setWalletAddr} = useContext(ctx);
+  const {setWalletAddr} = useContext(ctx);
   const [anchorEl, setAnchorEl] = useState<(EventTarget & HTMLElement | null)>(null);
 
   const disconnectWallet = async () => {
@@ -23,10 +25,9 @@ function HeaderProfile(){
 
   return(
     <>
-      {walletAddr.slice(0,10)}...{walletAddr.slice(walletAddr.length-10, walletAddr.length)}
-      <Avatar onClick={handleClick} style={{cursor: "pointer"}}>
-        {walletAddr.slice(0,3)}
-      </Avatar>
+      <IconButtonS onClick={handleClick}>
+        <AccountCircleIcon />
+      </IconButtonS>
       <Menu
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}

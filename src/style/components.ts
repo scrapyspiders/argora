@@ -1,4 +1,4 @@
-import {AppBar} from '@material-ui/core';
+import {AppBar, Button, IconButton} from '@material-ui/core';
 import styled from 'styled-components';
 
 const Title = styled.h1`
@@ -8,9 +8,22 @@ const Title = styled.h1`
 `;
 
 const AppBarS = styled(AppBar)`
-  background-color: ${({ theme }) => theme.body};
+  transition: background 0.2s ease-in, color 0.2s ease-in;
+  background-color: ${({ theme }) => theme.bodyBackground};
   color: ${({ theme }) => theme.text};
   box-shadow: 0px 2px 4px -1px ${({ theme }) => theme.shadow};
-`
+`;
 
-export {Title, AppBarS};
+const ButtonS = styled(Button)`
+  transition: background 0.2s ease-in, color 0.2s ease-in;
+  color: ${({ theme }) => theme.button};
+  &:hover {
+    color: ${({ theme }) => theme.buttonHover};
+  }
+`;
+
+const IconButtonS = styled(IconButton)`
+  color: ${({ theme }) => theme.text};
+`;
+
+export {Title, AppBarS, ButtonS, IconButtonS};

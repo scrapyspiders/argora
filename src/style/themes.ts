@@ -1,17 +1,23 @@
 const light = {
-  body: '#E2E2E2',
-  text: '#363537',
+  bodyBackground: '#e4e5f6',
+  text: '#18152e',
   shadow: 'black',
   toggleBorder: '#FFF',
   gradient: 'linear-gradient(#39598A, #79D7ED)',
+  // common
+  button: '#f817b6',
+  buttonHover: '#bc00ff',
 }
 
 const dark = {
-  body: '#363537',
-  text: '#FAFAFA',
+  bodyBackground: '#0c0e33',
+  text: '#fcfcfc',
   shadow: 'white',
   toggleBorder: '#6B8096',
   gradient: 'linear-gradient(#091236, #1E215D)',
+  // common
+  button: '#f817b6',
+  buttonHover: '#bc00ff',
 }
 
 export {light, dark};

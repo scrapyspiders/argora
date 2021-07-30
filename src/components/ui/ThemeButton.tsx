@@ -1,5 +1,5 @@
 import {useContext} from 'react';
-import {IconButton} from '@material-ui/core';
+import {IconButtonS} from '../../style/components';
 import Brightness2Icon from '@material-ui/icons/Brightness2';
 import Brightness5Icon from '@material-ui/icons/Brightness5';
 import ctx from '../../constants/ctx';
@@ -9,12 +9,11 @@ function ThemeButton() {
   const icon = theme ? <Brightness2Icon /> : <Brightness5Icon />
 
   return(
-    <IconButton 
-      edge="end"
+    <IconButtonS
       onClick={() => setTheme(!theme)}
     >
       {icon}
-    </IconButton>
+    </IconButtonS>
   );
 }
 
