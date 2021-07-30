@@ -22,13 +22,17 @@ const colors = {
 };
 
 /*
+ *  Backgrounds are sorted from darker to brighter.
  *  Contrasts are sorted from more contrasted 
  *  to less contrasted with theme background.
  */
 
 const themes = {
   light: {
-    background: '#e4e5f6',
+    background: [
+      '#dfe0f1',
+      '#e4e5f6'
+    ],
     contrast: [
       '#18152E',
       '#231A53',
@@ -36,7 +40,10 @@ const themes = {
     ]
   },
   dark: {
-    background: '#0c0e33',
+    background: [
+      '#060727',
+      '#0c0e33'
+    ],
     contrast: [
       '#FFFFFF',
       '#EBEBEC',
@@ -45,4 +52,6 @@ const themes = {
   },
 };
 
-export {colors, themes};
+const transition = "transition: background 0.2s ease-in, color 0.2s ease-in;"
+
+export {colors, themes, transition};

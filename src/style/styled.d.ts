@@ -13,6 +13,7 @@ declare module 'styled-components' {
 
     // custom (see themes.ts)
     bodyBackground: string;
+    postBackground: string;
     text: string;
   }
 }
