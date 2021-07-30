@@ -22,11 +22,11 @@ function TimelinePost({id, content, owner, time}: PostData) {
       <RightSide>
         <Header>
           <UserAddr>
-            @{owner.slice(0,5)}...${owner.slice(owner.length-5, owner.length)}
+            @{owner.slice(0,5)}...{owner.slice(owner.length-5, owner.length)}
           </UserAddr>
           <Time> - {time}</Time>
         </Header>
-        <SubHeader>txid: <Txid>{id.slice(0,5)}...${id.slice(id.length-5, id.length)}</Txid></SubHeader>
+        <SubHeader>txid: <Txid>{id.slice(0,5)}...{id.slice(id.length-5, id.length)}</Txid></SubHeader>
         <Content>{content}</Content>
       </RightSide>
     </Post>
