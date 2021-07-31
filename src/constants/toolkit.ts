@@ -4,7 +4,7 @@ const unionPostsById = (currentPosts: PostData[] | undefined, newPosts: PostData
   if(!currentPosts)
     return newPosts;
   else {
-    //  debug purpose only:
+    // debug purpose only:
     // let currentPosts = posts.slice(2, 10);
     // let newPosts = posts.slice(0, 4);
 

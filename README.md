@@ -17,14 +17,21 @@ create-react-app - typescript - ArConnect support
 ### features on the arweave
 
 - update profile with weaveID
-- Desktop notifications
 - Possibility to toot pictures
 - Possibility to toot polls
 - retoot button
-- Limit the number of characters per toot
 - Take in consideration carriage return
+
+### UI specific
+
+- Loading views when waiting for network response
 - Emojis drawer
-- PSC generation:
+- Limit the number of characters per toot
+- Desktop notifications
+- shortcut ctrl+enter/cmd+enter to send a toot without clicking the button
+
+### User incentives
+
 Knowing that:
 Each new Post is a new Thread with initialy n_Comments = 0
 Each Comment is at the same time someone else's Thread's Comment AND a new Thread with initialy n_Comments = 0
