@@ -1,5 +1,6 @@
 const timelineGql = `{
   transactions(
+    first: 30
     tags: [
       { name: "App-Name", values: "argora" }
       { name: "App-Version", values: "0.0.1" }
