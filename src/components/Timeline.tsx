@@ -43,7 +43,7 @@ function Timeline() {
 
   return(
     <>
-      <TimelineForm />
+      <TimelineForm submitted={(post: PostData) => setPosts(p => unionPostsById(p, [post]))} />
       {posts?.map((post, i) => (
         <Link to={`${match.url}/${post.id}`} key={i}>
           <Post 

@@ -1,8 +1,9 @@
 import {useState} from 'react';
 import arweave from '../../api/arweave';
 import Form from '../ui/Form';
+import {PostData} from '../../constants/types';
 
-function Timeline() {
+function Timeline({submitted}: {submitted: (post: PostData) => void}) {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (inputValue: string) => {
@@ -17,6 +18,12 @@ function Timeline() {
     console.log(tx);
     const response = await arweave.transactions.post(tx);
     console.log(response.status);
+    submitted({
+      id: tx.id,
+      owner: tx.owner,
+      content: inputValue,
+      time: 0
+    });
     setLoading(false);
   };
 

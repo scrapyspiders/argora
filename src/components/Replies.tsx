@@ -7,6 +7,7 @@ import arweave from '../api/arweave';
 import Post from './ui/Post';
 import {VertLine} from '../style/components/decoration';
 import {unionPostsById} from '../constants/toolkit';
+import ReplyForm from './forms/ReplyForm';
 
 function Replies({txid}: {txid: string}) {
   const {pathBase} = useParams<PathParams>();
@@ -44,6 +45,9 @@ function Replies({txid}: {txid: string}) {
 
   return(
     <>
+      <ReplyForm to={txid}
+        submitted={(post: PostData) => setReplies(p => unionPostsById(p, [post]))} 
+      />
       {replies?.map((post, i) => (
         <>
           <VertLine />

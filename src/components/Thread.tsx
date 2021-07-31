@@ -6,7 +6,6 @@ import arweave from '../api/arweave';
 import {postGql} from '../api/queries';
 import {PostData, PathParams} from '../constants/types';
 import Post from './ui/Post';
-import ReplyForm from './forms/ReplyForm';
 import Replies from './Replies';
 
 function Thread() {
@@ -57,7 +56,6 @@ function Thread() {
             time={post.time}
             replyTo={post.replyTo}
           />
-          <ReplyForm to={post.id} />
           <Replies txid={post.id} />
         </>
       }
