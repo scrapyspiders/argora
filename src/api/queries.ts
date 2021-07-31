@@ -29,7 +29,6 @@ const postGql = (txid: string) => `{
 
 const repliesGql = (txid: string) => `{
   transactions(
-    sort: HEIGHT_ASC
     tags: [
       { name: "App-Name", values: "argora" }
       { name: "App-Version", values: "0.0.1" }
