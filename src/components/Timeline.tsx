@@ -26,6 +26,7 @@ function Timeline() {
             time: tx.node.block?.timestamp
           }
         });
+        console.log(lastPosts);
         setPosts(p => unionPostsById(p, lastPosts));
       });
     } catch {

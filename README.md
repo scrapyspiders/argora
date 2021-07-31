@@ -20,7 +20,6 @@ Argora is a decentralized censorship resistant social network living on the Arwe
 - Possibility to toot pictures
 - Possibility to toot polls
 - retoot button
-- Take in consideration carriage return
 
 ### UI specific
 
@@ -29,6 +28,7 @@ Argora is a decentralized censorship resistant social network living on the Arwe
 - Limit the number of characters per toot
 - Desktop notifications
 - shortcut ctrl+enter/cmd+enter to send a toot without clicking the button
+- Display AR cumulated price and $ equivalent when typing on a form
 
 ### User incentives
 

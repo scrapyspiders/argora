@@ -72,6 +72,7 @@ const Content = styled('div')`
   padding: 20px 0px 20px 0px;
   font-size: larger;
   font-family: Arial;
+  white-space: pre-line;
 `;
 
 export {
