@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 import {colors, transition} from '../../constants/colors';
 
-const Post = styled('div')`
+/*
+ *  FormBox is a copy of PostBox with few differences (colors).
+ *  I let it in here for now.
+ */
+const FormBox = styled('div')`
   ${transition}
   background-color: ${({theme}) => theme.postBackground};
   color: ${({theme}) => theme.text};
@@ -13,6 +17,31 @@ const Post = styled('div')`
   margin-top: 5px;
   max-width: 600px;
   box-sizing: initial;
+
+  &:hover {
+    transition: border-color 0s;
+    border-color: ${({theme}) => theme.greenInvert};
+  }
+`;
+
+const PostBox = styled('div')`
+  ${transition}
+  background-color: ${({theme}) => theme.postBackground};
+  color: ${({theme}) => theme.text};
+  border: 1px solid ${colors.blue[1]};
+  border-radius: 5px;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  padding: 10px 10px 10px 0px;
+  margin: auto;
+  margin-top: 5px;
+  max-width: 600px;
+  box-sizing: initial;
+
+  &:hover {
+    transition: border-color 0s, opacity 0s;
+    border-color: ${({theme}) => theme.blueInvert};
+    opacity: 0.85;
+  }
 `;
 
 const Top = styled('div')`
@@ -75,7 +104,8 @@ const Content = styled('div')`
 `;
 
 export {
-  Post,
+  PostBox,
+  FormBox,
   Top,
   Main,
   LeftSide,

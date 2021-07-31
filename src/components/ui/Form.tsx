@@ -1,6 +1,6 @@
 import {useState, useContext} from 'react';
 import {Avatar} from '@material-ui/core';
-import {Post, Main, LeftSide, RightSide} from '../../style/components/post';
+import {FormBox, Main, LeftSide, RightSide} from '../../style/components/post';
 import {ButtonS, TextareaAutosizeS, AlertS} from '../../style/components/material-ui';
 import {Hr} from '../../style/components/decoration';
 import ctx from '../../constants/ctx';
@@ -16,7 +16,7 @@ function Form({handleSubmit, placeholder, loginMessage, comment}: FormType){
 
   return(
     walletAddr
-    ? <Post style={comment ? {maxWidth: '550px', marginTop: '-10px'} : {}}>
+    ? <FormBox style={comment ? {maxWidth: '550px', marginTop: '-10px'} : {}}>
         <Main>
           <LeftSide>
             <Avatar>{walletAddr.slice(0,2)}</Avatar>
@@ -39,7 +39,7 @@ function Form({handleSubmit, placeholder, loginMessage, comment}: FormType){
             </ButtonS>
           </RightSide>
         </Main>
-      </Post>
+      </FormBox>
     : <AlertS severity="info" style={comment ? {maxWidth: '550px'} : {maxWidth: '600px'}}>
         {loginMessage}
       </AlertS>

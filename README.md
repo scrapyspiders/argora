@@ -9,7 +9,14 @@ create-react-app - typescript - ArConnect support
 
 ## Future features idea
 
+### bridge web 2.0 -> web 3.0
+
 - "Tweet my toot" button: possibility to make a tweet of a toot when tooting
+- "Share" button with a tiny url generation
+
+### features on the arweave
+
+- update profile with weaveID
 - Desktop notifications
 - Possibility to toot pictures
 - Possibility to toot polls

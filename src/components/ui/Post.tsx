@@ -2,7 +2,7 @@ import {useParams, Link} from 'react-router-dom';
 import {PostData, PathParams} from '../../constants/types';
 import {Avatar} from '@material-ui/core';
 import {
-  Post,
+  PostBox,
   Top,
   Main,
   LeftSide,
@@ -19,7 +19,7 @@ function TimelinePost({id, content, owner, time, replyTo, comment}: PostData) {
   const {pathBase} = useParams<PathParams>();
 
   return(
-    <Post style={comment ? {maxWidth: '550px', marginTop: '-10px'} : {}}>
+    <PostBox style={comment ? {maxWidth: '550px', marginTop: '-10px'} : {}}>
       {replyTo && <Top>
         Replied to <Link to={`/${pathBase}/${replyTo}`}>
           {replyTo.slice(0,10)}...{replyTo.slice(replyTo.length-10, replyTo.length)}
@@ -45,7 +45,7 @@ function TimelinePost({id, content, owner, time, replyTo, comment}: PostData) {
           <Content>{content}</Content>
         </RightSide>
       </Main>
-    </Post>
+    </PostBox>
   );
 }
 

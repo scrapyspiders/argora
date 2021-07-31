@@ -58,6 +58,6 @@ const themes = {
   },
 };
 
-const transition = "transition: background 0.2s ease-in, color 0.2s ease-in;"
+const transition = "transition: background 0.2s ease-in, color 0.2s ease-in, border-color 0.2s ease-in, opacity 0.2s ease-in;"
 
 export {colors, themes, transition};
