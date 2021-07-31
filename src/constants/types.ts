@@ -22,7 +22,8 @@ type FormType = {
   handleSubmit: (inputValue: string) => Promise<void>,
   placeholder: string,
   loginMessage: string,
-  comment?: boolean
+  comment?: boolean,
+  loading: boolean
 }
 
 export type {PostData, PostHeader, PathParams, FormType};

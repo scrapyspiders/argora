@@ -2,24 +2,22 @@ import {useParams, Link} from 'react-router-dom';
 import {PostData, PathParams} from '../../constants/types';
 import {Avatar} from '@material-ui/core';
 import {
-  PostBox,
   Top,
-  Main,
-  LeftSide,
-  RightSide,
   Header,
   SubHeader,
   Txid,
   UserAddr,
   Time,
   Content
-} from '../../style/components/post';
+} from '../../style/components/BoxPost';
+import {Main, LeftSide, RightSide} from '../../style/components/BoxCommon';
+import {Box} from '../../style/components/BoxPost';
 
 function TimelinePost({id, content, owner, time, replyTo, comment}: PostData) {
   const {pathBase} = useParams<PathParams>();
 
   return(
-    <PostBox style={comment ? {maxWidth: '550px', marginTop: '-10px'} : {}}>
+    <Box style={comment ? {maxWidth: '550px', marginTop: '-10px'} : {}}>
       {replyTo && <Top>
         Replied to <Link to={`/${pathBase}/${replyTo}`}>
           {replyTo.slice(0,10)}...{replyTo.slice(replyTo.length-10, replyTo.length)}
@@ -45,7 +43,7 @@ function TimelinePost({id, content, owner, time, replyTo, comment}: PostData) {
           <Content>{content}</Content>
         </RightSide>
       </Main>
-    </PostBox>
+    </Box>
   );
 }
 

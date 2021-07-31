@@ -1,6 +1,6 @@
-# argora - A simple social network on Arweave
+# Argora
 
-create-react-app - typescript - ArConnect support
+Argora is a decentralized censorship resistant social network living on the Arweave blockchain. 
 
 ## Arweave community dependencies
 
@@ -54,6 +54,19 @@ Example:
 
 For each new comment, PSTs holders get paid.
 ArVerify would be used to limit sybil attack.
+
+----------------
+
+# spinners
+
+```
+{/* <FulfillingSquareSpinner color={colors.purple[1]} /> */}
+{/* <ScalingSquaresSpinner color={colors.purple[1]} /> */}
+{/* <SelfBuildingSquareSpinner color={colors.purple[1]} /> */}
+{/* <PixelSpinner color={colors.blue[1]} /> */}
+{/* <CirclesToRhombusesSpinner color={colors.green[1]} /> */}
+{/* <LoopingRhombusesSpinner color={colors.blue[1]} /> */}
+```
 
 ----------------
 

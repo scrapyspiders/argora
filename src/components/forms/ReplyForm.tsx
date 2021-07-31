@@ -1,9 +1,12 @@
+import {useState} from 'react';
 import arweave from '../../api/arweave';
 import Form from '../ui/Form';
 
 function Reply({to}: {to: string}) {
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (inputValue: string) => {
+    setLoading(true);
     const tx = await arweave.createTransaction({
       data: inputValue
     });
@@ -14,11 +17,13 @@ function Reply({to}: {to: string}) {
     console.log(tx);
     const response = await arweave.transactions.post(tx);
     console.log(response.status);
+    setLoading(false);
   }
 
   return(
     <Form
       comment
+      loading={loading}
       handleSubmit={handleSubmit}
       placeholder="Toot your reply!"
       loginMessage="Wanna reply to this? Please log in."

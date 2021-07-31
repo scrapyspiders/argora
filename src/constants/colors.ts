@@ -18,7 +18,8 @@ const colors = {
     '#485aff',
     '#1a98ff',
     '#6aaee4'
-  ]
+  ],
+  yellow: '#fcef1f'
 };
 
 /*
