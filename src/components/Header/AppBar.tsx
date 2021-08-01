@@ -1,10 +1,12 @@
 import {Toolbar, Grid} from '@material-ui/core';
+import {useContext} from 'react';
 import LoginButton from './LoginButton';
 import ThemeButton from './ThemeButton';
 import {AppBarS} from '../../style/components/material-ui';
 import img from '../../constants/img';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Slide from "@material-ui/core/Slide";
+import ctx from '../../constants/ctx';
 
 function HideOnScroll({children}: {children: React.ReactElement}) {
   const trigger = useScrollTrigger();
@@ -17,6 +19,8 @@ function HideOnScroll({children}: {children: React.ReactElement}) {
 }
 
 function Header() {
+  const {theme} = useContext(ctx);
+
   return (<>
     <HideOnScroll>
       <AppBarS>
@@ -27,7 +31,10 @@ function Header() {
             justifyContent="space-between"
             alignItems="center"
           >
-            <img src={img.logo} alt="arweave logo" height="50" />
+            {theme 
+              ? <img src={img.logoBlack} alt="Argora" />
+              : <img src={img.logoWhite} alt="Argora" />
+            }
             <div>
               <ThemeButton />
               <LoginButton />
