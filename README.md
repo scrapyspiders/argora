@@ -1,6 +1,6 @@
 # Argora
 
-Argora is a decentralized censorship resistant social network living on the Arweave blockchain. 
+Argora is a simple multipurpose and censorship resistant social network living on the Arweave blockchain. 
 
 ## Arweave community dependencies
 

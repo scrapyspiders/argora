@@ -22,8 +22,11 @@ dayjs.extend(relativeTime);
 function TimelinePost({id, content, owner, time, replyTo, comment}: PostData) {
   const {pathBase} = useParams<PathParams>();
 
+  const isComment = comment ? {maxWidth: '550px', marginTop: '-10px'} : {};
+  const isMining = time ? {} : {borderColor: colors.yellow};
+  
   return(
-    <Box style={comment ? {maxWidth: '550px', marginTop: '-10px'} : {}}>
+    <Box style={{...isComment, ...isMining}}>
       {replyTo && <Top>
         Replied to <Link to={`/${pathBase}/${replyTo}`}>
           {replyTo.slice(0,10)}...{replyTo.slice(replyTo.length-10, replyTo.length)}
