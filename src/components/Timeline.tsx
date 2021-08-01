@@ -44,16 +44,24 @@ function Timeline() {
   return(
     <>
       <TimelineForm submitted={(post: PostData) => setPosts(p => unionPostsById(p, [post]))} />
-      {posts?.map((post, i) => (
-        <Link to={`${match.url}/${post.id}`} key={i}>
-          <Post 
+      {posts?.map((post, i) => (<>
+        {post.time
+        ? <Link to={`${match.url}/${post.id}`} key={i}>
+            <Post 
+              id={post.id}
+              content={post.content}
+              owner={post.owner}
+              time={post.time}
+            />
+          </Link>
+        : <Post key={i}
             id={post.id}
             content={post.content}
             owner={post.owner}
             time={post.time}
           />
-        </Link>
-      ))}
+        }
+      </>))}
     </>
   );
 }

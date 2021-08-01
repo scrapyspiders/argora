@@ -51,15 +51,24 @@ function Replies({txid}: {txid: string}) {
       {replies?.map((post, i) => (
         <>
           <VertLine />
-          <Link to={`/${pathBase}/${post.id}`} key={i}>
-            <Post
+          {post.time
+          ? <Link to={`/${pathBase}/${post.id}`} key={i}>
+              <Post
+                comment
+                id={post.id}
+                content={post.content}
+                owner={post.owner}
+                time={post.time}
+              />
+            </Link>
+          : <Post key={i}
               comment
               id={post.id}
               content={post.content}
               owner={post.owner}
               time={post.time}
             />
-          </Link>
+          }
         </>
       ))}
     </>
