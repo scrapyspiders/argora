@@ -50,6 +50,9 @@ const UserAddr = styled('a')`
 `;
 
 const Time = styled('span')`
+  ${transition}
+  font-size: small;
+  color: ${({theme}) => theme.blueInvert}
 `;
 
 const SubHeader = styled('div')`

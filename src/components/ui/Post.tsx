@@ -12,6 +12,12 @@ import {
 } from '../../style/components/BoxPost';
 import {Main, LeftSide, RightSide} from '../../style/components/BoxCommon';
 import {Box} from '../../style/components/BoxPost';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import {CirclesToRhombusesSpinner} from 'react-epic-spinners';
+import {colors} from '../../constants/colors';
+
+dayjs.extend(relativeTime);
 
 function TimelinePost({id, content, owner, time, replyTo, comment}: PostData) {
   const {pathBase} = useParams<PathParams>();
@@ -32,7 +38,12 @@ function TimelinePost({id, content, owner, time, replyTo, comment}: PostData) {
             <UserAddr href={`https://viewblock.io/arweave/address/${owner}`} target="_blank" rel="noreferrer">
               @{owner.slice(0,5)}...{owner.slice(owner.length-5, owner.length)}
             </UserAddr>
-            <Time> - {time}</Time>
+            <Time> - {
+              time ? dayjs().to(dayjs(new Date(time*1000)), true)
+              : <>
+                <CirclesToRhombusesSpinner size={10} color={colors.green[1]} style={{display: 'inline-flex'}} /> mining
+              </>}
+            </Time>
           </Header>
           <SubHeader>
             txid: 
