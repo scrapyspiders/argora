@@ -49,10 +49,10 @@ function Replies({txid}: {txid: string}) {
         submitted={(post: PostData) => setReplies(p => unionPostsById(p, [post]))} 
       />
       {replies?.map((post, i) => (
-        <>
+        <div key={i}>
           <VertLine />
           {post.time
-          ? <Link to={`/${pathBase}/${post.id}`} key={i}>
+          ? <Link to={`/${pathBase}/${post.id}`}>
               <Post
                 comment
                 id={post.id}
@@ -61,7 +61,7 @@ function Replies({txid}: {txid: string}) {
                 time={post.time}
               />
             </Link>
-          : <Post key={i}
+          : <Post
               comment
               id={post.id}
               content={post.content}
@@ -69,7 +69,7 @@ function Replies({txid}: {txid: string}) {
               time={post.time}
             />
           }
-        </>
+        </div>
       ))}
     </>
   );
