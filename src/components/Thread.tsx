@@ -7,6 +7,7 @@ import {postGql} from '../api/queries';
 import {PostData, PathParams} from '../constants/types';
 import Post from './ui/Post';
 import Replies from './Replies';
+import {ButtonS} from '../style/components/material-ui';
 
 function Thread() {
   const {pathBase, txid} = useParams<PathParams>();
@@ -44,7 +45,8 @@ function Thread() {
 
   return(
     <>
-      <Link to={`/${pathBase}`}>Back to timeline</Link><br />
+      <Link to={`/${pathBase}`}><ButtonS>Back to timeline</ButtonS></Link>
+      <br />
       {!error && !post && <>loading</>}
       {error && <Alert severity="error">{error}</Alert>}
       {post && 
