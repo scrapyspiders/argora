@@ -2,7 +2,7 @@ type PostData = {
   id: string,
   content: string | Uint8Array,
   owner: string,
-  time: number,
+  time: number | undefined,
   replyTo?: string,
   comment?: boolean
 };

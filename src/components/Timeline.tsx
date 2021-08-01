@@ -26,7 +26,6 @@ function Timeline() {
             time: tx.node.block?.timestamp
           }
         });
-        console.log(lastPosts);
         setPosts(p => unionPostsById(p, lastPosts));
       });
     } catch {
@@ -36,7 +35,7 @@ function Timeline() {
 
   useEffect(() => {
     requestLastPosts();
-    const interval = setInterval(requestLastPosts, 5000);
+    const interval = setInterval(requestLastPosts, 4000);
     return () => clearInterval(interval);
   }, [requestLastPosts]);
 

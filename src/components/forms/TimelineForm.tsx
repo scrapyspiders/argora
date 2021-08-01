@@ -1,10 +1,12 @@
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import arweave from '../../api/arweave';
 import Form from '../ui/Form';
 import {PostData} from '../../constants/types';
+import ctx from '../../constants/ctx';
 
 function Timeline({submitted}: {submitted: (post: PostData) => void}) {
   const [loading, setLoading] = useState(false);
+  const {walletAddr} = useContext(ctx);
 
   const handleSubmit = async (inputValue: string) => {
     setLoading(true);
@@ -20,7 +22,7 @@ function Timeline({submitted}: {submitted: (post: PostData) => void}) {
     console.log(response.status);
     submitted({
       id: tx.id,
-      owner: tx.owner,
+      owner: walletAddr,
       content: inputValue,
       time: 0
     });
