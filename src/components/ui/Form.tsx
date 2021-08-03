@@ -1,11 +1,12 @@
 import {useState, useContext} from 'react';
+import {useParams, Link} from 'react-router-dom';
 import {Avatar} from '@material-ui/core';
 import {Main, LeftSide, RightSide} from '../../style/components/BoxCommon';
 import {Box} from '../../style/components/BoxForm';
 import {ButtonS, TextareaAutosizeS, AlertS} from '../../style/components/material-ui';
 import {Hr} from '../../style/components/decoration';
 import ctx from '../../constants/ctx';
-import {FormType} from '../../constants/types';
+import {FormType, PathParams} from '../../constants/types';
 import FormSpinner from './FormSpinner';
 
 function Form({handleSubmit, placeholder, loginMessage, comment, loading}: FormType){
@@ -21,13 +22,17 @@ function Form({handleSubmit, placeholder, loginMessage, comment, loading}: FormT
     setInputValue("");
   }
 
+  const {pathBase} = useParams<PathParams>();
+
   return(
     walletAddr
     ? <Box style={comment ? {maxWidth: '550px', marginTop: '-10px'} : {}}>
         {loading && <FormSpinner />}
         <Main style={loading ? {opacity: 0.5} : {}}>
           <LeftSide>
-            <Avatar>{walletAddr.slice(0,2)}</Avatar>
+            <Link to={`/${pathBase}/profile/${walletAddr}`}>
+              <Avatar>{walletAddr.slice(0,2)}</Avatar>
+            </Link>
           </LeftSide>
           <RightSide>
             <TextareaAutosizeS

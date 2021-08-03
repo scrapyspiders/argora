@@ -1,4 +1,6 @@
 import {Toolbar, Grid} from '@material-ui/core';
+import {Link, useParams} from 'react-router-dom';
+import {PathParams} from '../../constants/types';
 import {useContext} from 'react';
 import LoginButton from './LoginButton';
 import ThemeButton from './ThemeButton';
@@ -21,6 +23,8 @@ function HideOnScroll({children}: {children: React.ReactElement}) {
 function Header() {
   const {theme} = useContext(ctx);
 
+  const {pathBase} = useParams<PathParams>();
+  
   return (<>
     <HideOnScroll>
       <AppBarS>
@@ -31,10 +35,12 @@ function Header() {
             justifyContent="space-between"
             alignItems="center"
           >
-            {theme 
-              ? <img src={img.logoBlack} alt="Argora" />
-              : <img src={img.logoWhite} alt="Argora" />
-            }
+            <Link to={`/${pathBase}`}>
+              {theme 
+                ? <img src={img.logoBlack} alt="Argora" />
+                : <img src={img.logoWhite} alt="Argora" />
+              }
+            </Link>
             <div>
               <ThemeButton />
               <LoginButton />

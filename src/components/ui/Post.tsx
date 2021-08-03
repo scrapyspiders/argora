@@ -34,7 +34,9 @@ function TimelinePost({id, content, owner, time, replyTo, comment}: PostData) {
       </Top>}
       <Main>
         <LeftSide>
-          <Avatar>{owner.slice(0,2)}</Avatar>
+          <Link to={`/${pathBase}/profile/${owner}`}>
+            <Avatar>{owner.slice(0,2)}</Avatar>
+          </Link>
         </LeftSide>
         <RightSide>
           <Header>
