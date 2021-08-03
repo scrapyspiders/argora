@@ -1,4 +1,5 @@
 import Arweave from 'arweave';
+import ArDB from '@textury/ardb';
 
 const arweave = Arweave.init({
   host: 'arweave.net',// Hostname or IP address for a Arweave host
@@ -8,4 +9,6 @@ const arweave = Arweave.init({
   logging: false,
 });
 
-export default arweave;
+const ardb = new ArDB(arweave);
+
+export {arweave, ardb};

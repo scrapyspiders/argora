@@ -1,9 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useParams, Link} from 'react-router-dom';
 import {Alert} from '@material-ui/lab';
-import {run} from "ar-gql";
-import arweave from '../api/arweave';
-import {postGql} from '../api/queries';
+import {arweave, ardb} from '../api/arweave';
 import {PostData, PathParams} from '../constants/types';
 import Post from './ui/Post';
 import Replies from './Replies';
@@ -18,24 +16,19 @@ function Thread() {
   useEffect(() => {
     (async () => {
       try {
-        const queryResult = await run(postGql(txid));
-        const tx = queryResult.data.transaction;
+        const tx = await ardb.search('transaction')
+          .id(txid)
+          .findOne();
+
         const content = await arweave.transactions.getData(tx.id, {decode: true, string: true});
-        const txData = await arweave.transactions.get(tx.id);
-        let replyTo = undefined;
-        for(let i=0 ; i<txData.tags.length ; i++){
-          if('reply-to' === txData.tags[i].get('name', {decode: true, string: true})){
-            replyTo = txData.tags[i].get('value', {decode: true, string: true});
-            if(replyTo === "world") replyTo = undefined;
-            break;
-          }
-        }
+        const replyTo = 'tags' in tx ? tx.tags.find(tag => tag.name === 'reply-to') : undefined;
+        
         setPost({
           id: tx.id,
           content: content,
-          owner: tx.owner.address,
-          time: tx.block?.timestamp,
-          replyTo: replyTo
+          owner: 'owner' in tx ? tx.owner.address : undefined,
+          time: 'block' in tx ? tx.block?.timestamp : undefined,
+          replyTo: replyTo?.value === 'world' ? undefined : replyTo?.value
         });
       } catch {
         setError("Could not retrieve toot");
