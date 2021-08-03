@@ -3,7 +3,7 @@ import {useParams, Link} from 'react-router-dom';
 import {PostData, PathParams} from '../constants/types';
 import {run} from "ar-gql";
 import {repliesGql} from '../api/queries';
-import arweave from '../api/arweave';
+import {arweave} from '../api/arweave';
 import Post from './ui/Post';
 import {VertLine} from '../style/components/decoration';
 import {unionPostsById} from '../constants/toolkit';
