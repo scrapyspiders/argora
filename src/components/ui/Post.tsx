@@ -34,12 +34,12 @@ function TimelinePost({id, content, owner, time, replyTo, comment}: PostData) {
       </Top>}
       <Main>
         <LeftSide>
-          <Avatar>{owner.slice(0,2)}</Avatar>
+          <Avatar>{owner?.slice(0,2)}</Avatar>
         </LeftSide>
         <RightSide>
           <Header>
             <UserAddr href={`https://viewblock.io/arweave/address/${owner}`} target="_blank" rel="noreferrer">
-              @{owner.slice(0,5)}...{owner.slice(owner.length-5, owner.length)}
+              @{owner?.slice(0,5)}...{owner?.slice(owner?.length-5, owner?.length)}
             </UserAddr>
             <Time> - {
               time ? dayjs().to(dayjs(new Date(time*1000)), true)

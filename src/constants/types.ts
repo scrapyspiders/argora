@@ -1,7 +1,7 @@
 type PostData = {
   id: string,
   content: string | Uint8Array,
-  owner: string,
+  owner: string | undefined,
   time: number | undefined,
   replyTo?: string,
   comment?: boolean
