@@ -17,8 +17,8 @@ function Thread() {
   useEffect(() => {
     (async () => {
       try {
-        const tx = await ardb.search('transaction')
-          .id(txid)
+        const tx = await ardb.search('transactions')
+          .ids([txid])
           .findOne();
 
         const content = await arweave.transactions.getData(tx.id, {decode: true, string: true});
