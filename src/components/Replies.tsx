@@ -22,7 +22,8 @@ function Replies({txid}: {txid: string}) {
         .tag('reply-to', txid)
         .limit(30).find()
 
-        const contents = queryResult.map(async tx => arweave.transactions.getData(tx.id, {decode: true, string: true}));
+      const contents = queryResult.map(tx => arweave.transactions.getData(tx.id, {decode: true, string: true}));
+      
       Promise.all(contents).then(results => {
         const lastReplies = queryResult.map((tx, i) => {
           return {

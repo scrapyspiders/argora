@@ -9,7 +9,8 @@ type PostData = {
 
 type PathParams = {
   pathBase: string,
-  txid: string
+  txid: string,
+  addr: string
 }
 
 type PostHeader = {

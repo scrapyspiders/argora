@@ -17,7 +17,7 @@ function Timeline() {
         .tag('App-Version', '0.0.1')
         .tag('reply-to', 'world')
         .limit(30).find();
-      const contents = queryResult.map(async tx => arweave.transactions.getData(tx.id, {decode: true, string: true}));
+      const contents = queryResult.map(tx => arweave.transactions.getData(tx.id, {decode: true, string: true}));
       Promise.all(contents).then(async results => {
         const lastPosts = queryResult.map((tx, i) => {
           return {
