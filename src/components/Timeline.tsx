@@ -1,12 +1,16 @@
 import {useEffect, useState, useCallback} from 'react';
 import {useRouteMatch, Link} from 'react-router-dom';
+import {Alert} from '@material-ui/lab';
 import {PostData} from '../constants/types';
 import {arweave, ardb} from '../api/arweave';
 import Post from './ui/Post';
 import TimelineForm from './forms/TimelineForm';
 import {unionPostsById} from '../constants/toolkit';
+import Loading from './ui/Loading';
 
 function Timeline() {
+  const [error, setError] = useState<string>();
+  const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState<(PostData)[]>();
 
   const requestLastPosts = useCallback(async () => {
@@ -28,9 +32,10 @@ function Timeline() {
           }
         });
         setPosts(p => unionPostsById(p, lastPosts));
+        setLoading(false);
       });
     } catch {
-      alert("Error: Could not retrieve toots");
+      setError("Error: Could not retrieve toots");
     }
   }, []);
 
@@ -45,6 +50,8 @@ function Timeline() {
   return(
     <>
       <TimelineForm submitted={(post: PostData) => setPosts(p => unionPostsById(p, [post]))} />
+      {!error && loading && <Loading />}
+      {error && <Alert severity="error">{error}</Alert>}
       {posts?.map((post, i) => (<div key={i}>
         {post.time
         ? <Link to={`${match.url}/${post.id}`}>

@@ -1,13 +1,18 @@
 import {useEffect, useState, useCallback} from 'react';
 import {useParams, Link} from 'react-router-dom';
+import {Alert} from '@material-ui/lab';
 import {PostData, PathParams} from '../constants/types';
 import {arweave, ardb} from '../api/arweave';
 import Post from './ui/Post';
+import Loading from './ui/Loading';
 import {unionPostsById} from '../constants/toolkit';
 
 function Profile() {
-  const [posts, setPosts] = useState<(PostData)[]>();
   const {pathBase, addr} = useParams<PathParams>();
+
+  const [error, setError] = useState<string>();
+  const [loading, setLoading] = useState(true);
+  const [posts, setPosts] = useState<(PostData)[]>();
 
   const requestLastPosts = useCallback(async () => {
     console.log("requestLastPosts function");
@@ -33,9 +38,10 @@ function Profile() {
           }
         });
         setPosts(p => unionPostsById(p, lastPosts));
+        setLoading(false);
       });
     } catch {
-      alert("Error: Could not retrieve toots");
+      setError("Error: Could not retrieve toots");
     }
   }, [addr]);
 
@@ -47,6 +53,8 @@ function Profile() {
 
   return(
     <>
+      {!error && loading && <Loading />}
+      {error && <Alert severity="error">{error}</Alert>}
       {posts?.map((post, i) => (<div key={i}>
         {post.time
         ? <Link to={`/${pathBase}/${post.id}`}>

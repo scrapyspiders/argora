@@ -6,6 +6,7 @@ import {PostData, PathParams} from '../constants/types';
 import Post from './ui/Post';
 import Replies from './Replies';
 import {ButtonS} from '../style/components/material-ui';
+import Loading from './ui/Loading';
 
 function Thread() {
   const {pathBase, txid} = useParams<PathParams>();
@@ -40,7 +41,7 @@ function Thread() {
     <>
       <Link to={`/${pathBase}`}><ButtonS>Back to timeline</ButtonS></Link>
       <br />
-      {!error && !post && <>loading</>}
+      {!error && !post && <Loading />}
       {error && <Alert severity="error">{error}</Alert>}
       {post && 
         <>

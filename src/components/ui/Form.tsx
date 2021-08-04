@@ -7,7 +7,7 @@ import {ButtonS, TextareaAutosizeS, AlertS} from '../../style/components/materia
 import {Hr} from '../../style/components/decoration';
 import ctx from '../../constants/ctx';
 import {FormType, PathParams} from '../../constants/types';
-import FormSpinner from './FormSpinner';
+import Loading from './Loading';
 
 function Form({handleSubmit, placeholder, loginMessage, comment, loading}: FormType){
   const {walletAddr} = useContext(ctx);
@@ -27,7 +27,7 @@ function Form({handleSubmit, placeholder, loginMessage, comment, loading}: FormT
   return(
     walletAddr
     ? <Box style={comment ? {maxWidth: '550px', marginTop: '-10px'} : {}}>
-        {loading && <FormSpinner />}
+        {loading && <Loading type='form' />}
         <Main style={loading ? {opacity: 0.5} : {}}>
           <LeftSide>
             <Link to={`/${pathBase}/profile/${walletAddr}`}>

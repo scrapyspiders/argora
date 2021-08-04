@@ -1,5 +1,6 @@
 import {useEffect, useState, useCallback} from 'react';
 import {useParams, Link} from 'react-router-dom';
+import {Alert} from '@material-ui/lab';
 import {PostData, PathParams} from '../constants/types';
 import {ardb} from '../api/arweave';
 import {arweave} from '../api/arweave';
@@ -7,10 +8,13 @@ import Post from './ui/Post';
 import {VertLine} from '../style/components/decoration';
 import {unionPostsById} from '../constants/toolkit';
 import ReplyForm from './forms/ReplyForm';
+import Loading from './ui/Loading';
 
 function Replies({txid}: {txid: string}) {
   const {pathBase} = useParams<PathParams>();
 
+  const [error, setError] = useState<string>();
+  const [loading, setLoading] = useState(true);
   const [replies, setReplies] = useState<(PostData)[]>();
 
   const requestLastReplies = useCallback(async () => {
@@ -34,9 +38,10 @@ function Replies({txid}: {txid: string}) {
           }
         });
         setReplies(p => unionPostsById(p, lastReplies));
+        setLoading(false);
       });
     } catch {
-      alert("Could not retrieve toot");
+      setError("Could not retrieve toot");
     }
   }, [txid]);
 
@@ -52,6 +57,8 @@ function Replies({txid}: {txid: string}) {
       <ReplyForm to={txid}
         submitted={(post: PostData) => setReplies(p => unionPostsById(p, [post]))} 
       />
+      {!error && loading && <Loading />}
+      {error && <Alert severity="error">{error}</Alert>}
       {replies?.map((post, i) => (
         <div key={i}>
           <VertLine />
