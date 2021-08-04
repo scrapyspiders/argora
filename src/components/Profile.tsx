@@ -40,8 +40,8 @@ function Profile() {
         setPosts(p => unionPostsById(p, lastPosts));
         setLoading(false);
       });
-    } catch {
-      setError("Error: Could not retrieve toots");
+    } catch (e) {
+      setError(`Could not retrieve toots: ${e}`);
     }
   }, [addr]);
 

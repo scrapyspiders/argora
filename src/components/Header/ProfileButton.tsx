@@ -12,6 +12,9 @@ function ProfileButton(){
   const {walletAddr, setWalletAddr} = useContext(ctx);
   const [anchorEl, setAnchorEl] = useState<(EventTarget & HTMLElement | null)>(null);
 
+  const history = useHistory();
+  const {pathBase} = useParams<PathParams>();
+
   const disconnectWallet = async () => {
     await arConnect.disconnect();
     setWalletAddr("");
@@ -25,8 +28,10 @@ function ProfileButton(){
     setAnchorEl(null);
   };
 
-  const history = useHistory();
-  const {pathBase} = useParams<PathParams>();
+  const openProfile = (e: React.MouseEvent<HTMLElement>) => {
+    history.push(`/${pathBase}/profile/${walletAddr}`);
+    handleClose();
+  };
 
   return(
     <>
@@ -38,7 +43,7 @@ function ProfileButton(){
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={() => history.push(`/${pathBase}/profile/${walletAddr}`)}>Profile</MenuItem>
+        <MenuItem onClick={openProfile}>Profile</MenuItem>
         <MenuItem onClick={disconnectWallet}>Logout</MenuItem>
       </Menu>
     </>

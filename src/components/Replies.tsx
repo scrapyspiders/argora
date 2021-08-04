@@ -40,8 +40,8 @@ function Replies({txid}: {txid: string}) {
         setReplies(p => unionPostsById(p, lastReplies));
         setLoading(false);
       });
-    } catch {
-      setError("Could not retrieve toot");
+    } catch (e) {
+      setError(`Could not retrieve toot: ${e}`);
     }
   }, [txid]);
 

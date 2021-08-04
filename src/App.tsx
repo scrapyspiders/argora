@@ -33,16 +33,16 @@ function App() {
     }}>
       <ThemeProvider theme={theme ? light : dark}>
         <GlobalStyles />
-        <Router history={history}>
-          <main>
+        <main>
+          <Router history={history}>
             <Switch>
               <Route exact path='/'><Header /><DevMode /></Route>
               <Route exact path='/:pathBase/profile/:addr'><Header /><Profile /></Route>
               <Route exact path='/:pathBase'><Header /><Timeline /></Route>
               <Route path='/:pathBase/:txid'><Header /><Thread /></Route>
             </Switch>
-          </main>
-        </Router>
+          </Router>
+        </main>
       </ThemeProvider>
     </ctx.Provider>
   );

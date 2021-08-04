@@ -12,7 +12,7 @@ function Thread() {
   const {pathBase, txid} = useParams<PathParams>();
 
   const [error, setError] = useState<string>();
-  const [post, setPost] = useState<PostData>();
+  const [post, setPost] = useState<PostData | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -31,10 +31,13 @@ function Thread() {
           time: 'block' in tx ? tx.block?.timestamp : undefined,
           replyTo: replyTo?.value === 'world' ? undefined : replyTo?.value
         });
-      } catch {
-        setError("Could not retrieve toot");
+      } catch(e) {
+        setError(`Could not retrieve toot: ${e}`);
       }
     })();
+    return () => {
+      setPost(null);
+    }
   }, [txid]);
 
   return(
