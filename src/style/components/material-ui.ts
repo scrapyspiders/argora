@@ -7,7 +7,7 @@ const AppBarS = styled(AppBar)`
   ${transition}
   background-color: ${({ theme }) => theme.bodyBackground};
   color: ${({ theme }) => theme.text};
-  box-shadow: 0px 2px 4px ${colors.purple[1]};
+  box-shadow: 0px 2px 4px ${({ theme }) => theme.purpleInvert};
 `;
 
 const ButtonS = styled(Button)`
