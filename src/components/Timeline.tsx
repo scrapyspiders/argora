@@ -1,6 +1,6 @@
 import {useEffect, useState, useCallback} from 'react';
 import {useRouteMatch, Link} from 'react-router-dom';
-import {Alert} from '@material-ui/lab';
+import {AlertS} from '../style/components/material-ui';
 import {PostData, unionPostsById} from '../constants';
 import {arweave, ardb} from '../api/arweave';
 import Post from './ui/Post';
@@ -50,7 +50,7 @@ function Timeline() {
     <>
       <TimelineForm submitted={(post: PostData) => setPosts(p => unionPostsById(p, [post]))} />
       {!error && loading && <Loading />}
-      {error && <Alert severity="error">{error}</Alert>}
+      {error && <AlertS severity="error">{error}</AlertS>}
       {posts?.map((post, i) => (<div key={i}>
         {post.time
         ? <Link to={`${match.url}/${post.id}`}>

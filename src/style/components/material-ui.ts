@@ -48,6 +48,7 @@ const TextareaAutosizeS = styled(TextareaAutosize)`
 
 const AlertS = styled(Alert)`
   margin: auto;
+  max-width: 600px;
 `;
 
 export {AppBarS, ButtonS, IconButtonS, CardPostS, TextareaAutosizeS, AlertS};

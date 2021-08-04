@@ -1,6 +1,6 @@
 import {useEffect, useState, useCallback} from 'react';
 import {useParams, Link} from 'react-router-dom';
-import {Alert} from '@material-ui/lab';
+import {AlertS} from '../style/components/material-ui';
 import {PostData, PathParams, unionPostsById} from '../constants';
 import {arweave, ardb} from '../api/arweave';
 import Post from './ui/Post';
@@ -53,7 +53,7 @@ function Profile() {
   return(
     <>
       {!error && loading && <Loading />}
-      {error && <Alert severity="error">{error}</Alert>}
+      {error && <AlertS severity="error">{error}</AlertS>}
       {posts?.map((post, i) => (<div key={i}>
         {post.time
         ? <Link to={`/${pathBase}/${post.id}`}>

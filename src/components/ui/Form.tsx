@@ -53,7 +53,7 @@ function Form({handleSubmit, placeholder, loginMessage, comment, loading}: FormT
           </RightSide>
         </Main>
       </Box>
-    : <AlertS severity="info" style={comment ? {maxWidth: '550px'} : {maxWidth: '600px'}}>
+    : <AlertS severity="info" style={comment ? {maxWidth: '550px'} : {}}>
         {loginMessage}
       </AlertS>
   );

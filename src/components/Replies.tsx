@@ -1,6 +1,6 @@
 import {useEffect, useState, useCallback} from 'react';
 import {useParams, Link} from 'react-router-dom';
-import {Alert} from '@material-ui/lab';
+import {AlertS} from '../style/components/material-ui';
 import {PostData, PathParams, unionPostsById} from '../constants';
 import {ardb} from '../api/arweave';
 import {arweave} from '../api/arweave';
@@ -59,7 +59,7 @@ function Replies({txid}: {txid: string}) {
         submitted={(post: PostData) => setReplies(p => unionPostsById(p, [post]))} 
       />
       {!error && loading && <Loading />}
-      {error && <Alert severity="error">{error}</Alert>}
+      {error && <AlertS severity="error">{error}</AlertS>}
       {replies?.map((post, i) => (
         <div key={i}>
           <VertLine />
