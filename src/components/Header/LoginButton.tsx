@@ -1,7 +1,7 @@
 import {useEffect, useContext} from 'react';
 import {ButtonS} from '../../style/components/material-ui';
 import useArConnect from 'use-arconnect';
-import ctx from '../../constants/ctx';
+import {ctx} from '../../constants';
 import ProfileButton from './ProfileButton';
 
 const arConnectPermissions = [

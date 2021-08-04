@@ -7,4 +7,4 @@ const ctx = createContext({} as {
   setTheme: (t: boolean) => void;
 });
 
-export default ctx;
+export {ctx};

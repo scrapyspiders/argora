@@ -5,8 +5,7 @@ import {Main, LeftSide, RightSide} from '../../style/components/BoxCommon';
 import {Box} from '../../style/components/BoxForm';
 import {ButtonS, TextareaAutosizeS, AlertS} from '../../style/components/material-ui';
 import {Hr} from '../../style/components/decoration';
-import ctx from '../../constants/ctx';
-import {FormType, PathParams} from '../../constants/types';
+import {ctx, FormType, PathParams} from '../../constants';
 import Loading from './Loading';
 
 function Form({handleSubmit, placeholder, loginMessage, comment, loading}: FormType){

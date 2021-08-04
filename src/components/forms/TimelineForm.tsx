@@ -1,8 +1,7 @@
 import {useState, useContext} from 'react';
 import {arweave} from '../../api/arweave';
 import Form from '../ui/Form';
-import {PostData} from '../../constants/types';
-import ctx from '../../constants/ctx';
+import {ctx, PostData} from '../../constants';
 
 function Timeline({submitted}: {submitted: (post: PostData) => void}) {
   const [loading, setLoading] = useState(false);

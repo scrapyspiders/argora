@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {colors, transition} from '../../constants/colors';
+import {colors, transition} from '../../constants';
 
 const Box = styled('div')`
   ${transition}

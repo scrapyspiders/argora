@@ -1,4 +1,4 @@
-import {themes} from '../constants/colors';
+import {themes} from '../constants';
 
 const light = {
   bodyBackground: themes.light.background[0],

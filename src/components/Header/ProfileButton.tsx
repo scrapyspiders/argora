@@ -1,8 +1,7 @@
 import React, {useState, useContext} from 'react';
 import {useParams, useHistory} from 'react-router-dom';
 import useArConnect from 'use-arconnect';
-import ctx from '../../constants/ctx';
-import {PathParams} from '../../constants/types';
+import {ctx, PathParams} from '../../constants';
 import {Menu, MenuItem} from '@material-ui/core';
 import {IconButtonS} from '../../style/components/material-ui';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';

@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import {useParams, Link} from 'react-router-dom';
 import {Alert} from '@material-ui/lab';
 import {arweave, ardb} from '../api/arweave';
-import {PostData, PathParams} from '../constants/types';
+import {PostData, PathParams} from '../constants';
 import Post from './ui/Post';
 import Replies from './Replies';
 import {ButtonS} from '../style/components/material-ui';

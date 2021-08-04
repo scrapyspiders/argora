@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {Router, Switch, Route} from 'react-router-dom';
 import {createBrowserHistory} from 'history';
-import ctx from './constants/ctx';
+import {ctx} from './constants';
 
 import { ThemeProvider } from 'styled-components';
 import GlobalStyles from './style/global';

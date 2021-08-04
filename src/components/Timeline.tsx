@@ -1,11 +1,10 @@
 import {useEffect, useState, useCallback} from 'react';
 import {useRouteMatch, Link} from 'react-router-dom';
 import {Alert} from '@material-ui/lab';
-import {PostData} from '../constants/types';
+import {PostData, unionPostsById} from '../constants';
 import {arweave, ardb} from '../api/arweave';
 import Post from './ui/Post';
 import TimelineForm from './forms/TimelineForm';
-import {unionPostsById} from '../constants/toolkit';
 import Loading from './ui/Loading';
 
 function Timeline() {

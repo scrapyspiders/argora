@@ -1,14 +1,12 @@
 import {Toolbar, Grid} from '@material-ui/core';
 import {Link, useParams} from 'react-router-dom';
-import {PathParams} from '../../constants/types';
+import {PathParams, img, ctx} from '../../constants';
 import {useContext} from 'react';
 import LoginButton from './LoginButton';
 import ThemeButton from './ThemeButton';
 import {AppBarS} from '../../style/components/material-ui';
-import img from '../../constants/img';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Slide from "@material-ui/core/Slide";
-import ctx from '../../constants/ctx';
 
 function HideOnScroll({children}: {children: React.ReactElement}) {
   const trigger = useScrollTrigger();

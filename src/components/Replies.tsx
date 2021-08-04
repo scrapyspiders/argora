@@ -1,12 +1,11 @@
 import {useEffect, useState, useCallback} from 'react';
 import {useParams, Link} from 'react-router-dom';
 import {Alert} from '@material-ui/lab';
-import {PostData, PathParams} from '../constants/types';
+import {PostData, PathParams, unionPostsById} from '../constants';
 import {ardb} from '../api/arweave';
 import {arweave} from '../api/arweave';
 import Post from './ui/Post';
 import {VertLine} from '../style/components/decoration';
-import {unionPostsById} from '../constants/toolkit';
 import ReplyForm from './forms/ReplyForm';
 import Loading from './ui/Loading';
 

@@ -1,5 +1,5 @@
 import {useParams, Link} from 'react-router-dom';
-import {PostData, PathParams} from '../../constants/types';
+import {PostData, PathParams, colors} from '../../constants';
 import {Avatar} from '@material-ui/core';
 import {
   Top,
@@ -15,7 +15,6 @@ import {Box} from '../../style/components/BoxPost';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import {CirclesToRhombusesSpinner} from 'react-epic-spinners';
-import {colors} from '../../constants/colors';
 
 dayjs.extend(relativeTime);
 

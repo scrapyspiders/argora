@@ -2,7 +2,7 @@ import {useContext, useEffect} from 'react';
 import {IconButtonS} from '../../style/components/material-ui';
 import Brightness2Icon from '@material-ui/icons/Brightness2';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
-import ctx from '../../constants/ctx';
+import {ctx} from '../../constants';
 
 const mq = window.matchMedia('(prefers-color-scheme: dark)');
 

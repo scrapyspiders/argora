@@ -1,7 +1,7 @@
 import {AppBar, Button, IconButton, Card, TextareaAutosize} from '@material-ui/core';
 import {Alert} from '@material-ui/lab';
 import styled from 'styled-components';
-import {colors, transition} from '../../constants/colors';
+import {colors, transition} from '../../constants';
 
 const AppBarS = styled(AppBar)`
   ${transition}

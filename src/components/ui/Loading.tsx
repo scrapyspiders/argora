@@ -2,7 +2,7 @@ import {
   FulfillingBouncingCircleSpinner,
   SelfBuildingSquareSpinner
 } from 'react-epic-spinners';
-import {colors} from '../../constants/colors';
+import {colors} from '../../constants';
 
 function Loading({type}: {type?: string}) {
   return(

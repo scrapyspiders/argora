@@ -1,11 +1,10 @@
 import {useEffect, useState, useCallback} from 'react';
 import {useParams, Link} from 'react-router-dom';
 import {Alert} from '@material-ui/lab';
-import {PostData, PathParams} from '../constants/types';
+import {PostData, PathParams, unionPostsById} from '../constants';
 import {arweave, ardb} from '../api/arweave';
 import Post from './ui/Post';
 import Loading from './ui/Loading';
-import {unionPostsById} from '../constants/toolkit';
 
 function Profile() {
   const {pathBase, addr} = useParams<PathParams>();
