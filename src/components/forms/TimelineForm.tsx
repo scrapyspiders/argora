@@ -1,7 +1,7 @@
 import {useState, useContext} from 'react';
 import {arweave} from '../../api/arweave';
 import Form from '../ui/Form';
-import {ctx, PostData} from '../../constants';
+import {appVersionTag, ctx, PostData} from '../../constants';
 
 function Timeline({submitted}: {submitted: (post: PostData) => void}) {
   const [loading, setLoading] = useState(false);
@@ -13,7 +13,7 @@ function Timeline({submitted}: {submitted: (post: PostData) => void}) {
       data: inputValue
     });
     tx.addTag('App-Name', 'argora');
-    tx.addTag('App-Version', '0.0.1');
+    tx.addTag('App-Version', appVersionTag);
     tx.addTag('reply-to', 'world');
     await arweave.transactions.sign(tx);
     console.log(tx);

@@ -1,7 +1,7 @@
 import {useEffect, useState, useCallback} from 'react';
 import {useParams, Link} from 'react-router-dom';
 import {AlertS} from '../style/components/material-ui';
-import {PostData, PathParams, unionPostsById} from '../constants';
+import {PostData, PathParams, unionPostsById, appVersionTag} from '../constants';
 import {ardb} from '../api/arweave';
 import {arweave} from '../api/arweave';
 import Post from './ui/Post';
@@ -21,7 +21,7 @@ function Replies({txid}: {txid: string}) {
     try {
       const queryResult = await ardb.search('transactions')
         .tag('App-Name', 'argora')
-        .tag('App-Version', '0.0.1')
+        .tag('App-Version', appVersionTag)
         .tag('reply-to', txid)
         .limit(30).find()
 

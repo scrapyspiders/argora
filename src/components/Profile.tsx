@@ -1,7 +1,7 @@
 import {useEffect, useState, useCallback} from 'react';
 import {useParams, Link} from 'react-router-dom';
 import {AlertS} from '../style/components/material-ui';
-import {PostData, PathParams, unionPostsById} from '../constants';
+import {PostData, PathParams, unionPostsById, appVersionTag} from '../constants';
 import {arweave, ardb} from '../api/arweave';
 import Post from './ui/Post';
 import Loading from './ui/Loading';
@@ -19,7 +19,7 @@ function Profile() {
       console.log(addr);
       const txs = await ardb.search('transactions')
         .tag('App-Name', 'argora')
-        .tag('App-Version', '0.0.1')
+        .tag('App-Version', appVersionTag)
         .from(addr)
         .limit(30).find();
 

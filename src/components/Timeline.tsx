@@ -1,7 +1,7 @@
 import {useEffect, useState, useCallback} from 'react';
 import {useRouteMatch, Link} from 'react-router-dom';
 import {AlertS} from '../style/components/material-ui';
-import {PostData, unionPostsById} from '../constants';
+import {appVersionTag, PostData, unionPostsById} from '../constants';
 import {arweave, ardb} from '../api/arweave';
 import Post from './ui/Post';
 import TimelineForm from './forms/TimelineForm';
@@ -17,7 +17,7 @@ function Timeline() {
     try {
       const queryResult = await ardb.search('transactions')
         .tag('App-Name', 'argora')
-        .tag('App-Version', '0.0.1')
+        .tag('App-Version', appVersionTag)
         .tag('reply-to', 'world')
         .limit(30).find();
       const contents = queryResult.map(tx => arweave.transactions.getData(tx.id, {decode: true, string: true}));
