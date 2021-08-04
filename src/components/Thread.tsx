@@ -38,7 +38,7 @@ function Thread() {
     return () => {
       setPost(null);
     }
-  }, [txid]);
+  }, [txid, setPost]);
 
   return(
     <>
