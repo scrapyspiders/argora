@@ -1,9 +1,9 @@
 import {useState, useContext} from 'react';
-import {arweave} from '../../api/arweave';
-import Form from '../ui/Form';
-import {appVersionTag, ctx, PostData} from '../../constants';
+import {arweave} from '../api/arweave';
+import FormUI from './ui/Form';
+import {appVersionTag, ctx, PostData} from '../constants';
 
-function Reply({submitted, to}: {submitted: (post: PostData) => void, to: string}) {
+function Form({submitted, to}: {submitted: (post: PostData) => void, to: string}) {
   const [loading, setLoading] = useState(false);
   const {walletAddr} = useContext(ctx);
 
@@ -30,15 +30,18 @@ function Reply({submitted, to}: {submitted: (post: PostData) => void, to: string
     setLoading(false);
   }
 
+  const placeholder = to === "world" ? "What's happening?" : "Toot your reply!";
+  const loginMessage = to === "world" ? "Wanna toot something to the world? Please log in." : "Wanna reply to this? Please log in.";
+
   return(
-    <Form
-      comment
+    <FormUI
+      comment={to !== "world"}
       loading={loading}
       handleSubmit={handleSubmit}
-      placeholder="Toot your reply!"
-      loginMessage="Wanna reply to this? Please log in."
+      placeholder={placeholder}
+      loginMessage={loginMessage}
     />
   );
 }
 
-export default Reply;
+export default Form;

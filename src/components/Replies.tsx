@@ -6,7 +6,7 @@ import {ardb} from '../api/arweave';
 import {arweave} from '../api/arweave';
 import Post from './ui/Post';
 import {VertLine} from '../style/components/decoration';
-import ReplyForm from './forms/ReplyForm';
+import Form from './Form';
 import Loading from './ui/Loading';
 
 function Replies({txid}: {txid: string}) {
@@ -55,7 +55,7 @@ function Replies({txid}: {txid: string}) {
 
   return(
     <>
-      <ReplyForm to={txid}
+      <Form to={txid}
         submitted={(post: PostData) => setReplies(p => unionPostsById(p, [post]))} 
       />
       {!error && loading && <Loading />}

@@ -47,8 +47,6 @@ const decodeData = (data: string | Uint8Array) => {
   catch {
     return {content: data, picture: null};
   }
-
-  
 };
 
 // const appVersionTag = '0.0.1'; //dev

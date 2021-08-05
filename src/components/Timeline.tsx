@@ -4,7 +4,7 @@ import {AlertS} from '../style/components/material-ui';
 import {appVersionTag, PostData, unionPostsById} from '../constants';
 import {arweave, ardb} from '../api/arweave';
 import Post from './ui/Post';
-import TimelineForm from './forms/TimelineForm';
+import Form from './Form';
 import Loading from './ui/Loading';
 
 function Timeline() {
@@ -48,7 +48,10 @@ function Timeline() {
 
   return(
     <>
-      <TimelineForm submitted={(post: PostData) => setPosts(p => unionPostsById(p, [post]))} />
+      <Form 
+        submitted={(post: PostData) => setPosts(p => unionPostsById(p, [post]))}
+        to="world"
+      />
       {!error && loading && <Loading />}
       {error && <AlertS severity="error">{error}</AlertS>}
       {posts?.map((post, i) => (<div key={i}>
