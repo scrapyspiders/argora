@@ -24,12 +24,17 @@ type PostHeader = {
   time: number
 }
 
+type FormPictureType = {
+  blobUrl: string,
+  type: string
+}
+
 type FormType = {
-  handleSubmit: (inputValue: string) => Promise<void>,
+  handleSubmit: (inputValue: string, picture: FormPictureType | null, callback: () => void) => Promise<void>,
   placeholder: string,
   loginMessage: string,
   comment?: boolean,
   loading: boolean
 }
 
-export type {PostData, ParsedData, PostHeader, PathParams, FormType};
+export type {PostData, ParsedData, PostHeader, PathParams, FormPictureType, FormType};

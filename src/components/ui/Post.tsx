@@ -57,7 +57,10 @@ function TimelinePost({id, data, owner, time, replyTo, comment}: PostData) {
                 {id.slice(0,5)}...{id.slice(id.length-5, id.length)}
             </Txid>
           </SubHeader>
-          <Content>{content}</Content>
+          <Content>
+            {content}
+            {picture && <img src={`https://arweave.net/${picture}`} style={{width: '400px'}} />}
+          </Content>
         </RightSide>
       </Main>
     </Box>

@@ -32,6 +32,15 @@ const img = {
   logoBlack: "https://d5w5xofjuf6uvlazitfk5mvgaosjnpmso7j5olb46s2rj6m3rfma.arweave.net/H23buKmhfUqsGUTKrrKmA6SWvZJ309csPPS1FPmbiVg"
 };
 
+const escapeHtml = (unsafe: string) => {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 const decodeData = (data: string | Uint8Array) => {
   if(typeof data !== 'string')
     return {content: "data is not string", picture: null};
@@ -39,9 +48,11 @@ const decodeData = (data: string | Uint8Array) => {
   try {
     const pData = JSON.parse(data);
 
+    console.log(pData.pictures);
+
     return {
       content: 'text' in pData && typeof pData.text === 'string' ? pData.text : data, 
-      picture: 'picture' in pData ? pData.picture : null
+      picture: 'pictures' in pData && pData.pictures.length > 0 ? escapeHtml(pData.pictures[0]) : null
     };
   }
   catch {

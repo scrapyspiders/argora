@@ -1,24 +1,39 @@
-import {useState, useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import {useParams, Link} from 'react-router-dom';
 import {Main, LeftSide, RightSide} from '../../style/components/BoxCommon';
 import {Box} from '../../style/components/BoxForm';
-import {ButtonS, TextareaAutosizeS, AlertS, AvatarS} from '../../style/components/material-ui';
+import {ButtonS, TextareaAutosizeS, AlertS, AvatarS, IconButtonS} from '../../style/components/material-ui';
 import {Hr} from '../../style/components/decoration';
-import {ctx, FormType, PathParams} from '../../constants';
+import {ctx, FormType, PathParams, FormPictureType} from '../../constants';
 import Loading from './Loading';
+import ImageIcon from '@material-ui/icons/Image';
 
 function Form({handleSubmit, placeholder, loginMessage, comment, loading}: FormType){
   const {walletAddr} = useContext(ctx);
   const [inputValue, setInputValue] = useState<string>("");
+  const [picture, setPicture] = useState<FormPictureType | null>(null);
 
   const handleChange = (e: React.FormEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setInputValue(e.currentTarget.value);
   };
 
   const handleClick = async () => {
-    await handleSubmit(inputValue); 
-    setInputValue("");
+    await handleSubmit(inputValue, picture, () => {
+      setInputValue("");
+      setPicture(null);
+    }); 
   }
+
+  const handleChangePicture = (e: React.FormEvent<HTMLInputElement>) => {
+    const files = e.currentTarget.files;
+    if(files && files.length > 0){
+      console.log(e.currentTarget.files);
+      setPicture({
+        blobUrl: URL.createObjectURL(files[0]),
+        type: files[0].type
+      });
+    }
+  };
 
   const {pathBase} = useParams<PathParams>();
 
@@ -39,7 +54,18 @@ function Form({handleSubmit, placeholder, loginMessage, comment, loading}: FormT
               onChange={handleChange}
               disabled={loading}
             />
+            {picture && <img 
+              src={picture.blobUrl}
+              alt="will be uploaded"
+              style={{maxWidth: '400px'}} 
+            />}
             <Hr />
+            <IconButtonS>
+              <label style={{display: 'inherit', cursor: 'pointer'}}>
+                <input type="file" id="file" accept="image/*" onChange={handleChangePicture} hidden />
+                <ImageIcon />
+              </label>
+            </IconButtonS>
             <ButtonS 
               variant="outlined"
               color="inherit"
