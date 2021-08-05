@@ -6,7 +6,7 @@ import {
   Header,
   SubHeader,
   Txid,
-  UserAddr,
+  UserAddrLink,
   Time,
   Content
 } from '../../style/components/BoxPost';
@@ -39,9 +39,9 @@ function TimelinePost({id, content, owner, time, replyTo, comment}: PostData) {
         </LeftSide>
         <RightSide>
           <Header>
-            <UserAddr href={`https://viewblock.io/arweave/address/${owner}`} target="_blank" rel="noreferrer">
+            <UserAddrLink to={`/${pathBase}/profile/${owner}`}>
               @{owner?.slice(0,5)}...{owner?.slice(owner?.length-5, owner?.length)}
-            </UserAddr>
+            </UserAddrLink>
             <Time> - {
               time ? dayjs().to(dayjs(new Date(time*1000)), true)
               : <>

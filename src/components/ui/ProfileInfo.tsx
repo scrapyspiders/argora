@@ -1,6 +1,5 @@
 import {AvatarSprofile} from '../../style/components/material-ui';
-import {UserAddr} from '../../style/components/BoxPost';
-import {Box} from '../../style/components/BoxProfile';
+import {Box,UserAddr} from '../../style/components/BoxProfile';
 
 function ProfileInfo ({owner}: {owner: string}) {
   return(

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {colors, transition} from '../../constants';
+import {Link} from 'react-router-dom';
 
 const Box = styled('div')`
   ${transition}
@@ -39,7 +40,7 @@ const Top = styled('div')`
 const Header = styled('div')`
 `;
 
-const UserAddr = styled('a')`
+const UserAddrLink = styled(Link)`
   ${transition}
   font-weight: bold;
   font-family: monospace;
@@ -84,7 +85,7 @@ export {
   Header,
   SubHeader,
   Txid,
-  UserAddr,
+  UserAddrLink,
   Time,
   Content
 };

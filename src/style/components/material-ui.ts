@@ -59,6 +59,7 @@ const AvatarS = styled(Avatar)`
   color: ${({ theme }) => theme.blue};
 `;
 const AvatarSprofile = styled(Avatar)`
+  ${transition}
   display: inline-flex;
   width: 100px;
   height: 100px;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {transition} from '../../constants';
+import {colors, transition} from '../../constants';
 
 const Box = styled('div')`
   ${transition}
@@ -12,4 +12,14 @@ const Box = styled('div')`
   text-align: center;
 `;
 
-export {Box};
+const UserAddr = styled('a')`
+  ${transition}
+  font-weight: bold;
+  font-family: monospace;
+  color: ${colors.blue[1]};
+  &:hover {
+    color: ${colors.blue[2]};
+  }
+`;
+
+export {Box, UserAddr};
