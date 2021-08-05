@@ -40,7 +40,7 @@ function Timeline() {
 
   useEffect(() => {
     requestLastPosts();
-    const interval = setInterval(requestLastPosts, 10000);
+    const interval = setInterval(requestLastPosts, 5000);
     return () => clearInterval(interval);
   }, [requestLastPosts]);
 
