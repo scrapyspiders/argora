@@ -54,6 +54,7 @@ function Profile() {
   return(
     <>
       <ProfileInfo owner={addr} />
+      <h3 style={{textAlign: 'center'}}>Toots and replies</h3>
       {!error && loading && <Loading />}
       {error && <AlertS severity="error">{error}</AlertS>}
       {posts?.map((post, i) => (<div key={i}>
