@@ -1,6 +1,6 @@
 import {useParams, Link} from 'react-router-dom';
 import {PostData, PathParams, colors} from '../../constants';
-import {Avatar} from '@material-ui/core';
+import {AvatarS} from '../../style/components/material-ui';
 import {
   Top,
   Header,
@@ -34,7 +34,7 @@ function TimelinePost({id, content, owner, time, replyTo, comment}: PostData) {
       <Main>
         <LeftSide>
           <Link to={`/${pathBase}/profile/${owner}`}>
-            <Avatar>{owner?.slice(0,2)}</Avatar>
+            <AvatarS>{owner?.slice(0,2)}</AvatarS>
           </Link>
         </LeftSide>
         <RightSide>

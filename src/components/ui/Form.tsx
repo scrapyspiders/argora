@@ -1,9 +1,8 @@
 import {useState, useContext} from 'react';
 import {useParams, Link} from 'react-router-dom';
-import {Avatar} from '@material-ui/core';
 import {Main, LeftSide, RightSide} from '../../style/components/BoxCommon';
 import {Box} from '../../style/components/BoxForm';
-import {ButtonS, TextareaAutosizeS, AlertS} from '../../style/components/material-ui';
+import {ButtonS, TextareaAutosizeS, AlertS, AvatarS} from '../../style/components/material-ui';
 import {Hr} from '../../style/components/decoration';
 import {ctx, FormType, PathParams} from '../../constants';
 import Loading from './Loading';
@@ -30,7 +29,7 @@ function Form({handleSubmit, placeholder, loginMessage, comment, loading}: FormT
         <Main style={loading ? {opacity: 0.5} : {}}>
           <LeftSide>
             <Link to={`/${pathBase}/profile/${walletAddr}`}>
-              <Avatar>{walletAddr.slice(0,2)}</Avatar>
+              <AvatarS>{walletAddr.slice(0,2)}</AvatarS>
             </Link>
           </LeftSide>
           <RightSide>

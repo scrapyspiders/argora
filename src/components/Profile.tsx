@@ -5,6 +5,7 @@ import {PostData, PathParams, unionPostsById, appVersionTag} from '../constants'
 import {arweave, ardb} from '../api/arweave';
 import Post from './ui/Post';
 import Loading from './ui/Loading';
+import ProfileInfo from './ui/ProfileInfo';
 
 function Profile() {
   const {pathBase, addr} = useParams<PathParams>();
@@ -52,6 +53,7 @@ function Profile() {
 
   return(
     <>
+      <ProfileInfo owner={addr} />
       {!error && loading && <Loading />}
       {error && <AlertS severity="error">{error}</AlertS>}
       {posts?.map((post, i) => (<div key={i}>

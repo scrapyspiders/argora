@@ -1,4 +1,4 @@
-import {AppBar, Button, IconButton, Card, TextareaAutosize} from '@material-ui/core';
+import {AppBar, Button, IconButton, Card, TextareaAutosize, Avatar} from '@material-ui/core';
 import {Alert} from '@material-ui/lab';
 import styled from 'styled-components';
 import {colors, transition} from '../../constants';
@@ -51,4 +51,29 @@ const AlertS = styled(Alert)`
   max-width: 600px;
 `;
 
-export {AppBarS, ButtonS, IconButtonS, CardPostS, TextareaAutosizeS, AlertS};
+const AvatarS = styled(Avatar)`
+  ${transition}
+  // background-color: ${({ theme }) => theme.blueInvert};
+  background-color: rgba(0,0,0,0);
+  border: 1px solid ${({ theme }) => theme.blueInvert};
+  color: ${({ theme }) => theme.blue};
+`;
+const AvatarSprofile = styled(Avatar)`
+  display: inline-flex;
+  width: 100px;
+  height: 100px;
+  font-size: xx-large;
+  background-color: ${({ theme }) => theme.blue};
+  color: ${colors.yellow};
+`;
+
+export {
+  AppBarS,
+  ButtonS,
+  IconButtonS,
+  CardPostS,
+  TextareaAutosizeS,
+  AlertS,
+  AvatarS,
+  AvatarSprofile
+};
