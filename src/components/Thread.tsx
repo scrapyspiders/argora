@@ -21,12 +21,12 @@ function Thread() {
           .ids([txid])
           .findOne();
 
-        const content = await arweave.transactions.getData(tx.id, {decode: true, string: true});
+        const data = await arweave.transactions.getData(tx.id, {decode: true, string: true});
         const replyTo = 'tags' in tx ? tx.tags.find(tag => tag.name === 'reply-to') : undefined;
         
         setPost({
           id: tx.id,
-          content: content,
+          data: data,
           owner: 'owner' in tx ? tx.owner.address : undefined,
           time: 'block' in tx ? tx.block?.timestamp : undefined,
           replyTo: replyTo?.value === 'world' ? undefined : replyTo?.value
@@ -50,7 +50,7 @@ function Thread() {
         <>
           <Post
             id={post.id}
-            content={post.content}
+            data={post.data}
             owner={post.owner}
             time={post.time}
             replyTo={post.replyTo}

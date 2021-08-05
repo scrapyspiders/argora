@@ -31,7 +31,7 @@ function Profile() {
         const lastPosts = txs.map((tx, i) => {
           return {
             id: tx.id,
-            content: results[i],
+            data: results[i],
             owner: 'owner' in tx ? tx.owner.address : undefined,
             time: 'block' in tx ? tx.block?.timestamp : undefined,
             replyTo: replyToTags[i]?.value === 'world' ? undefined : replyToTags[i]?.value
@@ -62,7 +62,7 @@ function Profile() {
         ? <Link to={`/${pathBase}/${post.id}`}>
             <Post 
               id={post.id}
-              content={post.content}
+              data={post.data}
               owner={post.owner}
               time={post.time}
               replyTo={post.replyTo}
@@ -70,7 +70,7 @@ function Profile() {
           </Link>
         : <Post
             id={post.id}
-            content={post.content}
+            data={post.data}
             owner={post.owner}
             time={post.time}
             replyTo={post.replyTo}

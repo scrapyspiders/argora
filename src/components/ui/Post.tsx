@@ -1,5 +1,5 @@
 import {useParams, Link} from 'react-router-dom';
-import {PostData, PathParams, colors} from '../../constants';
+import {PostData, PathParams, colors, decodeData} from '../../constants';
 import {AvatarS} from '../../style/components/material-ui';
 import {
   Top,
@@ -18,11 +18,13 @@ import {CirclesToRhombusesSpinner} from 'react-epic-spinners';
 
 dayjs.extend(relativeTime);
 
-function TimelinePost({id, content, owner, time, replyTo, comment}: PostData) {
+function TimelinePost({id, data, owner, time, replyTo, comment}: PostData) {
   const {pathBase} = useParams<PathParams>();
 
   const isComment = comment ? {maxWidth: '550px', marginTop: '-10px'} : {};
   const isMining = time ? {} : {borderColor: colors.yellow};
+
+  const {content, picture} = decodeData(data);
   
   return(
     <Box style={{...isComment, ...isMining}}>

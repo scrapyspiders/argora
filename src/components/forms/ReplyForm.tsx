@@ -10,8 +10,9 @@ function Reply({submitted, to}: {submitted: (post: PostData) => void, to: string
   const handleSubmit = async (inputValue: string) => {
     setLoading(true);
     const tx = await arweave.createTransaction({
-      data: inputValue
-    });
+      data: JSON.stringify({
+        text: inputValue
+    })});
     tx.addTag('App-Name', 'argora');
     tx.addTag('App-Version', appVersionTag);
     tx.addTag('reply-to', to);
@@ -22,7 +23,7 @@ function Reply({submitted, to}: {submitted: (post: PostData) => void, to: string
     submitted({
       id: tx.id,
       owner: walletAddr,
-      content: inputValue,
+      data: inputValue,
       time: 0,
       replyTo: to
     });

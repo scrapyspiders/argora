@@ -10,8 +10,9 @@ function Timeline({submitted}: {submitted: (post: PostData) => void}) {
   const handleSubmit = async (inputValue: string) => {
     setLoading(true);
     const tx = await arweave.createTransaction({
-      data: inputValue
-    });
+      data: JSON.stringify({
+        text: inputValue
+    })});
     tx.addTag('App-Name', 'argora');
     tx.addTag('App-Version', appVersionTag);
     tx.addTag('reply-to', 'world');
@@ -22,7 +23,7 @@ function Timeline({submitted}: {submitted: (post: PostData) => void}) {
     submitted({
       id: tx.id,
       owner: walletAddr,
-      content: inputValue,
+      data: inputValue,
       time: 0
     });
     setLoading(false);

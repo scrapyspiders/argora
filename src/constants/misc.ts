@@ -30,9 +30,29 @@ const ctx = createContext({} as {
 const img = {
   logoWhite: "https://rlegxo3dwxjxjijpubmitspnypm5dgjhydcnoznb545q4euc4x4q.arweave.net/ishru2O103ShL6BYicntw9nRmSfAxNdloe87DhKC5fk",
   logoBlack: "https://d5w5xofjuf6uvlazitfk5mvgaosjnpmso7j5olb46s2rj6m3rfma.arweave.net/H23buKmhfUqsGUTKrrKmA6SWvZJ309csPPS1FPmbiVg"
-}
+};
 
-const appVersionTag = '0.0.1'; //dev
+const decodeData = (data: string | Uint8Array) => {
+  if(typeof data !== 'string')
+    return {content: "data is not string", picture: null};
+  
+  try {
+    const pData = JSON.parse(data);
+
+    return {
+      content: 'text' in pData && typeof pData.text === 'string' ? pData.text : data, 
+      picture: 'picture' in pData ? pData.picture : null
+    };
+  }
+  catch {
+    return {content: data, picture: null};
+  }
+
+  
+};
+
+// const appVersionTag = '0.0.1'; //dev
+const appVersionTag = '1.0-dev'; //dev
 // const appVersionTag = '1.0'; 
 
-export {unionPostsById, ctx, img, appVersionTag};
+export {unionPostsById, ctx, img, appVersionTag, decodeData};

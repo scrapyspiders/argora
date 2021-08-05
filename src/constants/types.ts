@@ -1,11 +1,16 @@
 type PostData = {
   id: string,
-  content: string | Uint8Array,
+  data: string | Uint8Array,
   owner: string | undefined,
   time: number | undefined,
   replyTo?: string,
   comment?: boolean
 };
+
+type ParsedData = {
+  text: string,
+  picture: string
+}
 
 type PathParams = {
   pathBase: string,
@@ -27,4 +32,4 @@ type FormType = {
   loading: boolean
 }
 
-export type {PostData, PostHeader, PathParams, FormType};
+export type {PostData, ParsedData, PostHeader, PathParams, FormType};

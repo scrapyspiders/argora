@@ -31,7 +31,7 @@ function Replies({txid}: {txid: string}) {
         const lastReplies = queryResult.map((tx, i) => {
           return {
             id: tx.id,
-            content: results[i],
+            data: results[i],
             owner: 'owner' in tx ? tx.owner.address : undefined,
             time: 'block' in tx ? tx.block?.timestamp : undefined
           }
@@ -68,7 +68,7 @@ function Replies({txid}: {txid: string}) {
               <Post
                 comment
                 id={post.id}
-                content={post.content}
+                data={post.data}
                 owner={post.owner}
                 time={post.time}
               />
@@ -76,7 +76,7 @@ function Replies({txid}: {txid: string}) {
           : <Post
               comment
               id={post.id}
-              content={post.content}
+              data={post.data}
               owner={post.owner}
               time={post.time}
             />
