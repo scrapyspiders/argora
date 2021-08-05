@@ -46,7 +46,7 @@ function Replies({txid}: {txid: string}) {
 
   useEffect(() => {
     requestLastReplies();
-    const interval = setInterval(requestLastReplies, 4000);
+    const interval = setInterval(requestLastReplies, 10000);
     return () => {
       clearInterval(interval);
       setReplies([]);

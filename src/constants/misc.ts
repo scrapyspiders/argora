@@ -32,7 +32,7 @@ const img = {
   logoBlack: "https://d5w5xofjuf6uvlazitfk5mvgaosjnpmso7j5olb46s2rj6m3rfma.arweave.net/H23buKmhfUqsGUTKrrKmA6SWvZJ309csPPS1FPmbiVg"
 }
 
-// const appVersionTag = '0.0.1'; //dev
-const appVersionTag = '1.0'; 
+const appVersionTag = '0.0.1'; //dev
+// const appVersionTag = '1.0'; 
 
 export {unionPostsById, ctx, img, appVersionTag};
