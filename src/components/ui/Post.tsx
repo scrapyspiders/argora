@@ -59,7 +59,7 @@ function TimelinePost({id, data, owner, time, replyTo, comment}: PostData) {
           </SubHeader>
           <Content>
             {content}
-            {picture && <img src={`https://arweave.net/${picture}`} style={{width: '400px'}} />}
+            {picture && <img src={`https://arweave.net/${picture}`} alt={picture} style={{width: '400px'}} />}
           </Content>
         </RightSide>
       </Main>

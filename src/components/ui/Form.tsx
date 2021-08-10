@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react';
 import {useParams, Link} from 'react-router-dom';
 import {Main, LeftSide, RightSide} from '../../style/components/BoxCommon';
-import {Box} from '../../style/components/BoxForm';
+import {Box, Picture, PictureCloseButton} from '../../style/components/BoxForm';
 import {ButtonS, TextareaAutosizeS, AlertS, AvatarS, IconButtonS} from '../../style/components/material-ui';
 import {Hr} from '../../style/components/decoration';
 import {ctx, FormType, PathParams, FormPictureType} from '../../constants';
@@ -25,15 +25,20 @@ function Form({handleSubmit, placeholder, loginMessage, comment, loading}: FormT
   }
 
   const handleChangePicture = (e: React.FormEvent<HTMLInputElement>) => {
+    console.log("handleChangePicture");
     const files = e.currentTarget.files;
     if(files && files.length > 0){
-      console.log(e.currentTarget.files);
       setPicture({
         blobUrl: URL.createObjectURL(files[0]),
         type: files[0].type
       });
     }
+    e.currentTarget.files = null;
   };
+
+  const handlePictureClose = () => {
+    setPicture(null);
+  }
 
   const {pathBase} = useParams<PathParams>();
 
@@ -54,15 +59,19 @@ function Form({handleSubmit, placeholder, loginMessage, comment, loading}: FormT
               onChange={handleChange}
               disabled={loading}
             />
-            {picture && <img 
-              src={picture.blobUrl}
-              alt="will be uploaded"
-              style={{maxWidth: '400px'}} 
-            />}
+            {picture && <Picture style={{
+              backgroundImage: `url("${picture.blobUrl}")`
+            }}>
+              <PictureCloseButton onClick={handlePictureClose} />
+            </Picture>}
             <Hr />
             <IconButtonS>
               <label style={{display: 'inherit', cursor: 'pointer'}}>
-                <input type="file" id="file" accept="image/*" onChange={handleChangePicture} hidden />
+                <input hidden
+                  type="file"
+                  accept="image/*"
+                  onChange={handleChangePicture}
+                />
                 <ImageIcon />
               </label>
             </IconButtonS>
@@ -71,7 +80,7 @@ function Form({handleSubmit, placeholder, loginMessage, comment, loading}: FormT
               color="inherit"
               onClick={handleClick}
               style={{float: 'right'}}
-              disabled={loading || !inputValue}
+              disabled={loading || (!inputValue && !picture)}
             >
               Toot!
             </ButtonS>

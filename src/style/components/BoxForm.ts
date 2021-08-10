@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {colors, transition} from '../../constants/colors';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 /*
  *  Box is a copy of Box from BoxPost with few differences (colors).
@@ -23,4 +24,21 @@ const Box = styled('div')`
   }
 `;
 
-export {Box}
+const Picture = styled('div')`
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 300px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+`;
+
+const PictureCloseButton = styled(HighlightOffIcon)`
+  background-color: ${({theme}) => theme.postBackground};
+  border-radius: 100%;
+  cursor: pointer;
+  margin: 10px;
+`;
+
+export {Box, Picture, PictureCloseButton}

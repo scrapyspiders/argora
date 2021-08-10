@@ -9,27 +9,28 @@ function Form({submitted, to}: {submitted: (post: PostData) => void, to: string}
 
   const handleSubmit = async (inputValue: string, picture: FormPictureType | null, callback: () => void) => {
 
-  const sendText = async (inputValue: string, txPic?: string) => {
-    const data = txPic ? {text: inputValue, pictures: [txPic]} : {text: inputValue, pictures: "xss attempt ><script>alert(1)</script>"};
-    const tx = await arweave.createTransaction({data: JSON.stringify(data)});
-    tx.addTag('App-Name', 'argora');
-    tx.addTag('App-Version', appVersionTag);
-    tx.addTag('reply-to', to);
-    await arweave.transactions.sign(tx);
-    console.log(tx);
-    const response = await arweave.transactions.post(tx);
-    console.log(response.status);
-    submitted({
+    const sendText = async (text: string, txPic?: string) => {
+      const data = txPic ? {text: text, pictures: [txPic]} : {text: text};
+      const tx = await arweave.createTransaction({data: JSON.stringify(data)});
+      tx.addTag('App-Name', 'argora');
+      tx.addTag('App-Version', appVersionTag);
+      tx.addTag('reply-to', to);
+      await arweave.transactions.sign(tx);
+      console.log(tx);
+      const response = await arweave.transactions.post(tx);
+      console.log(response.status);
+      submitted({
         id: tx.id,
-      owner: walletAddr,
-      data: inputValue,
-      time: 0,
-      replyTo: to
-    });
+        owner: walletAddr,
+        data: JSON.stringify(data),
+        time: 0,
+        replyTo: to
+      });
+      
+      setLoading(false);
+      callback();
+    };
     
-    setLoading(false);
-    callback();
-  };
     setLoading(true);
     if(picture){
       console.log("picture");

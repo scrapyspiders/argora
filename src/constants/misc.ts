@@ -48,8 +48,6 @@ const decodeData = (data: string | Uint8Array) => {
   try {
     const pData = JSON.parse(data);
 
-    console.log(pData.pictures);
-
     return {
       content: 'text' in pData && typeof pData.text === 'string' ? pData.text : data, 
       picture: 'pictures' in pData && pData.pictures.length > 0 ? escapeHtml(pData.pictures[0]) : null
