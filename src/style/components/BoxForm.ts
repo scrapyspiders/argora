@@ -24,16 +24,6 @@ const Box = styled('div')`
   }
 `;
 
-const Picture = styled('div')`
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 100%;
-  height: 300px;
-  border-radius: 15px;
-  margin-bottom: 15px;
-`;
-
 const PictureCloseButton = styled(HighlightOffIcon)`
   background-color: ${({theme}) => theme.postBackground};
   border-radius: 100%;
@@ -41,4 +31,4 @@ const PictureCloseButton = styled(HighlightOffIcon)`
   margin: 10px;
 `;
 
-export {Box, Picture, PictureCloseButton}
+export {Box, PictureCloseButton}

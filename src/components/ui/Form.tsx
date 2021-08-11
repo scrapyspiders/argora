@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react';
 import {useParams, Link} from 'react-router-dom';
-import {Main, LeftSide, RightSide} from '../../style/components/BoxCommon';
-import {Box, Picture, PictureCloseButton} from '../../style/components/BoxForm';
+import {Main, LeftSide, RightSide, Picture} from '../../style/components/BoxCommon';
+import {Box, PictureCloseButton} from '../../style/components/BoxForm';
 import {ButtonS, TextareaAutosizeS, AlertS, AvatarS, IconButtonS} from '../../style/components/material-ui';
 import {Hr} from '../../style/components/decoration';
 import {ctx, FormType, PathParams, FormPictureType} from '../../constants';

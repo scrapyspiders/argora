@@ -1,5 +1,6 @@
 import {useParams, Link} from 'react-router-dom';
 import {PostData, PathParams, colors, decodeData} from '../../constants';
+import PostPic from './PostPic';
 import {AvatarS} from '../../style/components/material-ui';
 import {
   Top,
@@ -54,12 +55,13 @@ function TimelinePost({id, data, owner, time, replyTo, comment}: PostData) {
           <SubHeader>
             txid: 
             <Txid href={`https://viewblock.io/arweave/tx/${id}`} target="_blank" rel="noreferrer">
-                {id.slice(0,5)}...{id.slice(id.length-5, id.length)}
+              {id.slice(0,5)}...{id.slice(id.length-5, id.length)}
             </Txid>
           </SubHeader>
           <Content>
             {content}
-            {picture && <img src={`https://arweave.net/${picture}`} alt={picture} style={{width: '400px'}} />}
+            {/* {picture && <img src={`https://arweave.net/${picture}`} alt={picture} style={{width: '400px'}} />} */}
+            {picture && <PostPic txid={picture} />}
           </Content>
         </RightSide>
       </Main>

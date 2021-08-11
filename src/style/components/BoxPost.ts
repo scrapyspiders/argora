@@ -79,6 +79,20 @@ const Content = styled('div')`
   white-space: pre-line;
 `;
 
+const FullScreenPicture = styled('div')`
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.75);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 999;
+  cursor: pointer;
+`;
+
 export {
   Box,
   Top,
@@ -87,5 +101,6 @@ export {
   Txid,
   UserAddrLink,
   Time,
-  Content
+  Content,
+  FullScreenPicture
 };
