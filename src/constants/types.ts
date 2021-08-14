@@ -3,8 +3,9 @@ type PostData = {
   data: string | Uint8Array,
   owner: string | undefined,
   time: number | undefined,
-  replyTo?: string,
-  comment?: boolean
+  replyTo?: string,   // <- add the value on the top (txid at the moment) with a link to it
+  comment?: boolean,  // <- resize
+  fullText?: boolean  // <- show full text if it's long
 };
 
 type ParsedData = {

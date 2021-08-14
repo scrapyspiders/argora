@@ -19,7 +19,8 @@ const Picture = styled('div')`
   width: 100%;
   height: 300px;
   border-radius: 15px;
-  margin-bottom: 15px;
+  // margin-bottom: 15px;
+  margin-top: 20px;
 `;
 
 export {Main, LeftSide, RightSide, Picture};

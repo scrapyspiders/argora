@@ -58,6 +58,11 @@ function Form({handleSubmit, placeholder, loginMessage, comment, loading}: FormT
             </Link>
           </LeftSide>
           <RightSide>
+            {picture && <Picture style={{
+              backgroundImage: `url("${picture.blobUrl}")`
+            }}>
+              <PictureCloseButton onClick={handlePictureClose} />
+            </Picture>}
             <TextareaAutosizeS
               style={{fontSize: fontSize}}
               placeholder={placeholder}
@@ -65,11 +70,6 @@ function Form({handleSubmit, placeholder, loginMessage, comment, loading}: FormT
               onChange={handleChange}
               disabled={loading}
             />
-            {picture && <Picture style={{
-              backgroundImage: `url("${picture.blobUrl}")`
-            }}>
-              <PictureCloseButton onClick={handlePictureClose} />
-            </Picture>}
             <Hr />
             <IconButtonS>
               <label style={{display: 'inherit', cursor: 'pointer'}}>

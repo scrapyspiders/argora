@@ -9,7 +9,8 @@ import {
   Txid,
   UserAddrLink,
   Time,
-  Content
+  Content,
+  FadingContent
 } from '../../style/components/BoxPost';
 import {Main, LeftSide, RightSide} from '../../style/components/BoxCommon';
 import {Box} from '../../style/components/BoxPost';
@@ -19,15 +20,16 @@ import {CirclesToRhombusesSpinner} from 'react-epic-spinners';
 
 dayjs.extend(relativeTime);
 
-function TimelinePost({id, data, owner, time, replyTo, comment}: PostData) {
+function TimelinePost({id, data, owner, time, replyTo, comment, fullText}: PostData) {
   const {pathBase} = useParams<PathParams>();
+
+  const {content, picture} = decodeData(data);
 
   const isComment = comment ? {maxWidth: '550px', marginTop: '-10px'} : {};
   const isMining = time ? {} : {borderColor: colors.yellow};
 
-  const {content, picture} = decodeData(data);
-
-  const fontSize = content.length < 200 ? "larger" : "medium";
+  const styleFontSize = content.length < 200 ? {fontSize: 'larger'} : {fontSize: 'medium'};
+  const styleMaxHeight = !fullText && content.length > 400 ? {maxHeight: '200px'} : {};
   
   return(
     <Box style={{...isComment, ...isMining}}>
@@ -60,10 +62,10 @@ function TimelinePost({id, data, owner, time, replyTo, comment}: PostData) {
               {id.slice(0,5)}...{id.slice(id.length-5, id.length)}
             </Txid>
           </SubHeader>
-          <Content style={{fontSize: fontSize}}>
+          {picture && <PostPic txid={picture} />}
+          <Content style={{...styleFontSize, ...styleMaxHeight}}>
             {content}
-            {/* {picture && <img src={`https://arweave.net/${picture}`} alt={picture} style={{width: '400px'}} />} */}
-            {picture && <PostPic txid={picture} />}
+            {!fullText && content.length > 400 && <FadingContent />}
           </Content>
         </RightSide>
       </Main>

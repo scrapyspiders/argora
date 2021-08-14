@@ -73,11 +73,28 @@ const Txid = styled('a')`
 `;
 
 const Content = styled('div')`
+  ${transition}
   padding: 20px 0px 20px 0px;
   font-size: larger;
   font-family: Arial;
   white-space: pre-line;
   overflow-wrap: anywhere;
+  position: relative;
+  overflow: hidden;
+`;
+const FadingContent = styled('div')`
+  ${transition}
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  content: "";
+  background: linear-gradient(to top,
+    ${({theme}) => theme.postBackground}FF 15%, 
+    ${({theme}) => theme.postBackground}00 42%
+  );
+  pointer-events: none;
 `;
 
 const FullScreenPicture = styled('div')`
@@ -103,5 +120,6 @@ export {
   UserAddrLink,
   Time,
   Content,
+  FadingContent,
   FullScreenPicture
 };

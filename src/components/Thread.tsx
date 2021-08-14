@@ -49,6 +49,7 @@ function Thread() {
       {post && 
         <>
           <Post
+            fullText
             id={post.id}
             data={post.data}
             owner={post.owner}
