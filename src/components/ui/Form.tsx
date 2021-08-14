@@ -12,9 +12,14 @@ function Form({handleSubmit, placeholder, loginMessage, comment, loading}: FormT
   const {walletAddr} = useContext(ctx);
   const [inputValue, setInputValue] = useState<string>("");
   const [picture, setPicture] = useState<FormPictureType | null>(null);
+  const [fontSize, setFontSize] = useState<string>("larger");
 
   const handleChange = (e: React.FormEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setInputValue(e.currentTarget.value);
+    if(e.currentTarget.value.length < 200)
+      setFontSize("larger");
+    else
+      setFontSize("medium");
   };
 
   const handleClick = async () => {
@@ -54,6 +59,7 @@ function Form({handleSubmit, placeholder, loginMessage, comment, loading}: FormT
           </LeftSide>
           <RightSide>
             <TextareaAutosizeS
+              style={{fontSize: fontSize}}
               placeholder={placeholder}
               value={inputValue}
               onChange={handleChange}

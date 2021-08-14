@@ -37,7 +37,6 @@ const TextareaAutosizeS = styled(TextareaAutosize)`
   color: ${({theme}) => theme.text};
   width: 100%;
   padding: 20px 0px 20px 0px;
-  font-size: larger;
   resize: none;
   font-family: Arial;
   border: 0;

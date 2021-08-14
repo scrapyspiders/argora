@@ -26,6 +26,8 @@ function TimelinePost({id, data, owner, time, replyTo, comment}: PostData) {
   const isMining = time ? {} : {borderColor: colors.yellow};
 
   const {content, picture} = decodeData(data);
+
+  const fontSize = content.length < 200 ? "larger" : "medium";
   
   return(
     <Box style={{...isComment, ...isMining}}>
@@ -58,7 +60,7 @@ function TimelinePost({id, data, owner, time, replyTo, comment}: PostData) {
               {id.slice(0,5)}...{id.slice(id.length-5, id.length)}
             </Txid>
           </SubHeader>
-          <Content>
+          <Content style={{fontSize: fontSize}}>
             {content}
             {/* {picture && <img src={`https://arweave.net/${picture}`} alt={picture} style={{width: '400px'}} />} */}
             {picture && <PostPic txid={picture} />}
