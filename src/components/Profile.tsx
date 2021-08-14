@@ -3,7 +3,7 @@ import {useParams, Link} from 'react-router-dom';
 import {AlertS} from '../style/components/material-ui';
 import {PostData, PathParams, unionPostsById, appVersionTag} from '../constants';
 import {arweave, ardb} from '../api/arweave';
-import Post from './ui/Post';
+import Post from './Post';
 import Loading from './ui/Loading';
 import ProfileInfo from './ui/ProfileInfo';
 

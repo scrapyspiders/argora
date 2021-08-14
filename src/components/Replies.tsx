@@ -4,7 +4,7 @@ import {AlertS} from '../style/components/material-ui';
 import {PostData, PathParams, unionPostsById, appVersionTag} from '../constants';
 import {ardb} from '../api/arweave';
 import {arweave} from '../api/arweave';
-import Post from './ui/Post';
+import Post from './Post';
 import {VertLine} from '../style/components/decoration';
 import Form from './Form';
 import Loading from './ui/Loading';
