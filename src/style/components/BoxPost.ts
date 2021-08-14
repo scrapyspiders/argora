@@ -77,6 +77,7 @@ const Content = styled('div')`
   font-size: larger;
   font-family: Arial;
   white-space: pre-line;
+  overflow-wrap: anywhere;
 `;
 
 const FullScreenPicture = styled('div')`

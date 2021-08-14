@@ -1,11 +1,15 @@
 # Argora
 
-Argora is a simple multipurpose and censorship resistant social network living on the Arweave blockchain. 
+Argora is a simple multipurpose and censorship resistant social network living on the Arweave blockchain.
+
+## Releases
+
+- 0.1.1: https://yyv5pfhposfwpabapzfm4uueu3ny4y6ycwgin2dwzklua3nuskcq.arweave.net/xivXlO90i2eAIH5KzlKEptuOY9gVjIbodsqXQG20koU
 
 ## Arweave community dependencies
 
 - [use-arconnect](https://github.com/martonlederer/use-arconnect)
-- [ar-gql](https://github.com/johnletey/arGQL)
+- [ardb](https://github.com/textury/ardb)
 
 ## Future features idea
 
