@@ -1,5 +1,6 @@
 import Arweave from 'arweave';
 import ArDB from '@textury/ardb';
+import * as smartweave from 'smartweave';
 
 const arweave = Arweave.init({
   host: 'arweave.net',// Hostname or IP address for a Arweave host
@@ -11,4 +12,12 @@ const arweave = Arweave.init({
 
 const ardb = new ArDB(arweave);
 
-export {arweave, ardb};
+const getVertoPeople = async () => {
+  const vertoID = await smartweave.readContract(
+    arweave,
+    "t9T7DIOGxx4VWXoCEeYYarFYeERTpWIC1V3y-BPZgKE"
+  );
+  return vertoID.people;
+}
+
+export {arweave, ardb, getVertoPeople};

@@ -38,4 +38,27 @@ type FormType = {
   loading: boolean
 }
 
-export type {PostData, ParsedData, PostHeader, PathParams, FormPictureType, FormType};
+type VertoUserLink = {
+  twitter?: string,
+  github?: string,
+  instagram?: string
+}
+
+type VertoUser = {
+  username?: string,
+  name?: string,
+  addresses: [string],
+  image: string,
+  bio: string,
+  links: VertoUserLink
+}
+
+export type {
+  PostData,
+  ParsedData,
+  PostHeader,
+  PathParams,
+  FormPictureType,
+  FormType,
+  VertoUser
+};

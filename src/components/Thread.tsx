@@ -4,7 +4,7 @@ import {AlertS} from '../style/components/material-ui';
 import {arweave, ardb} from '../api/arweave';
 import {PostData, PathParams} from '../constants';
 import Post from './Post';
-import Replies from './Replies';
+import Timeline from './Timeline';
 import {ButtonS} from '../style/components/material-ui';
 import Loading from './ui/Loading';
 
@@ -56,7 +56,7 @@ function Thread() {
             time={post.time}
             replyTo={post.replyTo}
           />
-          <Replies txid={post.id} />
+          <Timeline txid={post.id} isComments />
         </>
       }
     </>

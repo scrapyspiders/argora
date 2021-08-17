@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {Router, Switch, Route} from 'react-router-dom';
 import {createBrowserHistory} from 'history';
 import {ctx} from './constants';
@@ -13,6 +13,8 @@ import Profile from './components/Profile';
 import Timeline from './components/Timeline';
 import Thread from './components/Thread';
 
+import {getVertoPeople} from './api/arweave';
+
 const history = createBrowserHistory();
 
 function App() {
@@ -26,6 +28,14 @@ function App() {
     updateTheme(t);
   }
 
+  useEffect(() => {
+    (async () => {
+      const users = await getVertoPeople();
+      localStorage.setItem('vertoUsers', JSON.stringify(users));
+      localStorage.setItem('vertoUsersTimestamp', Date.now().toString());
+    })()
+  });
+
   return (
     <ctx.Provider value={{
       walletAddr, setWalletAddr, 
@@ -38,7 +48,7 @@ function App() {
             <Switch>
               <Route exact path='/'><Header /><DevMode /></Route>
               <Route exact path='/:pathBase/profile/:addr'><Header /><Profile /></Route>
-              <Route exact path='/:pathBase'><Header /><Timeline /></Route>
+              <Route exact path='/:pathBase'><Header /><Timeline txid='world' /></Route>
               <Route path='/:pathBase/:txid'><Header /><Thread /></Route>
             </Switch>
           </Router>
