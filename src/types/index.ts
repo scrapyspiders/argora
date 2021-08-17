@@ -1,13 +1,13 @@
-import {T_txid, T_walletAddr, T_topic, T_timeline} from './primary';
+import {T_txid, T_walletAddr, T_worldRoot, T_timeline} from './primary';
 
 type PostData = {
   id: T_txid,
   data: string | Uint8Array,
   owner: T_walletAddr | undefined,
   time: number | undefined,
-  replyTo?: T_txid | T_topic,   // <- add the value on the top (txid at the moment) with a link to it
-  comment?: boolean,         // <- resize
-  fullText?: boolean         // <- show full text if it's long
+  replyTo?: T_txid | T_worldRoot, // <- add the value on the top (txid at the moment) with a link to it
+  comment?: boolean,          // <- resize
+  fullText?: boolean          // <- show full text if it's long
 };
 
 type ParsedData = {
@@ -62,7 +62,7 @@ export type {
   PathParams,
   FormPictureType,
   FormType,
-  VertoUser,
+  VertoUser
 };
 
 export * from './primary';

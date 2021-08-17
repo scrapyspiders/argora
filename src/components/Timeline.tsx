@@ -54,7 +54,7 @@ function Timeline({txid, type}: {txid: T_txid | T_walletAddr, type: T_timeline})
           if(type === "profile"){
             post = {
               ...post,
-              ...{replyTo: replyToTags[i]?.value === 'world' ? undefined : replyToTags[i]?.value}
+              ...{replyTo: replyToTags[i]?.value === "world" ? undefined : replyToTags[i]?.value}
             }
           }
           return post;

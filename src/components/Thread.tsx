@@ -29,7 +29,7 @@ function Thread() {
           data: data,
           owner: 'owner' in tx ? tx.owner.address : undefined,
           time: 'block' in tx ? tx.block?.timestamp : undefined,
-          replyTo: replyTo?.value === 'world' ? undefined : replyTo?.value
+          replyTo: replyTo?.value === "world" ? undefined : replyTo?.value
         });
       } catch(e) {
         setError(`Could not retrieve toot: ${e}`);
