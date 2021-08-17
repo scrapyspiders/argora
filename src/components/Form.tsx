@@ -2,9 +2,9 @@ import {useState, useContext} from 'react';
 import {arweave} from '../api/arweave';
 import FormUI from './ui/Form';
 import {appVersionTag, ctx} from '../constants';
-import {FormPictureType, PostData} from '../types';
+import {FormPictureType, PostData, T_txid, T_timeline} from '../types';
 
-function Form({submitted, to}: {submitted: (post: PostData) => void, to: string}) {
+function Form({submitted, to, type}: {submitted: (post: PostData) => void, to: T_txid, type: T_timeline}) {
   const [loading, setLoading] = useState(false);
   const {walletAddr} = useContext(ctx);
 
@@ -59,7 +59,7 @@ function Form({submitted, to}: {submitted: (post: PostData) => void, to: string}
 
   return(
     <FormUI
-      comment={to !== "world"}
+      type={type}
       loading={loading}
       handleSubmit={handleSubmit}
       placeholder={placeholder}

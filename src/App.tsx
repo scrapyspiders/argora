@@ -48,7 +48,7 @@ function App() {
             <Switch>
               <Route exact path='/'><Header /><DevMode /></Route>
               <Route exact path='/:pathBase/profile/:addr'><Header /><Profile /></Route>
-              <Route exact path='/:pathBase'><Header /><Timeline txid='world' /></Route>
+              <Route exact path='/:pathBase'><Header /><Timeline txid="world" type="main" /></Route>
               <Route path='/:pathBase/:txid'><Header /><Thread /></Route>
             </Switch>
           </Router>

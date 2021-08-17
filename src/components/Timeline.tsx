@@ -1,16 +1,20 @@
-import {useEffect, useState, useCallback} from 'react';
+import {useEffect, useState, useCallback, useContext} from 'react';
 import {useParams, Link} from 'react-router-dom';
 import {AlertS} from '../style/components/material-ui';
-import {unionPostsById, appVersionTag} from '../constants';
-import {PostData, PathParams, T_txid} from '../types';
+import {unionPostsById, appVersionTag, ctx} from '../constants';
+import {PostData, PathParams, T_txid, T_timeline, T_walletAddr} from '../types';
 import {arweave, ardb} from '../api/arweave';
 import Post from './Post';
 import Form from './Form';
 import Loading from './ui/Loading';
 import {VertLine} from '../style/components/decoration';
+import block from '@textury/ardb/lib/models/block';
+import transaction from '@textury/ardb/lib/models/transaction';
+import {GQLTagInterface} from '@textury/ardb/lib/faces/gql';
 
-function Timeline({txid, isComments}: {txid: T_txid, isComments?: boolean}) {
+function Timeline({txid, type}: {txid: T_txid | T_walletAddr, type: T_timeline}) {
   const {pathBase} = useParams<PathParams>();
+  const {walletAddr} = useContext(ctx);
 
   const [error, setError] = useState<string>();
   const [loading, setLoading] = useState(true);
@@ -19,22 +23,41 @@ function Timeline({txid, isComments}: {txid: T_txid, isComments?: boolean}) {
   const requestLastPosts = useCallback(async () => {
     console.log("requestLastPosts function");
     try {
-      const queryResult = await ardb.search('transactions')
-        .tag('App-Name', 'argora')
-        .tag('App-Version', appVersionTag)
-        .tag('reply-to', txid)
-        .limit(30).find()
-
+      let queryResult: transaction[] | block[];
+      let replyToTags: (GQLTagInterface | undefined)[] | { value: any; }[];
+      if(type === "profile"){
+        queryResult = await ardb.search('transactions')
+          .tag('App-Name', 'argora')
+          .tag('App-Version', appVersionTag)
+          .from(txid)
+          .limit(30).find();
+        replyToTags = queryResult.map(tx => 'tags' in tx ? tx.tags.find(tag => tag.name === 'reply-to') : undefined);
+      }
+      else{
+        queryResult = await ardb.search('transactions')
+          .tag('App-Name', 'argora')
+          .tag('App-Version', appVersionTag)
+          .tag('reply-to', txid)
+          .limit(30).find()
+      }
+        
       const contents = queryResult.map(tx => arweave.transactions.getData(tx.id, {decode: true, string: true}));
       
       Promise.all(contents).then(results => {
-        const lastPosts = queryResult.map((tx, i) => {
-          return {
+        const lastPosts: PostData[] = queryResult.map((tx, i) => {
+          let post = {
             id: tx.id,
             data: results[i],
             owner: 'owner' in tx ? tx.owner.address : undefined,
             time: 'block' in tx ? tx.block?.timestamp : undefined
           }
+          if(type === "profile"){
+            post = {
+              ...post,
+              ...{replyTo: replyToTags[i]?.value === 'world' ? undefined : replyToTags[i]?.value}
+            }
+          }
+          return post;
         });
         setPosts(p => unionPostsById(p, lastPosts));
         setLoading(false);
@@ -42,7 +65,7 @@ function Timeline({txid, isComments}: {txid: T_txid, isComments?: boolean}) {
     } catch (e) {
       setError(`Could not retrieve toot: ${e}`);
     }
-  }, [txid]);
+  }, [txid, type]);
 
   useEffect(() => {
     requestLastPosts();
@@ -55,17 +78,23 @@ function Timeline({txid, isComments}: {txid: T_txid, isComments?: boolean}) {
 
   return(
     <>
-      <Form to={txid}
-        submitted={(post: PostData) => setPosts(p => unionPostsById(p, [post]))} 
-      />
+      {(
+        (type === "profile" && txid === walletAddr) 
+        || (type !== "profile")
+      ) 
+      && <Form
+        type={type}
+        submitted={(post: PostData) => setPosts(p => unionPostsById(p, [post]))}
+        to={type === "comments" ? txid : "world"}
+      />}
       {!error && loading && <Loading type="timeline" />}
       {error && <AlertS severity="error">{error}</AlertS>}
       {posts?.map((post, i) => (<div key={i}>
-        {isComments && <VertLine />}
+        {type === "comments" && <VertLine />}
         {post.time
         ? <Link to={`/${pathBase}/${post.id}`}>
             <Post
-              comment={isComments}
+              comment={type === "comments"}
               id={post.id}
               data={post.data}
               owner={post.owner}
@@ -73,7 +102,7 @@ function Timeline({txid, isComments}: {txid: T_txid, isComments?: boolean}) {
             />
           </Link>
         : <Post
-            comment={isComments}
+            comment={type === "comments"}
             id={post.id}
             data={post.data}
             owner={post.owner}

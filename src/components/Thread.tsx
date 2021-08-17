@@ -56,7 +56,7 @@ function Thread() {
             time={post.time}
             replyTo={post.replyTo}
           />
-          <Timeline txid={post.id} isComments />
+          <Timeline txid={post.id} type="comments" />
         </>
       }
     </>

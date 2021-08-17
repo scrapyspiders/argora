@@ -1,4 +1,4 @@
-import {T_txid, T_walletAddr, T_topic} from './primary';
+import {T_txid, T_walletAddr, T_topic, T_timeline} from './primary';
 
 type PostData = {
   id: T_txid,
@@ -36,7 +36,7 @@ type FormType = {
   handleSubmit: (inputValue: string, picture: FormPictureType | null, callback: () => void) => Promise<void>,
   placeholder: string,
   loginMessage: string,
-  comment?: boolean,
+  type: T_timeline,
   loading: boolean
 }
 

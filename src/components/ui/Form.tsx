@@ -9,7 +9,7 @@ import {PathParams, FormType, FormPictureType} from '../../types';
 import Loading from './Loading';
 import ImageIcon from '@material-ui/icons/Image';
 
-function Form({handleSubmit, placeholder, loginMessage, comment, loading}: FormType){
+function Form({handleSubmit, placeholder, loginMessage, type, loading}: FormType){
   const {walletAddr} = useContext(ctx);
   const [inputValue, setInputValue] = useState<string>("");
   const [picture, setPicture] = useState<FormPictureType | null>(null);
@@ -50,7 +50,7 @@ function Form({handleSubmit, placeholder, loginMessage, comment, loading}: FormT
 
   return(
     walletAddr
-    ? <Box style={comment ? {maxWidth: '550px', marginTop: '-10px'} : {}}>
+    ? <Box style={type === "comments" ? {maxWidth: '550px', marginTop: '-10px'} : {}}>
         {loading && <Loading type='form' />}
         <Main style={loading ? {opacity: 0.5} : {}}>
           <LeftSide>
@@ -94,7 +94,7 @@ function Form({handleSubmit, placeholder, loginMessage, comment, loading}: FormT
           </RightSide>
         </Main>
       </Box>
-    : <AlertS severity="info" style={comment ? {maxWidth: '550px'} : {}}>
+    : <AlertS severity="info" style={type === "comments" ? {maxWidth: '550px'} : {}}>
         {loginMessage}
       </AlertS>
   );
