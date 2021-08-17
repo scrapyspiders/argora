@@ -17,7 +17,6 @@
 ### features on the arweave
 
 - update profile with weaveID
-- Possibility to toot pictures
 - Possibility to toot polls
 - retoot button
 
@@ -25,35 +24,9 @@
 
 - Loading views when waiting for network response
 - Emojis drawer
-- Limit the number of characters per toot
 - Desktop notifications
 - shortcut ctrl+enter/cmd+enter to send a toot without clicking the button
 - Display AR cumulated price and $ equivalent when typing on a form
-
-### User incentives
-
-Knowing that:
-Each new Post is a new Thread with initialy n_Comments = 0
-Each Comment is at the same time someone else's Thread's Comment AND a new Thread with initialy n_Comments = 0
-
-There would be:
-A PSC generation along with PSTs for each new Thread.
-The user that initialized the Thread becomes the moderator of the comments (feature to define).
-Commentators obtain some PSTs in proportion to their comment position.
-PSTs give reward for each new Comment on this same Thread.
-
-Example:
-1. user A post something
-2. A PSC called argora-A-[timestamp] is created
-3. 64 PSTs are minted
-4. user B comments on A's Thread (-> 2. A PSC called argora-B-[timestamp] is created [...])
-5. user B receives 32 PSTs from argora-A-[timestamp]
-6. user C comments on A's Thread (-> 2. A PSC called argora-C-[timestamp] is created [...])
-7. user C receives 16 PSTs argora-A-[timestamp] from user B
-8. and so on until the last 2 commentators get 1 PST each
-
-For each new comment, PSTs holders get paid.
-ArVerify would be used to limit sybil attack.
 
 ----------------
 
