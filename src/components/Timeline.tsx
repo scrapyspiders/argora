@@ -99,6 +99,7 @@ function Timeline({txid, type}: {txid: T_txid | T_walletAddr, type: T_timeline})
               data={post.data}
               owner={post.owner}
               time={post.time}
+              replyTo={post.replyTo}
             />
           </Link>
         : <Post
@@ -107,6 +108,7 @@ function Timeline({txid, type}: {txid: T_txid | T_walletAddr, type: T_timeline})
             data={post.data}
             owner={post.owner}
             time={post.time}
+            replyTo={post.replyTo}
           />
         }
       </div>))}
