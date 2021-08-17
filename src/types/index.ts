@@ -1,27 +1,29 @@
+import {T_txid, T_walletAddr, T_topic} from './primary';
+
 type PostData = {
-  id: string,
+  id: T_txid,
   data: string | Uint8Array,
-  owner: string | undefined,
+  owner: T_walletAddr | undefined,
   time: number | undefined,
-  replyTo?: string,   // <- add the value on the top (txid at the moment) with a link to it
-  comment?: boolean,  // <- resize
-  fullText?: boolean  // <- show full text if it's long
+  replyTo?: T_txid | T_topic,   // <- add the value on the top (txid at the moment) with a link to it
+  comment?: boolean,         // <- resize
+  fullText?: boolean         // <- show full text if it's long
 };
 
 type ParsedData = {
   text: string,
-  picture: string
+  picture: T_txid
 }
 
 type PathParams = {
   pathBase: string,
-  txid: string,
-  addr: string
+  txid: T_txid,
+  addr: T_walletAddr
 }
 
 type PostHeader = {
-  userAddr: string,
-  txid: string,
+  userAddr: T_walletAddr,
+  txid: T_txid,
   time: number
 }
 
@@ -47,8 +49,8 @@ type VertoUserLink = {
 type VertoUser = {
   username?: string,
   name?: string,
-  addresses: [string],
-  image: string,
+  addresses: [T_walletAddr],
+  image: T_txid,
   bio: string,
   links: VertoUserLink
 }
@@ -60,5 +62,7 @@ export type {
   PathParams,
   FormPictureType,
   FormType,
-  VertoUser
+  VertoUser,
 };
+
+export * from './primary';

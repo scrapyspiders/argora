@@ -1,7 +1,8 @@
 import {useEffect, useState, useCallback} from 'react';
 import {useParams, Link} from 'react-router-dom';
 import {AlertS} from '../style/components/material-ui';
-import {PostData, PathParams, unionPostsById, appVersionTag} from '../constants';
+import {unionPostsById, appVersionTag} from '../constants';
+import {PostData, PathParams} from '../types';
 import {arweave, ardb} from '../api/arweave';
 import Post from './Post';
 import Loading from './ui/Loading';
@@ -17,7 +18,6 @@ function Profile() {
   const requestLastPosts = useCallback(async () => {
     console.log("requestLastPosts function");
     try {
-      console.log(addr);
       const txs = await ardb.search('transactions')
         .tag('App-Name', 'argora')
         .tag('App-Version', appVersionTag)
@@ -55,7 +55,7 @@ function Profile() {
     <>
       <ProfileInfo owner={addr} />
       <h3 style={{textAlign: 'center'}}>Toots and replies</h3>
-      {!error && loading && <Loading />}
+      {!error && loading && <Loading type="timeline" />}
       {error && <AlertS severity="error">{error}</AlertS>}
       {posts?.map((post, i) => (<div key={i}>
         {post.time

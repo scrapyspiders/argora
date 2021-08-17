@@ -1,7 +1,8 @@
 import {AvatarSprofile} from '../../style/components/material-ui';
 import {Box,UserAddr} from '../../style/components/BoxProfile';
+import {T_walletAddr} from '../../types';
 
-function ProfileInfo ({owner}: {owner: string}) {
+function ProfileInfo ({owner}: {owner: T_walletAddr}) {
   return(
     <Box>
       <AvatarSprofile style={{width: '100px', height: '100px', display: 'inline-flex'}}>

@@ -1,5 +1,5 @@
 import {createContext} from 'react';
-import {PostData} from './types';
+import {PostData, T_walletAddr} from '../types';
 
 const unionPostsById = (currentPosts: PostData[] | undefined, newPosts: PostData[]) => {
   if(!currentPosts)
@@ -21,7 +21,7 @@ const unionPostsById = (currentPosts: PostData[] | undefined, newPosts: PostData
 }
 
 const ctx = createContext({} as { 
-  walletAddr: string; 
+  walletAddr: T_walletAddr; 
   setWalletAddr: (addr: string) => void;
   theme: boolean;
   setTheme: (t: boolean) => void;

@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import {useParams, Link} from 'react-router-dom';
 import {AlertS} from '../style/components/material-ui';
 import {arweave, ardb} from '../api/arweave';
-import {PostData, PathParams} from '../constants';
+import {PostData, PathParams} from '../types';
 import Post from './Post';
 import Timeline from './Timeline';
 import {ButtonS} from '../style/components/material-ui';
@@ -44,7 +44,7 @@ function Thread() {
     <>
       <Link to={`/${pathBase}`}><ButtonS>Back to timeline</ButtonS></Link>
       <br />
-      {!error && !post && <Loading />}
+      {!error && !post && <Loading type="timeline" />}
       {error && <AlertS severity="error">{error}</AlertS>}
       {post && 
         <>

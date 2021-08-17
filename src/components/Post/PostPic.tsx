@@ -1,8 +1,9 @@
 import {useState} from 'react';
 import {Picture} from '../../style/components/BoxCommon';
 import {FullScreenPicture} from '../../style/components/BoxPost';
+import {T_txid} from '../../types';
 
-function PostPic({txid}: {txid: string}) {
+function PostPic({txid}: {txid: T_txid}) {
   const [fullscreen, setFullscreen] = useState(false);
 
   return(

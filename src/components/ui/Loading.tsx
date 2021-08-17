@@ -3,8 +3,9 @@ import {
   SelfBuildingSquareSpinner
 } from 'react-epic-spinners';
 import {colors} from '../../constants';
+import {T_loading} from '../../types';
 
-function Loading({type}: {type?: string}) {
+function Loading({type}: {type: T_loading}) {
   return(
     <div style={{
       position: 'absolute',

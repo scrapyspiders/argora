@@ -1,14 +1,15 @@
 import {useEffect, useState, useCallback} from 'react';
 import {useParams, Link} from 'react-router-dom';
 import {AlertS} from '../style/components/material-ui';
-import {PostData, PathParams, unionPostsById, appVersionTag} from '../constants';
+import {unionPostsById, appVersionTag} from '../constants';
+import {PostData, PathParams, T_txid} from '../types';
 import {arweave, ardb} from '../api/arweave';
 import Post from './Post';
 import Form from './Form';
 import Loading from './ui/Loading';
 import {VertLine} from '../style/components/decoration';
 
-function Timeline({txid, isComments}: {txid: string, isComments?: boolean}) {
+function Timeline({txid, isComments}: {txid: T_txid, isComments?: boolean}) {
   const {pathBase} = useParams<PathParams>();
 
   const [error, setError] = useState<string>();
@@ -57,7 +58,7 @@ function Timeline({txid, isComments}: {txid: string, isComments?: boolean}) {
       <Form to={txid}
         submitted={(post: PostData) => setPosts(p => unionPostsById(p, [post]))} 
       />
-      {!error && loading && <Loading />}
+      {!error && loading && <Loading type="timeline" />}
       {error && <AlertS severity="error">{error}</AlertS>}
       {posts?.map((post, i) => (<div key={i}>
         {isComments && <VertLine />}

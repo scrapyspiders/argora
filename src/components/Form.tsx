@@ -1,7 +1,8 @@
 import {useState, useContext} from 'react';
 import {arweave} from '../api/arweave';
 import FormUI from './ui/Form';
-import {appVersionTag, ctx, FormPictureType, PostData} from '../constants';
+import {appVersionTag, ctx} from '../constants';
+import {FormPictureType, PostData} from '../types';
 
 function Form({submitted, to}: {submitted: (post: PostData) => void, to: string}) {
   const [loading, setLoading] = useState(false);
@@ -33,8 +34,6 @@ function Form({submitted, to}: {submitted: (post: PostData) => void, to: string}
     
     setLoading(true);
     if(picture){
-      console.log("picture");
-
       let blob = await fetch(picture.blobUrl).then(r => r.blob());
 
       const reader = new FileReader();

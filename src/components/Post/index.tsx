@@ -1,5 +1,6 @@
 import {useParams, Link} from 'react-router-dom';
-import {PostData, PathParams, colors, decodeData} from '../../constants';
+import {colors, decodeData} from '../../constants';
+import {PostData, PathParams} from '../../types';
 import PostPic from './PostPic';
 import {AvatarS} from '../../style/components/material-ui';
 import {

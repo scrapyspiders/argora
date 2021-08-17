@@ -1,6 +1,7 @@
 import {Toolbar, Grid} from '@material-ui/core';
 import {Link, useParams} from 'react-router-dom';
-import {PathParams, img, ctx} from '../../constants';
+import {img, ctx} from '../../constants';
+import {PathParams} from '../../types';
 import {useContext} from 'react';
 import LoginButton from './LoginButton';
 import ThemeButton from './ThemeButton';
