@@ -53,7 +53,6 @@ function Form({submitted, to, type}: {submitted: (post: PostData) => void, to: T
       sendText(inputValue);
   }
 
-
   const placeholder = to === "world" ? "What's happening?" : "Toot your reply!";
   const loginMessage = to === "world" ? "Wanna toot something to the world? Please log in." : "Wanna reply to this? Please log in.";
 

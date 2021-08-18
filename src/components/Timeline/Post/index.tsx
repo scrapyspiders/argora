@@ -34,7 +34,7 @@ function Timeline({id, data, owner, time, replyTo, comment, fullText}: PostData)
   
   return(
     <Box style={{...isComment, ...isMining}}>
-      {replyTo && <Top>
+      {replyTo && replyTo !== "world" && <Top>
         Replied to <Link to={`/${pathBase}/${replyTo}`}>
           {replyTo.slice(0,10)}...{replyTo.slice(replyTo.length-10, replyTo.length)}
         </Link>
