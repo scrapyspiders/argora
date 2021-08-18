@@ -1,8 +1,8 @@
 import {useParams, Link} from 'react-router-dom';
-import {colors, decodeData} from '../../constants';
-import {PostData, PathParams} from '../../types';
+import {colors, decodeData} from '../../../constants';
+import {PostData, PathParams} from '../../../types';
 import PostPic from './PostPic';
-import {AvatarS} from '../../style/components/material-ui';
+import {AvatarS} from '../../../style/components/material-ui';
 import {
   Top,
   Header,
@@ -12,9 +12,9 @@ import {
   Time,
   Content,
   FadingContent
-} from '../../style/components/BoxPost';
-import {Main, LeftSide, RightSide} from '../../style/components/BoxCommon';
-import {Box} from '../../style/components/BoxPost';
+} from '../../../style/components/BoxPost';
+import {Main, LeftSide, RightSide} from '../../../style/components/BoxCommon';
+import {Box} from '../../../style/components/BoxPost';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import {CirclesToRhombusesSpinner} from 'react-epic-spinners';

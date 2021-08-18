@@ -1,8 +1,8 @@
 import {useState, useContext} from 'react';
-import {arweave} from '../api/arweave';
-import FormUI from './ui/Form';
-import {appVersionTag, ctx} from '../constants';
-import {FormPictureType, PostData, T_txid, T_timeline} from '../types';
+import {arweave} from '../../../api/arweave';
+import FormUI from './ui';
+import {appVersionTag, ctx} from '../../../constants';
+import {FormPictureType, PostData, T_txid, T_timeline} from '../../../types';
 
 function Form({submitted, to, type}: {submitted: (post: PostData) => void, to: T_txid, type: T_timeline}) {
   const [loading, setLoading] = useState(false);

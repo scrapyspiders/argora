@@ -1,12 +1,12 @@
 import React, {useState, useContext} from 'react';
 import {useParams, Link} from 'react-router-dom';
-import {Main, LeftSide, RightSide, Picture} from '../../style/components/BoxCommon';
-import {Box, PictureCloseButton} from '../../style/components/BoxForm';
-import {ButtonS, TextareaAutosizeS, AlertS, AvatarS, IconButtonS} from '../../style/components/material-ui';
-import {Hr} from '../../style/components/decoration';
-import {ctx} from '../../constants';
-import {PathParams, FormType, FormPictureType} from '../../types';
-import Loading from './Loading';
+import {Main, LeftSide, RightSide, Picture} from '../../../style/components/BoxCommon';
+import {Box, PictureCloseButton} from '../../../style/components/BoxForm';
+import {ButtonS, TextareaAutosizeS, AlertS, AvatarS, IconButtonS} from '../../../style/components/material-ui';
+import {Hr} from '../../../style/components/decoration';
+import {ctx} from '../../../constants';
+import {PathParams, FormType, FormPictureType} from '../../../types';
+import Loading from '../../ui/Loading';
 import ImageIcon from '@material-ui/icons/Image';
 
 function Form({handleSubmit, placeholder, loginMessage, type, loading}: FormType){
