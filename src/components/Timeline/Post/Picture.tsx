@@ -1,14 +1,14 @@
 import {useState} from 'react';
-import {Picture} from '../../../style/components/BoxCommon';
+import {PictureS} from '../../../style/components/BoxCommon';
 import {FullScreenPicture} from '../../../style/components/BoxPost';
 import {T_txid} from '../../../types';
 
-function PostPic({txid}: {txid: T_txid}) {
+function Picture({txid}: {txid: T_txid}) {
   const [fullscreen, setFullscreen] = useState(false);
 
   return(
     <div onClick={() => setFullscreen(!fullscreen)}>
-      <Picture style={{
+      <PictureS style={{
         backgroundImage: `url("https://arweave.net/${txid}")`,
         cursor: 'pointer'
       }} />
@@ -19,4 +19,4 @@ function PostPic({txid}: {txid: T_txid}) {
   )
 }
 
-export default PostPic;
+export default Picture;

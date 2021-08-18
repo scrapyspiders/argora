@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react';
 import {useParams, Link} from 'react-router-dom';
-import {Main, LeftSide, RightSide, Picture} from '../../../style/components/BoxCommon';
+import {Main, LeftSide, RightSide, PictureS} from '../../../style/components/BoxCommon';
 import {Box, PictureCloseButton} from '../../../style/components/BoxForm';
 import {ButtonS, TextareaAutosizeS, AlertS, AvatarS, IconButtonS} from '../../../style/components/material-ui';
 import {Hr} from '../../../style/components/decoration';
@@ -59,11 +59,11 @@ function Form({handleSubmit, placeholder, loginMessage, type, loading}: FormType
             </Link>
           </LeftSide>
           <RightSide>
-            {picture && <Picture style={{
+            {picture && <PictureS style={{
               backgroundImage: `url("${picture.blobUrl}")`
             }}>
               <PictureCloseButton onClick={handlePictureClose} />
-            </Picture>}
+            </PictureS>}
             <TextareaAutosizeS
               style={{fontSize: fontSize}}
               placeholder={placeholder}

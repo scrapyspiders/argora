@@ -1,6 +1,6 @@
 import {useState, useContext} from 'react';
 import {arweave} from '../../../api/arweave';
-import FormUI from './ui';
+import FormUI from './UI';
 import {appVersionTag, ctx} from '../../../constants';
 import {FormPictureType, PostData, T_txid, T_timeline} from '../../../types';
 

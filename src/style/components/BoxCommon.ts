@@ -12,7 +12,7 @@ const RightSide = styled('div')`
   flex: 1;
 `;
 
-const Picture = styled('div')`
+const PictureS = styled('div')`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -23,4 +23,4 @@ const Picture = styled('div')`
   margin-top: 20px;
 `;
 
-export {Main, LeftSide, RightSide, Picture};
+export {Main, LeftSide, RightSide, PictureS};

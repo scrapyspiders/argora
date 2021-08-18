@@ -1,7 +1,7 @@
 import {useParams, Link} from 'react-router-dom';
 import {colors, decodeData} from '../../../constants';
 import {PostData, PathParams} from '../../../types';
-import PostPic from './PostPic';
+import PostPicture from './Picture';
 import {AvatarS} from '../../../style/components/material-ui';
 import {
   Top,
@@ -21,7 +21,7 @@ import {CirclesToRhombusesSpinner} from 'react-epic-spinners';
 
 dayjs.extend(relativeTime);
 
-function TimelinePost({id, data, owner, time, replyTo, comment, fullText}: PostData) {
+function Timeline({id, data, owner, time, replyTo, comment, fullText}: PostData) {
   const {pathBase} = useParams<PathParams>();
 
   const {content, picture} = decodeData(data);
@@ -63,7 +63,7 @@ function TimelinePost({id, data, owner, time, replyTo, comment, fullText}: PostD
               {id.slice(0,5)}...{id.slice(id.length-5, id.length)}
             </Txid>
           </SubHeader>
-          {picture && <PostPic txid={picture} />}
+          {picture && <PostPicture txid={picture} />}
           <Content style={{...styleFontSize, ...styleMaxHeight}}>
             {content}
             {!fullText && content.length > 400 && <FadingContent />}
@@ -74,4 +74,4 @@ function TimelinePost({id, data, owner, time, replyTo, comment, fullText}: PostD
   );
 }
 
-export default TimelinePost;
+export default Timeline;
