@@ -1,11 +1,11 @@
-import {T_txid, T_walletAddr, T_worldRoot, T_timeline} from './primary';
+import {T_txid, T_walletAddr, T_world, T_timeline, T_planet} from './primary';
 
 type PostData = {
   id: T_txid,
   data: string | Uint8Array,
   owner: T_walletAddr | undefined,
   time: number | undefined,
-  replyTo?: T_txid | T_worldRoot, // <- add the value on the top (txid at the moment) with a link to it
+  replyTo?: T_txid | T_world, // <- add the value on the top (txid at the moment) with a link to it
   comment?: boolean,          // <- resize
   fullText?: boolean          // <- show full text if it's long
 };
@@ -17,6 +17,7 @@ type ParsedData = {
 
 type PathParams = {
   pathBase: string,
+  planet: T_planet,
   txid: T_txid,
   addr: T_walletAddr
 }

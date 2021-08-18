@@ -1,16 +1,13 @@
 import {useEffect, useState, useCallback, useContext} from 'react';
 import {useParams, Link} from 'react-router-dom';
 import {AlertS} from '../../style/components/material-ui';
-import {unionPostsById, appVersionTag, ctx} from '../../constants';
+import {unionPostsById, ctx} from '../../constants';
 import {PostData, PathParams, T_txid, T_timeline, T_walletAddr} from '../../types';
-import {arweave, ardb} from '../../api/arweave';
+import {arweave, getTimeline} from '../../api/arweave';
 import Post from './Post';
 import Form from './Form';
 import Loading from '../ui/Loading';
 import {VertLine} from '../../style/components/decoration';
-import block from '@textury/ardb/lib/models/block';
-import transaction from '@textury/ardb/lib/models/transaction';
-import {GQLTagInterface} from '@textury/ardb/lib/faces/gql';
 
 function Timeline({txid, type}: {txid: T_txid | T_walletAddr, type: T_timeline}) {
   const {pathBase} = useParams<PathParams>();
@@ -23,28 +20,11 @@ function Timeline({txid, type}: {txid: T_txid | T_walletAddr, type: T_timeline})
   const requestLastPosts = useCallback(async () => {
     console.log("requestLastPosts function");
     try {
-      let queryResult: transaction[] | block[];
-      let replyToTags: (GQLTagInterface | undefined)[] | { value: any; }[];
-      if(type === "profile"){
-        queryResult = await ardb.search('transactions')
-          .tag('App-Name', 'argora')
-          .tag('App-Version', appVersionTag)
-          .from(txid)
-          .limit(30).find();
-        replyToTags = queryResult.map(tx => 'tags' in tx ? tx.tags.find(tag => tag.name === 'reply-to') : undefined);
-      }
-      else{
-        queryResult = await ardb.search('transactions')
-          .tag('App-Name', 'argora')
-          .tag('App-Version', appVersionTag)
-          .tag('reply-to', txid)
-          .limit(30).find()
-      }
-        
-      const contents = queryResult.map(tx => arweave.transactions.getData(tx.id, {decode: true, string: true}));
+      const query = await getTimeline(type, txid);
+      const contents = query.result.map(tx => arweave.transactions.getData(tx.id, {decode: true, string: true}));
       
       Promise.all(contents).then(results => {
-        const lastPosts: PostData[] = queryResult.map((tx, i) => {
+        const lastPosts: PostData[] = query.result.map((tx, i) => {
           let post = {
             id: tx.id,
             data: results[i],
@@ -54,7 +34,7 @@ function Timeline({txid, type}: {txid: T_txid | T_walletAddr, type: T_timeline})
           if(type === "profile"){
             post = {
               ...post,
-              ...{replyTo: replyToTags[i]?.value === "world" ? undefined : replyToTags[i]?.value}
+              ...{replyTo: query.replyToTags[i]?.value === "world" ? undefined : query.replyToTags[i]?.value}
             }
           }
           return post;
