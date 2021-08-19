@@ -21,7 +21,7 @@ import {CirclesToRhombusesSpinner} from 'react-epic-spinners';
 
 dayjs.extend(relativeTime);
 
-function Post({type, id, data, owner, time, replyTo, planet, fullText}: PostComponent) {
+function Post({type, id, data, owner, time, replyTo, planet}: PostComponent) {
   const {pathBase} = useParams<PathParams>();
 
   const {content, picture} = decodeData(data);
@@ -30,7 +30,7 @@ function Post({type, id, data, owner, time, replyTo, planet, fullText}: PostComp
   const isMining = time ? {} : {borderColor: colors.yellow};
 
   const styleFontSize = content.length < 200 ? {fontSize: 'larger'} : {fontSize: 'medium'};
-  const styleMaxHeight = type === "original" && content.length > 400 ? {maxHeight: '200px'} : {};
+  const styleMaxHeight = type !== "original" && content.length > 400 ? {maxHeight: '200px'} : {};
 
   return(
     <Box style={{...isComment, ...isMining}}>
@@ -71,7 +71,7 @@ function Post({type, id, data, owner, time, replyTo, planet, fullText}: PostComp
           {picture && <PostPicture txid={picture} />}
           <Content style={{...styleFontSize, ...styleMaxHeight}}>
             {content}
-            {!fullText && content.length > 400 && <FadingContent />}
+            {type !== "original" && content.length > 400 && <FadingContent />}
           </Content>
         </RightSide>
       </Main>

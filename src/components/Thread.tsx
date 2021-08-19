@@ -55,7 +55,6 @@ function Thread() {
           }
           <Post
             type="original"
-            fullText
             id={post.id}
             data={post.data}
             owner={post.owner}
