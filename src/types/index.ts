@@ -38,8 +38,6 @@ type FormPictureType = {
 
 type FormType = {
   handleSubmit: (inputValue: string, picture: FormPictureType | null, callback: () => void) => Promise<void>,
-  placeholder: string,
-  loginMessage: string,
   type: T_timeline,
   loading: boolean
 };

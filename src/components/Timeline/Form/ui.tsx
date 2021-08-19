@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {useParams, Link} from 'react-router-dom';
 import {Main, LeftSide, RightSide, PictureS} from '../../../style/components/BoxCommon';
 import {Box, PictureCloseButton} from '../../../style/components/BoxForm';
@@ -9,11 +9,14 @@ import {PathParams, FormType, FormPictureType} from '../../../types';
 import Loading from '../../ui/Loading';
 import ImageIcon from '@material-ui/icons/Image';
 
-function Form({handleSubmit, placeholder, loginMessage, type, loading}: FormType){
+function Form({handleSubmit, type, loading}: FormType){
   const {walletAddr} = useContext(ctx);
   const [inputValue, setInputValue] = useState<string>("");
   const [picture, setPicture] = useState<FormPictureType | null>(null);
   const [fontSize, setFontSize] = useState<string>("larger");
+  const [placeholder, setPlaceholder] = useState<string>("");
+  const [loginMessage, setLoginMessage] = useState<string>("");
+
 
   const handleChange = (e: React.FormEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setInputValue(e.currentTarget.value);
@@ -45,6 +48,23 @@ function Form({handleSubmit, placeholder, loginMessage, type, loading}: FormType
   const handlePictureClose = () => {
     setPicture(null);
   }
+
+  useEffect(() => {
+    console.log("useEffect")
+    switch (type) {
+      case "main":
+        setPlaceholder("What's happening?");
+        setLoginMessage("Wanna toot something to the world? Please log in.");
+        break;
+      case "comments":
+        setPlaceholder("Toot your reply!");
+        setLoginMessage("Wanna reply to this? Please log in.");
+        break;
+      case "profile":
+        setPlaceholder("Add a status on your profile");
+    }
+  }, [setPlaceholder, setLoginMessage, type]);
+
 
   const {pathBase} = useParams<PathParams>();
 

@@ -1,10 +1,10 @@
 import {useState, useContext} from 'react';
 import {arweave} from '../../../api/arweave';
 import FormUI from './UI';
-import {C_appVersionTag, ctx, C_replyToRootName} from '../../../constants';
+import {C_appVersionTag, ctx} from '../../../constants';
 import {FormPictureType, PostData, T_txid, T_timeline, T_planet} from '../../../types';
 
-function Form({submitted, type, to, planet}: {submitted: (post: PostData) => void, type: T_timeline, to: T_txid, planet: T_planet}) {
+function Form({submitted, type, to, planet}: {submitted: (post: PostData) => void, type: T_timeline, to: T_txid | undefined, planet: T_planet}) {
   const [loading, setLoading] = useState(false);
   const {walletAddr} = useContext(ctx);
 
@@ -15,7 +15,7 @@ function Form({submitted, type, to, planet}: {submitted: (post: PostData) => voi
 
       tx.addTag('App-Name', 'argora');
       tx.addTag('App-Version', C_appVersionTag[C_appVersionTag.length-1]);
-      tx.addTag('reply-to', to);
+      if(to) tx.addTag('reply-to', to);
       if(planet) tx.addTag('planet', planet);
       
       await arweave.transactions.sign(tx);
@@ -56,16 +56,11 @@ function Form({submitted, type, to, planet}: {submitted: (post: PostData) => voi
       sendText(inputValue);
   }
 
-  const placeholder = to === C_replyToRootName ? "What's happening?" : "Toot your reply!";
-  const loginMessage = to === C_replyToRootName ? "Wanna toot something to the world? Please log in." : "Wanna reply to this? Please log in.";
-
   return(
     <FormUI
       type={type}
       loading={loading}
       handleSubmit={handleSubmit}
-      placeholder={placeholder}
-      loginMessage={loginMessage}
     />
   );
 }

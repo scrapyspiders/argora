@@ -69,7 +69,7 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
       && <Form
         type={type}
         submitted={(post: PostData) => setPosts(p => unionPostsById(p, [post]))}
-        to={type === "comments" ? txid : C_replyToRootName}
+        to={type === "comments" ? txid : type === "profile" ? undefined : C_replyToRootName}
         planet={planetName ? planetName : planet}
       />}
       {type === "main" && <h3 style={{textAlign: 'center'}}>

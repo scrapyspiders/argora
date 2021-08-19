@@ -7,6 +7,21 @@
 - [use-arconnect](https://github.com/martonlederer/use-arconnect)
 - [ardb](https://github.com/textury/ardb)
 
+## Protocol
+
+- Each post is transaction and the content is written in data
+- For each transaction come 2 tags:
+
+__planet__:
+- the value of this tag is the planet's name
+- if missing, this post belongs to the Metaweave (main page on `/:pathBase/`)
+
+__reply-to__, possible values:
+
+- `txid`: replies to another message
+- `"world"`: doesn't reply to anyone
+- If missing: is displayed only on user profile
+
 ## Future features idea
 
 ### bridge web 2.0 -> web 3.0
