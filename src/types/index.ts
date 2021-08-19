@@ -7,13 +7,10 @@ type PostData = {
   time: number | undefined,
   replyTo?: T_txid | T_replyToRootName, // <- arweave tag `reply-to`: add the value on the top (txid at the moment) with a link to it
   planet?: T_planet,          // <- arweave tag `planet`: optional to stay compatible with App-Version 1.0
-  comment?: boolean,          // <- resize
-  fullText?: boolean          // <- show full text if it's long
 };
 
 type PostComponent = {
   type: T_post,
-  fullText?: boolean,                   // <- show full text if it's long
   id: T_txid,
   data: string | Uint8Array,
   owner: T_walletAddr | undefined,
