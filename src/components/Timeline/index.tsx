@@ -1,7 +1,7 @@
 import {useEffect, useState, useCallback, useContext} from 'react';
 import {useParams, Link} from 'react-router-dom';
 import {AlertS} from '../../style/components/material-ui';
-import {unionPostsById, ctx, C_replyToRootName} from '../../constants';
+import {unionPostsById, ctx, C_replyToRootName, C_replyToProfileName} from '../../constants';
 import {PostData, PathParams, T_txid, T_timeline, T_walletAddr, T_planet} from '../../types';
 import {arweave, getTimeline} from '../../api/arweave';
 import Post from '../Post';
@@ -69,7 +69,7 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
       && <Form
         type={type}
         submitted={(post: PostData) => setPosts(p => unionPostsById(p, [post]))}
-        to={type === "comments" ? txid : type === "profile" ? undefined : C_replyToRootName}
+        to={type === "comments" ? txid : type === "profile" ? C_replyToProfileName : C_replyToRootName}
         planet={planetName ? planetName : planet}
       />}
       {type === "main" && <h3 style={{textAlign: 'center'}}>

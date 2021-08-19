@@ -1,5 +1,5 @@
 import {useParams, Link} from 'react-router-dom';
-import {colors, C_replyToRootName, decodeData} from '../../constants';
+import {colors, C_replyToProfileName, C_replyToRootName, decodeData} from '../../constants';
 import {PathParams, PostComponent} from '../../types';
 import PostPicture from './Picture';
 import {AvatarS} from '../../style/components/material-ui';
@@ -39,7 +39,7 @@ function Post({type, id, data, owner, time, replyTo, planet}: PostComponent) {
           {planet}
         </Link>
       </Top>}
-      {replyTo && replyTo !== C_replyToRootName && <Top>
+      {replyTo && ![C_replyToRootName, C_replyToProfileName].includes(replyTo) && <Top>
         Replied to <Link to={`/${pathBase}/thread/${replyTo}`}>
           {replyTo.slice(0,10)}...{replyTo.slice(replyTo.length-10, replyTo.length)}
         </Link>

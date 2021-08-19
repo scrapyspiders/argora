@@ -1,11 +1,11 @@
-import {T_txid, T_walletAddr, T_replyToRootName, T_timeline, T_planet, T_post} from './primary';
+import {T_txid, T_walletAddr, T_replyToRootName, T_timeline, T_planet, T_post, T_replyToProfileName} from './primary';
 
 type PostData = {
   id: T_txid,
   data: string | Uint8Array,
   owner: T_walletAddr | undefined,
   time: number | undefined,
-  replyTo?: T_txid | T_replyToRootName, // <- arweave tag `reply-to`: add the value on the top (txid at the moment) with a link to it
+  replyTo?: T_txid | T_replyToRootName | T_replyToProfileName, // <- arweave tag `reply-to`: add the value on the top (txid at the moment) with a link to it
   planet?: T_planet,          // <- arweave tag `planet`: optional to stay compatible with App-Version 1.0
 };
 

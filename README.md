@@ -19,8 +19,8 @@ __planet__:
 __reply-to__, possible values:
 
 - `txid`: replies to another message
-- `"world"`: doesn't reply to anyone
-- If missing: is displayed only on user profile
+- `"world"`: root post, doesn't reply to anyone
+- `"profile"`: displayed on user profile
 
 ## Future features idea
 

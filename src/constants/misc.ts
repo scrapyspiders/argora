@@ -61,6 +61,7 @@ const decodeData = (data: string | Uint8Array) => {
 const C_appVersionTag = ['1.0-dev', '1.1-dev']; //dev
 // const C_appVersionTag = ['1.0', '1.1']; 
 const C_replyToRootName = "world";
+const C_replyToProfileName = "profile";
 
 export {
   unionPostsById,
@@ -68,5 +69,6 @@ export {
   img,
   decodeData,
   C_appVersionTag,
-  C_replyToRootName
+  C_replyToRootName,
+  C_replyToProfileName
 };

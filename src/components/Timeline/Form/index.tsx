@@ -2,9 +2,9 @@ import {useState, useContext} from 'react';
 import {arweave} from '../../../api/arweave';
 import FormUI from './UI';
 import {C_appVersionTag, ctx} from '../../../constants';
-import {FormPictureType, PostData, T_txid, T_timeline, T_planet} from '../../../types';
+import {FormPictureType, PostData, T_txid, T_timeline, T_planet, T_replyToRootName, T_replyToProfileName} from '../../../types';
 
-function Form({submitted, type, to, planet}: {submitted: (post: PostData) => void, type: T_timeline, to: T_txid | undefined, planet: T_planet}) {
+function Form({submitted, type, to, planet}: {submitted: (post: PostData) => void, type: T_timeline, to: T_txid | T_replyToRootName | T_replyToProfileName, planet: T_planet}) {
   const [loading, setLoading] = useState(false);
   const {walletAddr} = useContext(ctx);
 
