@@ -4,7 +4,7 @@ import {AlertS} from '../../style/components/material-ui';
 import {unionPostsById, ctx, C_replyToRootName} from '../../constants';
 import {PostData, PathParams, T_txid, T_timeline, T_walletAddr, T_planet} from '../../types';
 import {arweave, getTimeline} from '../../api/arweave';
-import Post from './Post';
+import Post from '../Post';
 import Form from './Form';
 import Loading from '../ui/Loading';
 import {VertLine} from '../../style/components/decoration';

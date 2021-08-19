@@ -3,7 +3,7 @@ import {useParams, Link} from 'react-router-dom';
 import {AlertS} from '../style/components/material-ui';
 import {arweave, ardb} from '../api/arweave';
 import {PostData, PathParams} from '../types';
-import Post from './Timeline/Post';
+import Post from './Post';
 import Timeline from './Timeline';
 import {ButtonS} from '../style/components/material-ui';
 import Loading from './ui/Loading';
