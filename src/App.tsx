@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import {Router, Switch, Route} from 'react-router-dom';
 import {createBrowserHistory} from 'history';
-import {ctx} from './constants';
+import {ctx, C_replyToRootName} from './constants';
 
 import { ThemeProvider } from 'styled-components';
 import GlobalStyles from './style/global';
@@ -48,9 +48,9 @@ function App() {
             <Switch>
               <Route exact path='/'><Header /><DevMode /></Route>
               <Route exact path='/:pathBase/profile/:addr'><Header /><Profile /></Route>
-              <Route exact path='/:pathBase'><Header /><Timeline txid="world" type="main" /></Route>
-              {/* <Route exact path='/:pathBase/:planet'><Header /><Timeline txid="world" type="main" /></Route> */}
-              <Route path='/:pathBase/:txid'><Header /><Thread /></Route>
+              <Route exact path='/:pathBase/thread/:txid'><Header /><Thread /></Route>
+              <Route exact path='/:pathBase/:planet'><Header /><Timeline type="main" txid={C_replyToRootName} /></Route>
+              <Route exact path='/:pathBase'><Header /><Timeline type="main" txid={C_replyToRootName} /></Route>
             </Switch>
           </Router>
         </main>

@@ -1,10 +1,12 @@
+import { C_replyToRootName } from "../constants";
+
 const timelineGql = `{
   transactions(
     first: 30
     tags: [
       { name: "App-Name", values: "argora" }
       { name: "App-Version", values: "0.0.1" }
-      { name: "reply-to", values: "world" }
+      { name: "reply-to", values: ${C_replyToRootName} }
     ]
   ) {
     edges {

@@ -58,8 +58,15 @@ const decodeData = (data: string | Uint8Array) => {
   }
 };
 
-// const appVersionTag = '0.0.1'; //dev
-const appVersionTag = '1.0-dev'; //dev
-// const appVersionTag = '1.0'; 
+const C_appVersionTag = ['1.0-dev', '1.1-dev']; //dev
+// const C_appVersionTag = ['1.0', '1.1']; 
+const C_replyToRootName = "world";
 
-export {unionPostsById, ctx, img, appVersionTag, decodeData};
+export {
+  unionPostsById,
+  ctx,
+  img,
+  decodeData,
+  C_appVersionTag,
+  C_replyToRootName
+};

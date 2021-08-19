@@ -1,14 +1,26 @@
-import {T_txid, T_walletAddr, T_world, T_timeline, T_planet} from './primary';
+import {T_txid, T_walletAddr, T_replyToRootName, T_timeline, T_planet, T_post} from './primary';
 
 type PostData = {
   id: T_txid,
   data: string | Uint8Array,
   owner: T_walletAddr | undefined,
   time: number | undefined,
-  replyTo?: T_txid | T_world, // <- add the value on the top (txid at the moment) with a link to it
+  replyTo?: T_txid | T_replyToRootName, // <- arweave tag `reply-to`: add the value on the top (txid at the moment) with a link to it
+  planet?: T_planet,          // <- arweave tag `planet`: optional to stay compatible with App-Version 1.0
   comment?: boolean,          // <- resize
   fullText?: boolean          // <- show full text if it's long
 };
+
+type PostComponent = {
+  type: T_post,
+  fullText?: boolean,                   // <- show full text if it's long
+  id: T_txid,
+  data: string | Uint8Array,
+  owner: T_walletAddr | undefined,
+  time: number | undefined,
+  replyTo?: T_txid | T_replyToRootName, // <- arweave tag `reply-to`: add the value on the top (txid at the moment) with a link to it
+  planet?: T_planet                     // <- arweave tag `planet`: optional to stay compatible with App-Version 1.0
+}
 
 type ParsedData = {
   text: string,
@@ -58,6 +70,7 @@ type VertoUser = {
 
 export type {
   PostData,
+  PostComponent,
   ParsedData,
   PostHeader,
   PathParams,

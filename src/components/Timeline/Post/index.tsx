@@ -1,6 +1,6 @@
 import {useParams, Link} from 'react-router-dom';
-import {colors, decodeData} from '../../../constants';
-import {PostData, PathParams} from '../../../types';
+import {colors, C_replyToRootName, decodeData} from '../../../constants';
+import {PathParams, PostComponent} from '../../../types';
 import PostPicture from './Picture';
 import {AvatarS} from '../../../style/components/material-ui';
 import {
@@ -21,21 +21,26 @@ import {CirclesToRhombusesSpinner} from 'react-epic-spinners';
 
 dayjs.extend(relativeTime);
 
-function Timeline({id, data, owner, time, replyTo, comment, fullText}: PostData) {
+function Post({type, id, data, owner, time, replyTo, planet, fullText}: PostComponent) {
   const {pathBase} = useParams<PathParams>();
 
   const {content, picture} = decodeData(data);
 
-  const isComment = comment ? {maxWidth: '550px', marginTop: '-10px'} : {};
+  const isComment = type === "comment" ? {maxWidth: '550px', marginTop: '-10px'} : {};
   const isMining = time ? {} : {borderColor: colors.yellow};
 
   const styleFontSize = content.length < 200 ? {fontSize: 'larger'} : {fontSize: 'medium'};
-  const styleMaxHeight = !fullText && content.length > 400 ? {maxHeight: '200px'} : {};
-  
+  const styleMaxHeight = type === "original" && content.length > 400 ? {maxHeight: '200px'} : {};
+
   return(
     <Box style={{...isComment, ...isMining}}>
-      {replyTo && replyTo !== "world" && <Top>
-        Replied to <Link to={`/${pathBase}/${replyTo}`}>
+      {planet && <Top>
+        Planet <Link to={`/${pathBase}/${planet}`}>
+          {planet}
+        </Link>
+      </Top>}
+      {replyTo && replyTo !== C_replyToRootName && <Top>
+        Replied to <Link to={`/${pathBase}/thread/${replyTo}`}>
           {replyTo.slice(0,10)}...{replyTo.slice(replyTo.length-10, replyTo.length)}
         </Link>
       </Top>}
@@ -74,4 +79,4 @@ function Timeline({id, data, owner, time, replyTo, comment, fullText}: PostData)
   );
 }
 
-export default Timeline;
+export default Post;

@@ -10,7 +10,7 @@ function Profile() {
     <>
       <Info owner={addr} />
       <h3 style={{textAlign: 'center'}}>Toots and replies</h3>
-      <Timeline txid={addr} type="profile" />
+      <Timeline type="profile" txid={addr} />
     </>
   );
 }
