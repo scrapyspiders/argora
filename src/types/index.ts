@@ -9,38 +9,32 @@ type PostData = {
   planet?: T_planet,          // <- arweave tag `planet`: optional to stay compatible with App-Version 1.0
 };
 
-type PostComponent = {
-  type: T_post,
-  id: T_txid,
-  data: string | Uint8Array,
-  owner: T_walletAddr | undefined,
-  time: number | undefined,
-  replyTo?: T_txid | T_replyToRootName, // <- arweave tag `reply-to`: add the value on the top (txid at the moment) with a link to it
-  planet?: T_planet                     // <- arweave tag `planet`: optional to stay compatible with App-Version 1.0
-}
+type PostComponent = PostData & {
+  type: T_post
+};
 
 type ParsedData = {
   text: string,
   picture: T_txid
-}
+};
 
 type PathParams = {
   pathBase: string,
   planet: T_planet,
   txid: T_txid,
   addr: T_walletAddr
-}
+};
 
 type PostHeader = {
   userAddr: T_walletAddr,
   txid: T_txid,
   time: number
-}
+};
 
 type FormPictureType = {
   blobUrl: string,
   type: string
-}
+};
 
 type FormType = {
   handleSubmit: (inputValue: string, picture: FormPictureType | null, callback: () => void) => Promise<void>,
@@ -48,13 +42,13 @@ type FormType = {
   loginMessage: string,
   type: T_timeline,
   loading: boolean
-}
+};
 
 type VertoUserLink = {
   twitter?: string,
   github?: string,
   instagram?: string
-}
+};
 
 type VertoUser = {
   username?: string,
@@ -63,7 +57,7 @@ type VertoUser = {
   image: T_txid,
   bio: string,
   links: VertoUserLink
-}
+};
 
 export type {
   PostData,
