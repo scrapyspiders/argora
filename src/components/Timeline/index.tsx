@@ -72,6 +72,9 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
 
   return(
     <>
+      {type === "main" && <h1 style={{textAlign: 'center'}}>
+        {planet ? `Planet 🪐 ${planet}` : "Metaweave"}
+      </h1>}
       {(
         (type === "profile" && txid === walletAddr) 
         || (type !== "profile")
@@ -82,9 +85,6 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
         to={type === "comments" ? txid : type === "profile" ? C_replyToProfileName : C_replyToRootName}
         planet={planetName ? planetName : planet}
       />}
-      {type === "main" && <h2 style={{textAlign: 'center'}}>
-        {planet ? `Planet 🪐 ${planet}` : "Metaweave"}
-      </h2>}
       {!error && loading && <Loading type="timeline" />}
       {error && <AlertS severity="error">{error}</AlertS>}
       {posts?.map((post, i, postsArray) => (<div key={i}>

@@ -28,7 +28,7 @@ function Search() {
       <InputS
         onChange={handleChange}
         value={planet}
-        placeholder="Search a planet"
+        placeholder="Search a planet 🪐"
       />
       <ButtonS onClick={handleSubmit}>
         <FontAwesomeIcon icon={faRocket} />
