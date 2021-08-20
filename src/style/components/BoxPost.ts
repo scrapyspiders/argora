@@ -22,7 +22,7 @@ const Box = styled('div')`
   }
 `;
 
-const Top = styled('div')`
+const TopS = styled('div')`
   ${transition}
   font-size: small;
   padding-left: 10px;
@@ -113,7 +113,7 @@ const FullScreenPicture = styled('div')`
 
 export {
   Box,
-  Top,
+  TopS,
   Header,
   SubHeader,
   Txid,

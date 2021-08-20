@@ -60,6 +60,16 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
     };
   }, [requestLastPosts, setPosts]);
 
+  const displayPost = (post: PostData) => <Post
+    type={type === "comments" ? "comment" : "world"}
+    id={post.id}
+    data={post.data}
+    owner={post.owner}
+    time={post.time}
+    replyTo={post.replyTo}
+    planet={planet ? undefined : post.planet} // do not display planet when browsing the planet root timeline
+  />;
+
   return(
     <>
       {(
@@ -72,35 +82,18 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
         to={type === "comments" ? txid : type === "profile" ? C_replyToProfileName : C_replyToRootName}
         planet={planetName ? planetName : planet}
       />}
-      {type === "main" && <h3 style={{textAlign: 'center'}}>
+      {type === "main" && <h2 style={{textAlign: 'center'}}>
         {planet ? `Planet 🪐 ${planet}` : "Metaweave"}
-      </h3>}
+      </h2>}
       {!error && loading && <Loading type="timeline" />}
       {error && <AlertS severity="error">{error}</AlertS>}
       {posts?.map((post, i, postsArray) => (<div key={i}>
         {type === "comments" && <VertLine />}
-        {!planet && post.planet}
         {post.time
         ? <Link to={`/${pathBase}/thread/${post.id}`}>
-            <Post
-              type={type === "comments" ? "comment" : "world"}
-              id={post.id}
-              data={post.data}
-              owner={post.owner}
-              time={post.time}
-              replyTo={post.replyTo}
-              planet={post.planet}
-            />
+            {displayPost(post)}
           </Link>
-        : <Post
-            type={type === "comments" ? "comment" : "world"}
-            id={post.id}
-            data={post.data}
-            owner={post.owner}
-            time={post.time}
-            replyTo={post.replyTo}
-            planet={post.planet}
-          />
+        : displayPost(post)
         }
       </div>))}
     </>

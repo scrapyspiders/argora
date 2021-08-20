@@ -1,10 +1,9 @@
 import {useParams, Link} from 'react-router-dom';
-import {colors, C_replyToProfileName, C_replyToRootName, decodeData} from '../../constants';
+import {colors, decodeData} from '../../constants';
 import {PathParams, PostComponent} from '../../types';
 import PostPicture from './Picture';
 import {AvatarS} from '../../style/components/material-ui';
 import {
-  Top,
   Header,
   SubHeader,
   Txid,
@@ -18,6 +17,7 @@ import {Box} from '../../style/components/BoxPost';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import {CirclesToRhombusesSpinner} from 'react-epic-spinners';
+import Top from './Top';
 
 dayjs.extend(relativeTime);
 
@@ -34,16 +34,7 @@ function Post({type, id, data, owner, time, replyTo, planet}: PostComponent) {
 
   return(
     <Box style={{...isComment, ...isMining}}>
-      {planet && <Top>
-        Planet <Link to={`/${pathBase}/${planet}`}>
-          {planet}
-        </Link>
-      </Top>}
-      {replyTo && ![C_replyToRootName, C_replyToProfileName].includes(replyTo) && <Top>
-        Replied to <Link to={`/${pathBase}/thread/${replyTo}`}>
-          {replyTo.slice(0,10)}...{replyTo.slice(replyTo.length-10, replyTo.length)}
-        </Link>
-      </Top>}
+      <Top replyTo={replyTo} planet={planet} />
       <Main>
         <LeftSide>
           <Link to={`/${pathBase}/profile/${owner}`}>
