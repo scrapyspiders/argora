@@ -1,39 +1,50 @@
 import styled from 'styled-components';
-import { transition } from '../../constants';
+import { colors, transition } from '../../constants';
 
 const FormS = styled('form')`
-  // border: 1px solid red;
   flex: 1;
-  text-align: center;
   display: flex;
-  align-items: center;
+  padding-left: 15px;
+  padding-right: 15px;
+  max-width: 1000px;
 `;
 
 const InputS = styled('input')`
-  border: 1px solid ${({theme}) => theme.greenInvert};
-  width: 90%;
-  ${transition}
+${transition}
+  border: 1px solid ${colors.purple[0]};
+  border-right: 0;
+  flex: 1;
   background-color: ${({theme}) => theme.postBackground};
   color: ${({theme}) => theme.text};
   padding: 10px 15px 10px 20px;
   height: 47px;
   font-family: Arial;
   font-size: larger;
-  border-radius: 30px 0px 0px 30px;
+  border-radius: 25px 0px 0px 25px;
+  &:hover {
+    border-color: ${({theme}) => theme.greenInvert};
+  }
   &:focus {
     outline: none;
   }
 `;
 
 const ButtonS = styled('div')`
-  // border: 1px solid blue;
-  font-size: larger;
+  ${transition}
+  border: 1px solid ${colors.purple[0]};
   background-color: ${({theme}) => theme.postBackground};
-  padding-right: 20px;
+  padding-right: 25px;
   padding-left: 20px;
   height: 47px;
-  border-radius: 0px 30px 30px 0px;
+  line-height: 47px;
+  font-size: larger;
+  border-radius: 0px 25px 25px 0px;
   cursor: pointer;
+  vertical-align: middle;
+  &:hover{
+    border-color: ${colors.purple[2]};
+    background-color: ${({theme}) => theme.purpleInvert}11;
+  }
 `;
 
 export {FormS, InputS, ButtonS};
