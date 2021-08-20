@@ -17,7 +17,6 @@ function Form({handleSubmit, type, loading}: FormType){
   const [placeholder, setPlaceholder] = useState<string>("");
   const [loginMessage, setLoginMessage] = useState<string>("");
 
-
   const handleChange = (e: React.FormEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setInputValue(e.currentTarget.value);
     if(e.currentTarget.value.length < 200)

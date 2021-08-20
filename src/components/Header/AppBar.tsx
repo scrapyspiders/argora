@@ -8,6 +8,7 @@ import ThemeButton from './ThemeButton';
 import {AppBarS} from '../../style/components/material-ui';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Slide from "@material-ui/core/Slide";
+import Search from './Search';
 
 function HideOnScroll({children}: {children: React.ReactElement}) {
   const trigger = useScrollTrigger();
@@ -40,6 +41,7 @@ function Header() {
                 : <img src={img.logoWhite} alt="Argora" />
               }
             </Link>
+            <Search />
             <div>
               <ThemeButton />
               <LoginButton />
