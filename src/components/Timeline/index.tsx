@@ -86,7 +86,7 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
   return(
     <>
       {type === "main" && <h1 style={{textAlign: 'center'}}>
-        {planet ? `Planet 🪐 ${planet}` : "Metaweave"}
+        {planet ? `Planet 🪐 ${planet}` : "The Metaweave"}
       </h1>}
       {(
         (type === "profile" && txid === walletAddr) 
