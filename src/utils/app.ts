@@ -1,4 +1,4 @@
-import { PostData } from "../types";
+import { PostData, T_userVertoID, T_walletAddr } from "../types";
 
 const escapeHtml = (unsafe: string) => {
   return unsafe
@@ -7,7 +7,7 @@ const escapeHtml = (unsafe: string) => {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
-}
+};
 
 const decodeData = (data: string | Uint8Array) => {
   if(typeof data !== 'string')
@@ -44,8 +44,22 @@ const unionPostsById = (currentPosts: PostData[] | undefined, newPosts: PostData
     
     return([...difference, ...currentPosts]);
   }
-}
+};
 
-const getUsernameFromAddr = () => null;
+const getUsernameFromAddr = (addr: T_walletAddr | undefined) => {
+  const defaultUsername = `@${addr?.slice(0,5)}...${addr?.slice(addr?.length-5, addr?.length)}`;
+  const vertoUsers = localStorage.getItem('vertoUsers');
+
+  if(!vertoUsers)
+    return defaultUsername;
+  else{
+    const user = JSON.parse(vertoUsers)
+    .filter((user: T_userVertoID) => user.addresses.find((address: T_walletAddr) => address === addr))[0];
+    
+    console.log(user);
+
+    return user ? user.username : defaultUsername;
+  }
+};
 
 export {decodeData,unionPostsById,getUsernameFromAddr};

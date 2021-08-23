@@ -42,19 +42,19 @@ type FormType = {
   loading: boolean
 };
 
-type VertoUserLink = {
+type T_userVertoID_link = {
   twitter?: string,
   github?: string,
   instagram?: string
 };
 
-type VertoUser = {
+type T_userVertoID = {
   username?: string,
   name?: string,
   addresses: [T_walletAddr],
   image: T_txid,
   bio: string,
-  links: VertoUserLink
+  links: T_userVertoID_link
 };
 
 export type {
@@ -65,7 +65,7 @@ export type {
   PathParams,
   FormPictureType,
   FormType,
-  VertoUser
+  T_userVertoID
 };
 
 export * from './primary';

@@ -29,10 +29,11 @@ function Post({type, id, data, owner, time, replyTo, planet}: PostComponent) {
   const {content, picture} = decodeData(data);
   
   const [username, setUsername] = useState("");
+
   useEffect(() => {
     console.log("useEffect 1 time");
-    // setUsername(() => getUsernameFromAddr())
-  }, []);
+    setUsername((prevState) => getUsernameFromAddr(owner))
+  }, [owner]);
 
   const isComment = type === "comment" ? {maxWidth: '550px', marginTop: '-10px'} : {};
   const isMining = time ? {} : {borderColor: colors.yellow};
@@ -52,7 +53,7 @@ function Post({type, id, data, owner, time, replyTo, planet}: PostComponent) {
         <RightSide>
           <Header>
             <UserAddrLink to={`/${pathBase}/profile/${owner}`}>
-              @{username?.slice(0,5)}...{username?.slice(username?.length-5, username?.length)}
+              {username}
             </UserAddrLink>
             <Time> - {
               time ? dayjs().to(dayjs(new Date(time*1000)), true)
