@@ -1,13 +1,14 @@
 import {useEffect, useState, useCallback, useContext, useRef} from 'react';
 import {useParams, Link} from 'react-router-dom';
 import {AlertS} from '../../style/components/material-ui';
-import {unionPostsById, ctx, C_replyToRootName, C_replyToProfileName} from '../../constants';
+import {C_replyToRootName, C_replyToProfileName} from '../../constants';
 import {PostData, PathParams, T_txid, T_timeline, T_walletAddr, T_planet} from '../../types';
 import {arweave, getTimeline} from '../../api/arweave';
 import Post from '../Post';
 import Form from './Form';
 import Loading from '../ui/Loading';
 import {VertLine} from '../../style/components/decoration';
+import {ctx, unionPostsById} from '../../utils';
 
 function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_walletAddr, planetName?: T_planet}) {
   const {pathBase, planet} = useParams<PathParams>();

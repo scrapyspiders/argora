@@ -1,7 +1,8 @@
 import {useState, useContext} from 'react';
 import {arweave} from '../../../api/arweave';
 import FormUI from './UI';
-import {C_appVersionTag, ctx} from '../../../constants';
+import {C_appVersionTag} from '../../../constants';
+import {ctx} from '../../../utils';
 import {FormPictureType, PostData, T_txid, T_timeline, T_planet, T_replyToRootName, T_replyToProfileName} from '../../../types';
 
 function Form({submitted, type, to, planet}: {submitted: (post: PostData) => void, type: T_timeline, to: T_txid | T_replyToRootName | T_replyToProfileName, planet: T_planet}) {

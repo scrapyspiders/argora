@@ -1,5 +1,5 @@
 import {useParams, Link} from 'react-router-dom';
-import {colors, decodeData} from '../../constants';
+import {colors} from '../../constants';
 import {PathParams, PostComponent} from '../../types';
 import PostPicture from './Picture';
 import {AvatarS} from '../../style/components/material-ui';
@@ -18,6 +18,8 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import {CirclesToRhombusesSpinner} from 'react-epic-spinners';
 import Top from './Top';
+import { useEffect, useState } from 'react';
+import { decodeData, getUsernameFromAddr } from '../../utils';
 
 dayjs.extend(relativeTime);
 
@@ -25,6 +27,12 @@ function Post({type, id, data, owner, time, replyTo, planet}: PostComponent) {
   const {pathBase} = useParams<PathParams>();
 
   const {content, picture} = decodeData(data);
+  
+  const [username, setUsername] = useState("");
+  useEffect(() => {
+    console.log("useEffect 1 time");
+    // setUsername(() => getUsernameFromAddr())
+  }, []);
 
   const isComment = type === "comment" ? {maxWidth: '550px', marginTop: '-10px'} : {};
   const isMining = time ? {} : {borderColor: colors.yellow};
@@ -38,13 +46,13 @@ function Post({type, id, data, owner, time, replyTo, planet}: PostComponent) {
       <Main>
         <LeftSide>
           <Link to={`/${pathBase}/profile/${owner}`}>
-            <AvatarS>{owner?.slice(0,2)}</AvatarS>
+            <AvatarS>{username?.slice(0,2)}</AvatarS>
           </Link>
         </LeftSide>
         <RightSide>
           <Header>
             <UserAddrLink to={`/${pathBase}/profile/${owner}`}>
-              @{owner?.slice(0,5)}...{owner?.slice(owner?.length-5, owner?.length)}
+              @{username?.slice(0,5)}...{username?.slice(username?.length-5, username?.length)}
             </UserAddrLink>
             <Time> - {
               time ? dayjs().to(dayjs(new Date(time*1000)), true)

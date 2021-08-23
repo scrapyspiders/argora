@@ -4,7 +4,7 @@ import {Main, LeftSide, RightSide, PictureS} from '../../../style/components/Box
 import {Box, PictureCloseButton} from '../../../style/components/BoxForm';
 import {ButtonS, TextareaAutosizeS, AlertS, AvatarS, IconButtonS} from '../../../style/components/material-ui';
 import {Hr} from '../../../style/components/decoration';
-import {ctx} from '../../../constants';
+import {ctx} from '../../../utils';
 import {PathParams, FormType, FormPictureType} from '../../../types';
 import Loading from '../../ui/Loading';
 import ImageIcon from '@material-ui/icons/Image';

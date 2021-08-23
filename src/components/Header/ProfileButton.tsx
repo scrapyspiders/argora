@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react';
 import {useParams, useHistory} from 'react-router-dom';
 import useArConnect from 'use-arconnect';
-import {ctx} from '../../constants';
+import {ctx} from '../../utils';
 import {PathParams} from '../../types';
 import {Menu, MenuItem} from '@material-ui/core';
 import {IconButtonS} from '../../style/components/material-ui';
