@@ -1,4 +1,4 @@
-import {useEffect, useState, useCallback, useContext} from 'react';
+import {useEffect, useState, useCallback, useContext, useRef} from 'react';
 import {useParams, Link} from 'react-router-dom';
 import {AlertS} from '../../style/components/material-ui';
 import {unionPostsById, ctx, C_replyToRootName, C_replyToProfileName} from '../../constants';
@@ -11,6 +11,7 @@ import {VertLine} from '../../style/components/decoration';
 
 function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_walletAddr, planetName?: T_planet}) {
   const {pathBase, planet} = useParams<PathParams>();
+  const componentTracker = useRef(0);
   
   const {walletAddr} = useContext(ctx);
 
@@ -19,9 +20,9 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
   const [posts, setPosts] = useState<(PostData)[]>();
 
   const requestLastPosts = useCallback(async () => {
-    console.log("requestLastPosts function");
     try {
-      console.log(`${Date.now()}: query`);
+      componentTracker.current++;
+      console.log(`${Date.now()}: query - componentTracker = ${componentTracker.current}`);
       const query = await getTimeline(type, planet, txid);
       const contents = query.result.map(tx => arweave.transactions.getData(tx.id, {decode: true, string: true}));
 
@@ -44,9 +45,16 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
           }
           return post;
         });
-        console.log(`${Date.now()}: setPosts`);
-        setPosts(p => unionPostsById(p, lastPosts));
-        setLoading(false);
+         
+        // component got unmounted->mounted during function execution.
+        // Therefore the result of `query` doesn't match anymore the timeline we want to show
+        if(--componentTracker.current < 0) // We do not update any state
+          componentTracker.current = 0;    // tracker reinitialization
+        else {
+          console.log(`${Date.now()}: setPosts()`);
+          setPosts(p => unionPostsById(p, lastPosts));
+          setLoading(false);
+        }
       });
     } catch (e) {
       setError(`Could not retrieve toot: ${e}`);
@@ -54,9 +62,12 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
   }, [type, planet, txid]);
 
   useEffect(() => {
+    console.log(`${Date.now()}: useEffect - componentTracker = ${componentTracker.current}`)
     requestLastPosts();
     const interval = setInterval(requestLastPosts, 5000);
     return () => {
+      componentTracker.current = 0;
+      console.log(`${Date.now()}: useEffect return - componentTracker = ${componentTracker.current}`)
       clearInterval(interval);
       setPosts([]);
     };

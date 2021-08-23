@@ -49,7 +49,6 @@ function Form({handleSubmit, type, loading}: FormType){
   }
 
   useEffect(() => {
-    console.log("useEffect")
     switch (type) {
       case "main":
         setPlaceholder("What's happening?");
