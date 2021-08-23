@@ -8,7 +8,8 @@ const unionPostsById = (currentPosts: PostData[] | undefined, newPosts: PostData
     // update timestamp from newPosts (undefined -> number)
     currentPosts = currentPosts.map(p => {
       const np = newPosts.find(({id}) => id === p.id);
-      p.time = np?.time;
+      if(np)
+        p.time = np.time;
       return p;
     });
 

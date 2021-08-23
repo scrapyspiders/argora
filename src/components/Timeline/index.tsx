@@ -21,6 +21,7 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
   const requestLastPosts = useCallback(async () => {
     console.log("requestLastPosts function");
     try {
+      console.log(`${Date.now()}: query`);
       const query = await getTimeline(type, planet, txid);
       const contents = query.result.map(tx => arweave.transactions.getData(tx.id, {decode: true, string: true}));
 
@@ -43,6 +44,7 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
           }
           return post;
         });
+        console.log(`${Date.now()}: setPosts`);
         setPosts(p => unionPostsById(p, lastPosts));
         setLoading(false);
       });
