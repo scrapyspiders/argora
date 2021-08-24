@@ -49,7 +49,7 @@ type T_userVertoID_link = {
 };
 
 type T_userVertoID = {
-  username?: string,
+  username: string,
   name?: string,
   addresses: [T_walletAddr],
   image: T_txid,

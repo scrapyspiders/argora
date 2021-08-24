@@ -1,6 +1,6 @@
 import {useParams, Link} from 'react-router-dom';
 import {colors} from '../../constants';
-import {PathParams, PostComponent} from '../../types';
+import {PathParams, PostComponent, T_userVertoID} from '../../types';
 import PostPicture from './Picture';
 import {AvatarS} from '../../style/components/material-ui';
 import {
@@ -19,7 +19,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import {CirclesToRhombusesSpinner} from 'react-epic-spinners';
 import Top from './Top';
 import { useEffect, useState } from 'react';
-import { decodeData, getUsernameFromAddr } from '../../utils';
+import { decodeData, getVertoID } from '../../utils';
 
 dayjs.extend(relativeTime);
 
@@ -28,11 +28,11 @@ function Post({type, id, data, owner, time, replyTo, planet}: PostComponent) {
 
   const {content, picture} = decodeData(data);
   
-  const [username, setUsername] = useState("");
+  const [vertoID, setVertoID] = useState<T_userVertoID | null>(null);
 
   useEffect(() => {
     console.log("useEffect 1 time");
-    setUsername((prevState) => getUsernameFromAddr(owner))
+    setVertoID(() => getVertoID(owner));
   }, [owner]);
 
   const isComment = type === "comment" ? {maxWidth: '550px', marginTop: '-10px'} : {};
@@ -47,13 +47,15 @@ function Post({type, id, data, owner, time, replyTo, planet}: PostComponent) {
       <Main>
         <LeftSide>
           <Link to={`/${pathBase}/profile/${owner}`}>
-            <AvatarS>{username?.slice(0,2)}</AvatarS>
+            <AvatarS>{
+              vertoID ? vertoID.username?.slice(0,2) : owner?.slice(0,2)
+            }</AvatarS>
           </Link>
         </LeftSide>
         <RightSide>
           <Header>
             <UserAddrLink to={`/${pathBase}/profile/${owner}`}>
-              {username}
+              {vertoID ? vertoID.username : owner?.slice(0,2)}
             </UserAddrLink>
             <Time> - {
               time ? dayjs().to(dayjs(new Date(time*1000)), true)

@@ -46,20 +46,17 @@ const unionPostsById = (currentPosts: PostData[] | undefined, newPosts: PostData
   }
 };
 
-const getUsernameFromAddr = (addr: T_walletAddr | undefined) => {
-  const defaultUsername = `@${addr?.slice(0,5)}...${addr?.slice(addr?.length-5, addr?.length)}`;
+const getVertoID = (addr: T_walletAddr | undefined): (T_userVertoID | null) => {
   const vertoUsers = localStorage.getItem('vertoUsers');
 
   if(!vertoUsers)
-    return defaultUsername;
+    return null;
   else{
     const user = JSON.parse(vertoUsers)
     .filter((user: T_userVertoID) => user.addresses.find((address: T_walletAddr) => address === addr))[0];
     
-    console.log(user);
-
-    return user ? user.username : defaultUsername;
+    return user ? user : null;
   }
 };
 
-export {decodeData,unionPostsById,getUsernameFromAddr};
+export {decodeData, unionPostsById, getVertoID};
