@@ -4,8 +4,8 @@ import {Main, LeftSide, RightSide, PictureS} from '../../../style/components/Box
 import {Box, PictureCloseButton} from '../../../style/components/BoxForm';
 import {ButtonS, TextareaAutosizeS, AlertS, AvatarS, IconButtonS} from '../../../style/components/material-ui';
 import {Hr} from '../../../style/components/decoration';
-import {ctx} from '../../../utils';
-import {PathParams, FormType, FormPictureType} from '../../../types';
+import {ctx, getVertoID} from '../../../utils';
+import {PathParams, FormType, FormPictureType, T_userVertoID} from '../../../types';
 import Loading from '../../ui/Loading';
 import ImageIcon from '@material-ui/icons/Image';
 
@@ -16,6 +16,8 @@ function Form({handleSubmit, type, loading}: FormType){
   const [fontSize, setFontSize] = useState<string>("larger");
   const [placeholder, setPlaceholder] = useState<string>("");
   const [loginMessage, setLoginMessage] = useState<string>("");
+
+  const [vertoID, setVertoID] = useState<T_userVertoID | null>(null);
 
   const handleChange = (e: React.FormEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setInputValue(e.currentTarget.value);
@@ -63,6 +65,9 @@ function Form({handleSubmit, type, loading}: FormType){
     }
   }, [setPlaceholder, setLoginMessage, type]);
 
+  useEffect(() => {
+    setVertoID(() => getVertoID(walletAddr));
+  },[walletAddr]);
 
   const {pathBase} = useParams<PathParams>();
 
@@ -73,7 +78,11 @@ function Form({handleSubmit, type, loading}: FormType){
         <Main style={loading ? {opacity: 0.5} : {}}>
           <LeftSide>
             <Link to={`/${pathBase}/profile/${walletAddr}`}>
-              <AvatarS>{walletAddr.slice(0,2)}</AvatarS>
+              {vertoID && vertoID.image 
+              ? <AvatarS src={`https://arweave.net/${vertoID.image}`} />
+              : <AvatarS>
+                  {vertoID ? vertoID.username.slice(0,2) : walletAddr.slice(0,2)}
+                </AvatarS>}
             </Link>
           </LeftSide>
           <RightSide>
