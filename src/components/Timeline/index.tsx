@@ -9,6 +9,7 @@ import Form from './Form';
 import Loading from '../ui/Loading';
 import {VertLine} from '../../style/components/decoration';
 import {ctx, unionPostsById} from '../../utils';
+import NoPost from './NoPost';
 
 function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_walletAddr, planetName?: T_planet}) {
   const {pathBase, planet} = useParams<PathParams>();
@@ -58,11 +59,13 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
         }
       });
     } catch (e) {
-      setError(`Could not retrieve toot: ${e}`);
+      setLoading(false);
+      setError(`Could not retrieve Weeve: ${e}`);
     }
   }, [type, planet, txid]);
 
   useEffect(() => {
+    setLoading(true);
     console.log(`${Date.now()}: useEffect - componentTracker = ${componentTracker.current}`)
     requestLastPosts();
     const interval = setInterval(requestLastPosts, 5000);
@@ -99,17 +102,20 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
         to={type === "comments" ? txid : type === "profile" ? C_replyToProfileName : C_replyToRootName}
         planet={planetName ? planetName : planet}
       />}
-      {!error && loading && <Loading type="timeline" />}
+      {loading && <Loading type="timeline" />}
       {error && <AlertS severity="error">{error}</AlertS>}
-      {posts?.map((post, i, postsArray) => (<div key={i}>
-        {type === "comments" && <VertLine />}
-        {post.time
-        ? <Link to={`/${pathBase}/thread/${post.id}`}>
-            {displayPost(post)}
-          </Link>
-        : displayPost(post)
-        }
-      </div>))}
+      {!loading && !error && posts && posts.length < 1 
+      ? <NoPost type={type} />
+      : posts?.map((post, i) => (<div key={i}>
+          {type === "comments" && <VertLine />}
+          {post.time
+          ? <Link to={`/${pathBase}/thread/${post.id}`}>
+              {displayPost(post)}
+            </Link>
+          : displayPost(post)
+          }
+        </div>))
+      }
     </>
   );
 }

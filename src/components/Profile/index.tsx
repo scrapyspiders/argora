@@ -17,7 +17,7 @@ function Profile() {
   return(
     <>
       <Info addr={addr} vertoID={vertoID} />
-      <h3 style={{textAlign: 'center'}}>Toots and replies</h3>
+      <h3 style={{textAlign: 'center'}}>Weeves and replies</h3>
       <Timeline type="profile" txid={addr} />
     </>
   );

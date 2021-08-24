@@ -52,10 +52,10 @@ function Form({handleSubmit, type, loading}: FormType){
     switch (type) {
       case "main":
         setPlaceholder("What's happening?");
-        setLoginMessage("Wanna toot something to the world? Please log in.");
+        setLoginMessage("Wanna weeve something to the world? Please log in.");
         break;
       case "comments":
-        setPlaceholder("Toot your reply!");
+        setPlaceholder("Weeve your reply!");
         setLoginMessage("Wanna reply to this? Please log in.");
         break;
       case "profile":
@@ -107,7 +107,7 @@ function Form({handleSubmit, type, loading}: FormType){
               style={{float: 'right'}}
               disabled={loading || (!inputValue && !picture)}
             >
-              Toot!
+              Weeve!
             </ButtonS>
           </RightSide>
         </Main>

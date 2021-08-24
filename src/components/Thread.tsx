@@ -35,7 +35,7 @@ function Thread() {
           planet: planet
         });
       } catch(e) {
-        setError(`Could not retrieve toot: ${e}`);
+        setError(`Could not retrieve Weeve: ${e}`);
       }
     })();
     return () => {
