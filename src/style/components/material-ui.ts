@@ -57,15 +57,6 @@ const AvatarS = styled(Avatar)`
   border: 1px solid ${({ theme }) => theme.blueInvert};
   color: ${({ theme }) => theme.blue};
 `;
-const AvatarSprofile = styled(Avatar)`
-  ${transition}
-  display: inline-flex;
-  width: 150px;
-  height: 150px;
-  font-size: xx-large;
-  background-color: ${({ theme }) => theme.blue};
-  color: ${colors.yellow};
-`;
 
 export {
   AppBarS,
@@ -75,5 +66,4 @@ export {
   TextareaAutosizeS,
   AlertS,
   AvatarS,
-  AvatarSprofile
 };

@@ -44,8 +44,9 @@ type FormType = {
 
 type T_userVertoID_link = {
   twitter?: string,
-  github?: string,
-  instagram?: string
+  instagram?: string,
+  facebook?: string,
+  github?: string
 };
 
 type T_userVertoID = {
