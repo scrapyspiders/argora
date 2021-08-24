@@ -40,9 +40,17 @@ const TopS = styled('div')`
 const Header = styled('div')`
 `;
 
+const UserVertoName = styled('div')`
+  ${transition}
+  display: inline-block;
+  font-size: larger;
+  margin-right: 10px;
+  margin-top: 10px;
+  color: ${({theme}) => theme.blue}
+`;
+
 const UserAddrLink = styled(Link)`
   ${transition}
-  font-weight: bold;
   font-family: monospace;
   color: ${colors.blue[1]};
   &:hover {
@@ -117,6 +125,7 @@ export {
   Header,
   SubHeader,
   Txid,
+  UserVertoName,
   UserAddrLink,
   Time,
   Content,

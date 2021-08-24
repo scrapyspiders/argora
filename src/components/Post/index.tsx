@@ -7,7 +7,6 @@ import {
   Header,
   SubHeader,
   Txid,
-  UserAddrLink,
   Time,
   Content,
   FadingContent
@@ -20,6 +19,7 @@ import {CirclesToRhombusesSpinner} from 'react-epic-spinners';
 import Top from './Top';
 import { useEffect, useState } from 'react';
 import { decodeData, getVertoID } from '../../utils';
+import Username from './Username';
 
 dayjs.extend(relativeTime);
 
@@ -47,16 +47,16 @@ function Post({type, id, data, owner, time, replyTo, planet}: PostComponent) {
       <Main>
         <LeftSide>
           <Link to={`/${pathBase}/profile/${owner}`}>
-            <AvatarS>{
-              vertoID ? vertoID.username?.slice(0,2) : owner?.slice(0,2)
-            }</AvatarS>
+            {vertoID && vertoID.image 
+            ? <AvatarS src={`https://arweave.net/${vertoID.image}`} />
+            : <AvatarS>
+                {vertoID ? vertoID.username.slice(0,2) : owner?.slice(0,2)}
+              </AvatarS>}
           </Link>
         </LeftSide>
         <RightSide>
           <Header>
-            <UserAddrLink to={`/${pathBase}/profile/${owner}`}>
-              {vertoID ? vertoID.username : owner?.slice(0,2)}
-            </UserAddrLink>
+            {owner && <Username addr={owner} vertoID={vertoID} />}
             <Time> - {
               time ? dayjs().to(dayjs(new Date(time*1000)), true)
               : <>
