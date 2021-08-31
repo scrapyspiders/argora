@@ -17,14 +17,15 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import {CirclesToRhombusesSpinner} from 'react-epic-spinners';
 import Top from './Top';
-import { useEffect, useState } from 'react';
-import { decodeData, getVertoID } from '../../utils';
+import { useContext, useEffect, useState } from 'react';
+import { ctx, decodeData, getVertoID } from '../../utils';
 import Username from './Username';
 
 dayjs.extend(relativeTime);
 
 function Post({type, id, data, owner, time, replyTo, planet}: PostComponent) {
   const {pathBase} = useParams<PathParams>();
+  const {vertoUsersLocalStorage} = useContext(ctx);
 
   const {content, picture} = decodeData(data);
   
@@ -32,8 +33,9 @@ function Post({type, id, data, owner, time, replyTo, planet}: PostComponent) {
 
   useEffect(() => {
     console.log("useEffect 1 time");
-    setVertoID(() => getVertoID(owner));
-  }, [owner]);
+    if(vertoUsersLocalStorage)
+      setVertoID(() => getVertoID(owner));
+  }, [vertoUsersLocalStorage, owner]);
 
   const isComment = type === "comment" ? {maxWidth: '550px', marginTop: '-10px'} : {};
   const isMining = time ? {} : {borderColor: colors.yellow};

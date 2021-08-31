@@ -2,17 +2,19 @@ import {useParams} from 'react-router-dom';
 import {PathParams, T_userVertoID} from '../../types';
 import Info from './info';
 import Timeline from '../Timeline';
-import { useEffect, useState } from 'react';
-import { getVertoID } from '../../utils';
+import { useContext, useEffect, useState } from 'react';
+import { ctx, getVertoID } from '../../utils';
 
 function Profile() {
   const {addr} = useParams<PathParams>();
+  const {vertoUsersLocalStorage} = useContext(ctx);
   const [vertoID, setVertoID] = useState<T_userVertoID | null>(null);
 
   useEffect(() => {
     console.log("useEffect 1 time");
-    setVertoID(() => getVertoID(addr));
-  }, [addr]);
+    if(vertoUsersLocalStorage)
+      setVertoID(() => getVertoID(addr));
+  }, [vertoUsersLocalStorage, addr]);
 
   return(
     <>

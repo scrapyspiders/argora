@@ -6,6 +6,7 @@ const ctx = createContext({} as {
   setWalletAddr: (addr: string) => void;
   theme: boolean;
   setTheme: (t: boolean) => void;
+  vertoUsersLocalStorage: boolean;
 });
 
 export {ctx};

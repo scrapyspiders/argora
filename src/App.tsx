@@ -29,18 +29,22 @@ function App() {
     updateTheme(t);
   }
 
+  const [vertoUsersLocalStorage, setVertoUsersLocalStorage] = useState(false);
+
   useEffect(() => {
     (async () => {
       const users = await getVertoPeople();
       localStorage.setItem('vertoUsers', JSON.stringify(users));
       localStorage.setItem('vertoUsersTimestamp', Date.now().toString());
+      setVertoUsersLocalStorage(true);
     })()
   });
 
   return (
     <ctx.Provider value={{
       walletAddr, setWalletAddr, 
-      theme, setTheme
+      theme, setTheme,
+      vertoUsersLocalStorage
     }}>
       <ThemeProvider theme={theme ? light : dark}>
         <GlobalStyles />
