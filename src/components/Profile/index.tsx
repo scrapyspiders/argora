@@ -11,7 +11,7 @@ function Profile() {
   const [vertoID, setVertoID] = useState<T_userVertoID | null>(null);
 
   useEffect(() => {
-    console.log("useEffect 1 time");
+    console.log("Profile useEffect");
     if(vertoUsersLocalStorage)
       setVertoID(() => getVertoID(addr));
   }, [vertoUsersLocalStorage, addr]);

@@ -15,6 +15,7 @@ import Timeline from './components/Timeline';
 import Thread from './components/Thread';
 
 import {getVertoPeople} from './api/arweave';
+import Planet from './components/Planet';
 
 const history = createBrowserHistory();
 
@@ -54,7 +55,7 @@ function App() {
               <Route exact path='/'><Header /><DevMode /></Route>
               <Route exact path='/:pathBase/profile/:addr'><Header /><Profile /></Route>
               <Route exact path='/:pathBase/thread/:txid'><Header /><Thread /></Route>
-              <Route exact path='/:pathBase/:planet'><Header /><Timeline type="main" txid={C_replyToRootName} /></Route>
+              <Route exact path='/:pathBase/:planet'><Header /><Planet /></Route>
               <Route exact path='/:pathBase'><Header /><Timeline type="main" txid={C_replyToRootName} /></Route>
             </Switch>
           </Router>
