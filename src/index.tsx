@@ -4,11 +4,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { StylesProvider } from '@material-ui/core/styles';
+import { C_appVersionTag } from './constants';
+import { Banner } from './style/components/development';
 
 ReactDOM.render(
   <React.StrictMode>
     <StylesProvider injectFirst>
       <CssBaseline />
+      {C_appVersionTag[0].search(/[-dev]/g) > -1 && <Banner>DEVELOPMENT VERSION</Banner>}
       <App />
     </StylesProvider>
   </React.StrictMode>,
