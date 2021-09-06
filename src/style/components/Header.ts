@@ -1,5 +1,20 @@
+import { AppBar } from '@material-ui/core';
 import styled from 'styled-components';
 import { colors, transition } from '../../constants';
+
+const AppBarS = styled(AppBar)`
+  ${transition}
+  background-color: ${({ theme }) => theme.bodyBackground};
+  color: ${({ theme }) => theme.text};
+  box-shadow: 0px 2px 4px ${({ theme }) => theme.purpleInvert};
+`;
+
+const AppBarBottomS = styled(AppBarS)`
+  ${transition}
+  box-shadow: 0px -2px 4px ${({ theme }) => theme.purpleInvert};
+  top: auto;
+  bottom: 0;
+`;
 
 const FormS = styled('form')`
   flex: 1;
@@ -7,6 +22,10 @@ const FormS = styled('form')`
   padding-left: 15px;
   padding-right: 15px;
   max-width: 1000px;
+
+  @media only screen and (max-width: 426px){
+    padding: 0;
+  }
 `;
 
 const InputS = styled('input')`
@@ -26,6 +45,9 @@ ${transition}
   }
   &:focus {
     outline: none;
+  }
+  @media only screen and (max-width: 426px){
+    font-size: medium;
   }
 `;
 
@@ -47,4 +69,4 @@ const ButtonS = styled('div')`
   }
 `;
 
-export {FormS, InputS, ButtonS};
+export {AppBarS, AppBarBottomS, FormS, InputS, ButtonS};

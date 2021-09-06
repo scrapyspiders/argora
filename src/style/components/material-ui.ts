@@ -1,14 +1,7 @@
-import {AppBar, Button, IconButton, Card, TextareaAutosize, Avatar} from '@material-ui/core';
+import {Button, IconButton, Card, TextareaAutosize, Avatar} from '@material-ui/core';
 import {Alert} from '@material-ui/lab';
 import styled from 'styled-components';
 import {colors, transition} from '../../constants';
-
-const AppBarS = styled(AppBar)`
-  ${transition}
-  background-color: ${({ theme }) => theme.bodyBackground};
-  color: ${({ theme }) => theme.text};
-  box-shadow: 0px 2px 4px ${({ theme }) => theme.purpleInvert};
-`;
 
 const ButtonS = styled(Button)`
   ${transition}
@@ -59,7 +52,6 @@ const AvatarS = styled(Avatar)`
 `;
 
 export {
-  AppBarS,
   ButtonS,
   IconButtonS,
   CardPostS,

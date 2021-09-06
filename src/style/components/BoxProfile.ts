@@ -26,8 +26,14 @@ const BoxVertoID = styled(Box)`
   display: flex;
   align-items: center;
 
-  & > ${AvatarS} {
-    margin-right: 20px;
+  @media only screen and (min-width: 426px){
+    & > ${AvatarS} {
+      margin-right: 20px;
+    }
+  }
+
+  @media only screen and (max-width: 426px){
+    flex-direction: column;
   }
 `;
 

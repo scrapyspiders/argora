@@ -6,7 +6,7 @@ import {PathParams} from "../../types";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRocket } from '@fortawesome/free-solid-svg-icons'
 
-function Search() {
+function Search({className}: {className?: string}) {
   const history = useHistory();
   const {pathBase} = useParams<PathParams>();
   const [planet, setPlanet] = useState<string>("");
@@ -24,7 +24,7 @@ function Search() {
   }
 
   return(
-    <FormS onSubmit={handleSubmit}>
+    <FormS onSubmit={handleSubmit} className={className}>
       <InputS
         onChange={handleChange}
         value={planet}

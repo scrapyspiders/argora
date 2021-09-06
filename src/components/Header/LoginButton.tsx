@@ -43,7 +43,7 @@ function LoginButton() {
   return(
     walletAddr === ""
     ? <ButtonS variant="outlined" color="inherit" onClick={connectWallet}>
-        {arConnect ? "Log In" : "Install ArConnect to log in"}
+        {arConnect ? "Log In" : "Sign up"} 
       </ButtonS>
     : <ProfileButton />
   );

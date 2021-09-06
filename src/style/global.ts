@@ -16,6 +16,17 @@ const GlobalStyles = createGlobalStyle`
   main {
     padding: 10px;
   }
+
+  .mobile {
+    @media only screen and (min-width: 426px){
+      display: none;
+    }
+  }
+  .desktop {
+    @media only screen and (max-width: 426px){
+      display: none !important;
+    }
+  }
 `;
 
 export default GlobalStyles;

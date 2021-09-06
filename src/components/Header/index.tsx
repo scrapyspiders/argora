@@ -6,14 +6,12 @@ import {PathParams} from '../../types';
 import {useContext} from 'react';
 import LoginButton from './LoginButton';
 import ThemeButton from './ThemeButton';
-import {AppBarS} from '../../style/components/material-ui';
+import {AppBarS} from '../../style/components/Header';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Slide from "@material-ui/core/Slide";
 import Search from './Search';
 
-function HideOnScroll({children}: {children: React.ReactElement}) {
-  const trigger = useScrollTrigger();
-
+function HideOnScroll({children, trigger}: {children: React.ReactElement, trigger: any}) {
   return (
     <Slide appear={false} direction="down" in={!trigger}>
       {children}
@@ -23,11 +21,11 @@ function HideOnScroll({children}: {children: React.ReactElement}) {
 
 function Header() {
   const {theme} = useContext(ctx);
-
   const {pathBase} = useParams<PathParams>();
+  const trigger = useScrollTrigger();
   
   return (<>
-    <HideOnScroll>
+    <HideOnScroll trigger={trigger}>
       <AppBarS>
         <Toolbar>
           <Grid
@@ -42,7 +40,7 @@ function Header() {
                 : <img src={img.logoWhite} alt="Argora" />
               }
             </Link>
-            <Search />
+            <Search className="desktop" />
             <div>
               <ThemeButton />
               <LoginButton />
