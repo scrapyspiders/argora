@@ -18,13 +18,13 @@ function AppBarBottom() {
   return (
     <div className="mobile">
       <Toolbar />
-      <HideOnScroll>
+      {/* <HideOnScroll> */}
         <AppBarBottomS>
           <Toolbar>
             <Search />
           </Toolbar>
         </AppBarBottomS>
-      </HideOnScroll>
+      {/* </HideOnScroll> */}
     </div>
   );
 }

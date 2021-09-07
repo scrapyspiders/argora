@@ -6,12 +6,14 @@ const AppBarS = styled(AppBar)`
   ${transition}
   background-color: ${({ theme }) => theme.bodyBackground};
   color: ${({ theme }) => theme.text};
-  box-shadow: 0px 2px 4px ${({ theme }) => theme.purpleInvert};
+  // box-shadow: 0px 2px 4px ${({ theme }) => theme.purpleInvert};
+  border-bottom: 1px solid ${({ theme }) => theme.purpleInvert};
 `;
 
 const AppBarBottomS = styled(AppBarS)`
   ${transition}
-  box-shadow: 0px -2px 4px ${({ theme }) => theme.purpleInvert};
+  border-top: 1px solid ${({ theme }) => theme.purpleInvert};
+  // box-shadow: 0px -2px 4px ${({ theme }) => theme.purpleInvert};
   top: auto;
   bottom: 0;
 `;
@@ -23,7 +25,7 @@ const FormS = styled('form')`
   padding-right: 15px;
   max-width: 1000px;
 
-  @media only screen and (max-width: 426px){
+  @media only screen and (max-width: 724px){
     padding: 0;
   }
 `;
@@ -46,7 +48,7 @@ ${transition}
   &:focus {
     outline: none;
   }
-  @media only screen and (max-width: 426px){
+  @media only screen and (max-width: 724px){
     font-size: medium;
   }
 `;

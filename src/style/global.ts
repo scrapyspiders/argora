@@ -18,12 +18,12 @@ const GlobalStyles = createGlobalStyle`
   }
 
   .mobile {
-    @media only screen and (min-width: 426px){
+    @media only screen and (min-width: 724px){
       display: none;
     }
   }
   .desktop {
-    @media only screen and (max-width: 426px){
+    @media only screen and (max-width: 724px){
       display: none !important;
     }
   }
