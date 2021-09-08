@@ -25,7 +25,7 @@ const getVertoPeople = async () => {
   return vertoID.people;
 }
 
-const getTimeline = async (type: T_timeline, planet: T_planet, txid: T_txid | T_walletAddr) => {
+const getTimeline = async (type: T_timeline, planet: T_planet | undefined, txid: T_txid | T_walletAddr) => {
   let result: transaction[] | block[];
   let replyToTags: (GQLTagInterface | undefined)[] | { value: any; }[] = [undefined];
   let planetTags: (GQLTagInterface | undefined)[] | { value: any; }[] = [undefined];

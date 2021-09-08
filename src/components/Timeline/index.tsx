@@ -50,12 +50,14 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
          
         // component got unmounted->mounted during function execution.
         // Therefore the result of `query` doesn't match anymore the timeline we want to show
-        if(--componentTracker.current < 0) // We do not update any state
+        componentTracker.current--;
+        if(componentTracker.current !== 0) // We do not update any state
           componentTracker.current = 0;    // tracker reinitialization
         else {
-          console.log(`${Date.now()}: setPosts()`);
+          console.log(`${Date.now()}: setPosts(): ${planet} - componentTracker: ${componentTracker.current}`);
           setPosts(p => unionPostsById(p, lastPosts));
           setLoading(false);
+          componentTracker.current = 0;
         }
       });
     } catch (e) {
@@ -66,11 +68,11 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
 
   useEffect(() => {
     setLoading(true);
+    setPosts([]);
     console.log(`${Date.now()}: useEffect - componentTracker = ${componentTracker.current}`)
     requestLastPosts();
     const interval = setInterval(requestLastPosts, 5000);
     return () => {
-      componentTracker.current = 0;
       console.log(`${Date.now()}: useEffect return - componentTracker = ${componentTracker.current}`)
       clearInterval(interval);
       setPosts([]);
