@@ -13,7 +13,7 @@ import NoPost from './NoPost';
 
 function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_walletAddr, planetName?: T_planet}) {
   const {pathBase, planet} = useParams<PathParams>();
-  const componentTracker = useRef(0);
+  const componentTracker = useRef("");
   
   const {walletAddr} = useContext(ctx);
 
@@ -23,8 +23,8 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
 
   const requestLastPosts = useCallback(async () => {
     try {
-      componentTracker.current++;
-      console.log(`${Date.now()}: query - componentTracker = ${componentTracker.current}`);
+      componentTracker.current = planet;
+      console.log(`[${Date.now()}] query - componentTracker: ${componentTracker.current}`);
       const query = await getTimeline(type, planet, txid);
       const contents = query.result.map(tx => arweave.transactions.getData(tx.id, {decode: true, string: true}));
 
@@ -47,16 +47,21 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
           }
           return post;
         });
-         
+        
+        console.log(`[${Date.now()}] Planet: ${planet} - componentTracker: ${componentTracker.current}`);
+
         // component got unmounted->mounted during function execution.
         // Therefore the result of `query` doesn't match anymore the timeline we want to show
-        if(--componentTracker.current < 0) // We do not update any state
-          componentTracker.current = 0;    // tracker reinitialization
-        else {
-          console.log(`${Date.now()}: setPosts()`);
+        // componentTracker.current--;
+        // if(componentTracker.current > 1){ // We do not update any state
+        //   console.log("The timeline has been refreshed during API fetching: do nothing");
+        // }
+        if(componentTracker.current === planet) {
+          console.log(`[${Date.now()}] set posts on planet ${planet}`);
           setPosts(p => unionPostsById(p, lastPosts));
           setLoading(false);
         }
+        componentTracker.current = planet;
       });
     } catch (e) {
       setLoading(false);
@@ -66,12 +71,12 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
 
   useEffect(() => {
     setLoading(true);
-    console.log(`${Date.now()}: useEffect - componentTracker = ${componentTracker.current}`)
+    setPosts([]);
+    console.log(`[${Date.now()}] useEffect - componentTracker: ${componentTracker.current}`)
     requestLastPosts();
     const interval = setInterval(requestLastPosts, 5000);
     return () => {
-      componentTracker.current = 0;
-      console.log(`${Date.now()}: useEffect return - componentTracker = ${componentTracker.current}`)
+      console.log(`[${Date.now()}] useEffect return - componentTracker: ${componentTracker.current}`)
       clearInterval(interval);
       setPosts([]);
     };

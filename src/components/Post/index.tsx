@@ -32,7 +32,7 @@ function Post({type, id, data, owner, time, replyTo, planet}: PostComponent) {
   const [vertoID, setVertoID] = useState<T_userVertoID | null>(null);
 
   useEffect(() => {
-    console.log("Post useEffect");
+    // console.log("Post useEffect");
     if(vertoUsersLocalStorage)
       setVertoID(() => getVertoID(owner));
   }, [vertoUsersLocalStorage, owner]);
