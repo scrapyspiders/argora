@@ -13,7 +13,7 @@ import NoPost from './NoPost';
 
 function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_walletAddr, planetName?: T_planet}) {
   const {pathBase, planet} = useParams<PathParams>();
-  const componentTracker = useRef(0);
+  const componentTracker = useRef("");
   
   const {walletAddr} = useContext(ctx);
 
@@ -23,7 +23,7 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
 
   const requestLastPosts = useCallback(async () => {
     try {
-      componentTracker.current++;
+      componentTracker.current = planet;
       console.log(`[${Date.now()}] query - componentTracker: ${componentTracker.current}`);
       const query = await getTimeline(type, planet, txid);
       const contents = query.result.map(tx => arweave.transactions.getData(tx.id, {decode: true, string: true}));
@@ -49,7 +49,6 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
         });
         
         console.log(`[${Date.now()}] Planet: ${planet} - componentTracker: ${componentTracker.current}`);
-        console.log(lastPosts);
 
         // component got unmounted->mounted during function execution.
         // Therefore the result of `query` doesn't match anymore the timeline we want to show
@@ -57,12 +56,12 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
         // if(componentTracker.current > 1){ // We do not update any state
         //   console.log("The timeline has been refreshed during API fetching: do nothing");
         // }
-        if(componentTracker.current <= 1) {
+        if(componentTracker.current === planet) {
           console.log(`[${Date.now()}] set posts on planet ${planet}`);
           setPosts(p => unionPostsById(p, lastPosts));
           setLoading(false);
         }
-        componentTracker.current = 0;
+        componentTracker.current = planet;
       });
     } catch (e) {
       setLoading(false);

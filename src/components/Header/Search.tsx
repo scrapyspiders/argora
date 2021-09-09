@@ -24,7 +24,7 @@ function Search({className}: {className?: string}) {
   }
 
   useEffect(() => {
-    console.log("useEffect search");
+    // console.log("useEffect search");
     setPlanetTyped(planet ? planet : "");
   }, [planet]);
 
