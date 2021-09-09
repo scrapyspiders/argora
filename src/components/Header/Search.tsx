@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useHistory, useParams} from "react-router-dom";
 import {InputS, FormS, ButtonS} from "../../style/components/Header";
 import {PathParams} from "../../types";
@@ -8,26 +8,31 @@ import { faRocket } from '@fortawesome/free-solid-svg-icons'
 
 function Search({className}: {className?: string}) {
   const history = useHistory();
-  const {pathBase} = useParams<PathParams>();
-  const [planet, setPlanet] = useState<string>("");
+  const {pathBase, planet} = useParams<PathParams>();
+  const [planetTyped, setPlanetTyped] = useState<string>("");
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setPlanet(e.currentTarget.value);
+    setPlanetTyped(e.currentTarget.value);
   }
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    if(planet.length > 0){
-      history.push(`/${pathBase}/${planet}`);
-      setPlanet("");
+    if(planetTyped.length > 0){
+      history.push(`/${pathBase}/${planetTyped}`);
+      // setPlanetTyped("");
     }
   }
+
+  useEffect(() => {
+    console.log("useEffect search");
+    setPlanetTyped(planet ? planet : "");
+  }, [planet]);
 
   return(
     <FormS onSubmit={handleSubmit} className={className}>
       <InputS
         onChange={handleChange}
-        value={planet}
+        value={planetTyped}
         placeholder="Search a planet 🪐"
       />
       <ButtonS onClick={handleSubmit}>

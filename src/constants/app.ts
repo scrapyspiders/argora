@@ -9,8 +9,8 @@ const links = {
   verto: "https://www.verto.exchange"
 };
 
-// const C_appVersionTag = ['1.0-dev', '1.1-dev']; //dev
-const C_appVersionTag = ['1.0', '1.1']; 
+const C_appVersionTag = ['1.0-dev', '1.1-dev']; //dev
+// const C_appVersionTag = ['1.0', '1.1']; 
 const C_replyToRootName = "world";
 const C_replyToProfileName = "profile";
 

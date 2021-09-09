@@ -24,7 +24,7 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
   const requestLastPosts = useCallback(async () => {
     try {
       componentTracker.current++;
-      console.log(`${Date.now()}: query - componentTracker = ${componentTracker.current}`);
+      console.log(`[${Date.now()}] query - componentTracker: ${componentTracker.current}`);
       const query = await getTimeline(type, planet, txid);
       const contents = query.result.map(tx => arweave.transactions.getData(tx.id, {decode: true, string: true}));
 
@@ -47,18 +47,22 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
           }
           return post;
         });
-         
+        
+        console.log(`[${Date.now()}] Planet: ${planet} - componentTracker: ${componentTracker.current}`);
+        console.log(lastPosts);
+
         // component got unmounted->mounted during function execution.
         // Therefore the result of `query` doesn't match anymore the timeline we want to show
-        componentTracker.current--;
-        if(componentTracker.current !== 0) // We do not update any state
-          componentTracker.current = 0;    // tracker reinitialization
-        else {
-          console.log(`${Date.now()}: setPosts(): ${planet} - componentTracker: ${componentTracker.current}`);
+        // componentTracker.current--;
+        // if(componentTracker.current > 1){ // We do not update any state
+        //   console.log("The timeline has been refreshed during API fetching: do nothing");
+        // }
+        if(componentTracker.current <= 1) {
+          console.log(`[${Date.now()}] set posts on planet ${planet}`);
           setPosts(p => unionPostsById(p, lastPosts));
           setLoading(false);
-          componentTracker.current = 0;
         }
+        componentTracker.current = 0;
       });
     } catch (e) {
       setLoading(false);
@@ -69,11 +73,11 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
   useEffect(() => {
     setLoading(true);
     setPosts([]);
-    console.log(`${Date.now()}: useEffect - componentTracker = ${componentTracker.current}`)
+    console.log(`[${Date.now()}] useEffect - componentTracker: ${componentTracker.current}`)
     requestLastPosts();
     const interval = setInterval(requestLastPosts, 5000);
     return () => {
-      console.log(`${Date.now()}: useEffect return - componentTracker = ${componentTracker.current}`)
+      console.log(`[${Date.now()}] useEffect return - componentTracker: ${componentTracker.current}`)
       clearInterval(interval);
       setPosts([]);
     };
