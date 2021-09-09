@@ -4,7 +4,7 @@ import { PathParams } from "../types";
 import Timeline from "./Timeline";
 
 function Planet(){
-  const {pathBase, planet} = useParams<PathParams>();
+  const {planet} = useParams<PathParams>();
 
   return (<Timeline type="main" txid={C_replyToRootName} planetName={planet} />);
 }
