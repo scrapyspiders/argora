@@ -30,8 +30,32 @@ const FormS = styled('form')`
   }
 `;
 
-const InputS = styled('input')`
-${transition}
+const InputLeftS = styled('div')`
+  ${transition}
+  flex: 1;
+  display: flex;
+  border: 1px solid ${colors.purple[0]};
+  border-right: 0;
+  background-color: ${({theme}) => theme.postBackground};
+  height: 47px;
+  border-radius: 25px 0px 0px 25px;
+  align-items: center;
+  &:hover {
+    border-color: ${({theme}) => theme.greenInvert};
+  }
+`;
+
+const InputS = styled('input').attrs(props => ({
+  className: props.className
+}))`
+  &.cropped {
+    border-radius: 0px;
+    border: 0;
+    height: 45px;
+    padding-left: 8px;
+  }
+
+  ${transition}
   border: 1px solid ${colors.purple[0]};
   border-right: 0;
   flex: 1;
@@ -45,12 +69,24 @@ ${transition}
   &:hover {
     border-color: ${({theme}) => theme.greenInvert};
   }
+  ${InputLeftS}:hover & {
+    border-color: ${({theme}) => theme.greenInvert};
+  }
   &:focus {
     outline: none;
   }
   @media only screen and (max-width: 724px){
     font-size: medium;
   }
+`;
+
+const InfoS = styled('div')`
+  margin-left: 12px;
+  padding: 3px;
+  font-size: small;
+  border-radius: 3px;
+  border: 1px solid ${({theme}) => theme.blue};
+  color: ${({theme}) => theme.blue};
 `;
 
 const ButtonS = styled('div')`
@@ -71,4 +107,4 @@ const ButtonS = styled('div')`
   }
 `;
 
-export {AppBarS, AppBarBottomS, FormS, InputS, ButtonS};
+export {AppBarS, AppBarBottomS, FormS, InputLeftS, InfoS, InputS, ButtonS};
