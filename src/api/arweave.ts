@@ -4,7 +4,7 @@ import * as smartweave from 'smartweave';
 import transaction from '@textury/ardb/lib/models/transaction';
 import {GQLTagInterface} from '@textury/ardb/lib/faces/gql';
 import block from '@textury/ardb/lib/models/block';
-import {C_appVersionTag} from '../constants';
+import {C_appVersionTag, C_replyToRootName} from '../constants';
 import {T_planet, T_timeline, T_txid, T_walletAddr} from '../types';
 
 const arweave = Arweave.init({
@@ -75,4 +75,14 @@ const getTimeline = async (type: T_timeline, planet: T_planet | undefined, txid:
   return {result, replyToTags, planetTags};
 };
 
-export {arweave, ardb, getVertoPeople, getTimeline};
+const countPostsByPlanet = async (planet: T_planet) => {
+  const result = await ardb.search('transactions')
+  .tag('App-Name', 'argora')
+  .tag('App-Version', C_appVersionTag)
+  .tag('planet', planet)
+  .tag('reply-to', C_replyToRootName)
+  .limit(100).find();
+  return result.length;
+};
+
+export {arweave, ardb, getVertoPeople, getTimeline, countPostsByPlanet};

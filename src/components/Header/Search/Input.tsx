@@ -3,7 +3,7 @@ import { InfoS, InputLeftS, InputS } from "../../../style/components/Header";
 
 const placeHolder = "search / create a planet 🪐";
 
-function Input({showInfo, onChange, value}: {showInfo: boolean, onChange: (e: React.FormEvent<HTMLInputElement>) => void, value: string}){
+function Input({showInfo, onChange, value}: {showInfo: number | null, onChange: (e: React.FormEvent<HTMLInputElement>) => void, value: string}){
   const didMount = useRef(false);
   const inputCropped = useRef<HTMLInputElement>(null);
   const inputOriginal = useRef<HTMLInputElement>(null);
@@ -19,12 +19,14 @@ function Input({showInfo, onChange, value}: {showInfo: boolean, onChange: (e: Re
     else didMount.current = true;
   }, [showInfo]);
 
-  return(showInfo 
+  return(showInfo !== null
     ? <InputLeftS>
-        <InfoS>21 weeves</InfoS>
+        <InfoS>
+          {showInfo > 0 ? `${showInfo} weeve${showInfo > 1 ? 's' : ''}` : "NEW"}
+        </InfoS>
         <InputS
           ref={inputCropped}
-          className={showInfo ? "cropped" : undefined}
+          className={showInfo !== null ? "cropped" : undefined}
           onChange={onChange}
           value={value}
           placeholder={placeHolder}
@@ -32,7 +34,7 @@ function Input({showInfo, onChange, value}: {showInfo: boolean, onChange: (e: Re
       </InputLeftS>
     : <InputS
         ref={inputOriginal}
-        className={showInfo ? "cropped" : undefined}
+        className={showInfo !== null ? "cropped" : undefined}
         onChange={onChange}
         value={value}
         placeholder={placeHolder}

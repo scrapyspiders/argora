@@ -6,6 +6,7 @@ import {PathParams} from "../../../types";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRocket } from '@fortawesome/free-solid-svg-icons'
 import Input from "./Input";
+import { countPostsByPlanet } from "../../../api/arweave";
 
 let typingTimeout: any = null;
 
@@ -13,14 +14,15 @@ function Search({className}: {className?: string}) {
   const history = useHistory();
   const {pathBase, planet} = useParams<PathParams>();
   const [planetTyped, setPlanetTyped] = useState<string>("");
-  const [showPostsN, setShowPostsN] = useState(false);
+  const [showPostsN, setShowPostsN] = useState<number | null>(null);
 
-  const postsNumber = (l: string) => {
-    console.log(l);
-    if(l.length < 1)
-      setShowPostsN(false);
-    else
-      setShowPostsN(true);
+  const postsNumber = async (planetName: string) => {
+    if(planetName.length < 1)
+      setShowPostsN(null);
+    else{
+      const result = await countPostsByPlanet(planetName);
+      setShowPostsN(result);
+    }
   }
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -40,7 +42,7 @@ function Search({className}: {className?: string}) {
 
   useEffect(() => {
     console.log("useEffect search");
-    setShowPostsN(false);
+    setShowPostsN(null);
     setPlanetTyped(planet ? planet : "");
   }, [planet]);
 
