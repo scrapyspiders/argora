@@ -33,7 +33,7 @@ function Search({className}: {className?: string}) {
       <InputS
         onChange={handleChange}
         value={planetTyped}
-        placeholder="Search a planet 🪐"
+        placeholder="Search a planet 🪐 or create a new one!"
       />
       <ButtonS onClick={handleSubmit}>
         <FontAwesomeIcon icon={faRocket} />
