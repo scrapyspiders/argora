@@ -4,6 +4,7 @@ import {AlertS} from '../../style/components/material-ui';
 import {C_replyToRootName, C_replyToProfileName} from '../../constants';
 import {PostData, PathParams, T_txid, T_timeline, T_walletAddr, T_planet} from '../../types';
 import {arweave, getTimeline} from '../../api/arweave';
+import { savePlanet } from '../../api/local';
 import Post from '../Post';
 import Form from './Form';
 import Loading from '../ui/Loading';
@@ -50,16 +51,15 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
         
         console.log(`[${Date.now()}] Planet: ${planet} - componentTracker: ${componentTracker.current}`);
 
-        // component got unmounted->mounted during function execution.
-        // Therefore the result of `query` doesn't match anymore the timeline we want to show
-        // componentTracker.current--;
-        // if(componentTracker.current > 1){ // We do not update any state
-        //   console.log("The timeline has been refreshed during API fetching: do nothing");
-        // }
+        // This if is there in case of the planet has changed while fetching data
+        // to prevent both plan posts to be mixed together
         if(componentTracker.current === planet) {
           console.log(`[${Date.now()}] set posts on planet ${planet}`);
           setPosts(p => unionPostsById(p, lastPosts));
           setLoading(false);
+
+          if(planet && lastPosts.length > 0)
+            savePlanet(planet);
         }
         componentTracker.current = planet;
       });
