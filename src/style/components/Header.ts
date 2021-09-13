@@ -46,7 +46,8 @@ const InputLeftS = styled('div')`
 `;
 
 const InputS = styled('input').attrs(props => ({
-  className: props.className
+  className: props.className,
+  spellCheck: false
 }))`
   &.cropped {
     border-radius: 0px;
