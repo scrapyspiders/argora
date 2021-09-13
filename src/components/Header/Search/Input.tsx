@@ -25,6 +25,7 @@ function Input({showInfo, onChange, value}: {showInfo: number | null, onChange: 
           {showInfo > 0 ? `${showInfo} weeve${showInfo > 1 ? 's' : ''}` : "NEW"}
         </InfoS>
         <InputS
+          list="search"
           ref={inputCropped}
           className={showInfo !== null ? "cropped" : undefined}
           onChange={onChange}
@@ -33,6 +34,7 @@ function Input({showInfo, onChange, value}: {showInfo: number | null, onChange: 
         />
       </InputLeftS>
     : <InputS
+        list="search"
         ref={inputOriginal}
         className={showInfo !== null ? "cropped" : undefined}
         onChange={onChange}

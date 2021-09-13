@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useHistory, useParams} from "react-router-dom";
 import {FormS, ButtonS} from "../../../style/components/Header";
-import {PathParams} from "../../../types";
+import {PathParams, T_planet} from "../../../types";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRocket } from '@fortawesome/free-solid-svg-icons'
@@ -15,6 +15,7 @@ function Search({className}: {className?: string}) {
   const {pathBase, planet} = useParams<PathParams>();
   const [planetTyped, setPlanetTyped] = useState<string>("");
   const [showPostsN, setShowPostsN] = useState<number | null>(null);
+  const [planetsList, setPlanetsList] = useState<[T_planet]>();
 
   const postsNumber = async (planetName: string) => {
     if(planetName.length < 1)
@@ -44,6 +45,8 @@ function Search({className}: {className?: string}) {
     console.log("useEffect search");
     setShowPostsN(null);
     setPlanetTyped(planet ? planet : "");
+    const planetsListLocalStorage = localStorage.getItem('planets');
+    setPlanetsList(planetsListLocalStorage ? JSON.parse(planetsListLocalStorage) : []);
   }, [planet]);
 
   return(
@@ -53,6 +56,9 @@ function Search({className}: {className?: string}) {
         onChange={handleChange}
         value={planetTyped}
       />
+      <datalist id="search">
+        {planetsList?.map((p, i) => <option value={p} key={i} />)}
+      </datalist>
       <ButtonS onClick={handleSubmit}>
         <FontAwesomeIcon icon={faRocket} />
       </ButtonS>
