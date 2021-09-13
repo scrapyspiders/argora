@@ -1,10 +1,10 @@
 import Arweave from 'arweave';
 import ArDB from '@textury/ardb';
-import * as smartweave from 'smartweave';
+import * as smartweave from '../SmartWeave/lib';
 import transaction from '@textury/ardb/lib/models/transaction';
 import {GQLTagInterface} from '@textury/ardb/lib/faces/gql';
 import block from '@textury/ardb/lib/models/block';
-import {C_appVersionTag, C_replyToRootName} from '../constants';
+import {contracts, C_appVersionTag, C_replyToRootName} from '../constants';
 import {T_planet, T_timeline, T_txid, T_walletAddr} from '../types';
 
 const arweave = Arweave.init({
@@ -20,7 +20,7 @@ const ardb = new ArDB(arweave);
 const getVertoPeople = async () => {
   const vertoID = await smartweave.readContract(
     arweave,
-    "t9T7DIOGxx4VWXoCEeYYarFYeERTpWIC1V3y-BPZgKE"
+    contracts.vertoID    
   );
   return vertoID.people;
 }
@@ -85,4 +85,22 @@ const countPostsByPlanet = async (planet: T_planet) => {
   return result.length;
 };
 
-export {arweave, ardb, getVertoPeople, getTimeline, countPostsByPlanet};
+const unlockPost = async (owner: T_walletAddr, weeve: T_txid) => {
+  console.log("mint");
+  const contractId = await smartweave.createContractFromTx(arweave, "use_wallet", contracts.weeve, `{
+    "owner": "${owner}",
+    "ogp": null,
+    "price": 0,
+    "likes": []
+  }`, [{name: "weeve", value: weeve}]);
+  console.log("contract id: ", contractId);
+}
+
+export {
+  arweave,
+  ardb,
+  getVertoPeople,
+  getTimeline,
+  countPostsByPlanet,
+  unlockPost
+};

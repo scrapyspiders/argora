@@ -2,7 +2,7 @@ import {useParams, Link} from 'react-router-dom';
 import {colors} from '../../constants';
 import {PathParams, PostComponent, T_userVertoID} from '../../types';
 import PostPicture from './Picture';
-import {AvatarS} from '../../style/components/material-ui';
+import {AvatarS, ButtonS} from '../../style/components/material-ui';
 import {
   Header,
   SubHeader,
@@ -20,12 +20,13 @@ import Top from './Top';
 import { useContext, useEffect, useState } from 'react';
 import { ctx, decodeData, getVertoID } from '../../utils';
 import Username from './Username';
+import { unlockPost } from '../../api/arweave';
 
 dayjs.extend(relativeTime);
 
 function Post({type, id, data, owner, time, replyTo, planet}: PostComponent) {
   const {pathBase} = useParams<PathParams>();
-  const {vertoUsersLocalStorage} = useContext(ctx);
+  const {vertoUsersLocalStorage, walletAddr} = useContext(ctx);
 
   const {content, picture} = decodeData(data);
   
@@ -43,6 +44,10 @@ function Post({type, id, data, owner, time, replyTo, planet}: PostComponent) {
   const styleFontSize = content.length < 200 ? {fontSize: 'larger'} : {fontSize: 'medium'};
   const styleMaxHeight = type !== "original" && content.length > 400 ? {maxHeight: '200px'} : {};
 
+  const mint = async () => {
+    await unlockPost(walletAddr, id);
+  }
+
   return(
     <Box style={{...isComment, ...isMining}}>
       <Top replyTo={replyTo} planet={planet} />
@@ -55,6 +60,9 @@ function Post({type, id, data, owner, time, replyTo, planet}: PostComponent) {
                 {vertoID ? vertoID.username.slice(0,2) : owner?.slice(0,2)}
               </AvatarS>}
           </Link>
+          <ButtonS onClick={mint}>
+            Unlock
+          </ButtonS>
         </LeftSide>
         <RightSide>
           <Header>

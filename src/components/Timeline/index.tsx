@@ -113,12 +113,13 @@ function Timeline({type, txid, planetName}: {type: T_timeline, txid: T_txid | T_
       ? <NoPost type={type} />
       : posts?.map((post, i) => (<div key={i}>
           {type === "comments" && <VertLine />}
-          {post.time
+          {/* {post.time
           ? <Link to={`/${pathBase}/thread/${post.id}`}>
               {displayPost(post)}
             </Link>
           : displayPost(post)
-          }
+          } */}
+          {displayPost(post)}
         </div>))
       }
     </>

@@ -9,6 +9,11 @@ const links = {
   verto: "https://www.verto.exchange"
 };
 
+const contracts = {
+  vertoID: "t9T7DIOGxx4VWXoCEeYYarFYeERTpWIC1V3y-BPZgKE",
+  weeve: "JNEyXbkWqr_WDhNzdIBPpgDprtKeeAlzdgGKWqjp1hE"
+}
+
 const C_appVersionTag = ['1.0-dev', '1.1-dev']; //dev
 // const C_appVersionTag = ['1.0', '1.1']; 
 const C_replyToRootName = "world";
@@ -17,6 +22,7 @@ const C_replyToProfileName = "profile";
 export {
   img,
   links,
+  contracts,
   C_appVersionTag,
   C_replyToRootName,
   C_replyToProfileName

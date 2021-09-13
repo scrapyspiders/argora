@@ -1,0 +1,3 @@
+[submodule "src/SmartWeave"]
+	path = src/SmartWeave
+	url = git@github.com:bidetaggle/SmartWeave.git
