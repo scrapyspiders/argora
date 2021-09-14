@@ -28,7 +28,7 @@ function Search({className}: {className?: string}) {
   }
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const val = e.currentTarget.value;
+    const val = e.currentTarget.value.trimStart();
     setValue(val);
 
     const isAddr = /^[a-zA-Z0-9\-_]{43}$/.test(val);
@@ -40,8 +40,9 @@ function Search({className}: {className?: string}) {
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    if(value.length > 0){
-      history.push(/^[a-zA-Z0-9\-_]{43}$/.test(value) ? `/${pathBase}/profile/${value}` : `/${pathBase}/${value}`);
+    const submitted = value.trim();
+    if(submitted.length > 0){
+      history.push(/^[a-zA-Z0-9\-_]{43}$/.test(submitted) ? `/${pathBase}/profile/${submitted}` : `/${pathBase}/${submitted}`);
     }
   }
 
