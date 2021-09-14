@@ -67,14 +67,20 @@ function Search({className}: {className?: string}) {
   useEffect(() => {
     console.log("useEffect search");
 
-    if(!planet && !addr){ // The Metaweave
-      setShowPostsN(null);
-      setIs(null);
-      setValue("");
-    }
     if(addr){
       const vertoID = getVertoIDbyAddr(addr);
       setValue(vertoID ? '@' + vertoID.username : addr);
+      setIs(vertoID ? "Verto ID" : "profile");
+    }
+    else if(planet){
+      setValue(planet);
+      setIs("🪐 planet");
+    }
+    // The Metaweave
+    else {
+      setShowPostsN(null);
+      setIs(null);
+      setValue("");
     }
 
     const planetsListLocalStorage = localStorage.getItem('planets');
