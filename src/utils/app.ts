@@ -46,7 +46,7 @@ const unionPostsById = (currentPosts: PostData[] | undefined, newPosts: PostData
   }
 };
 
-const getVertoID = (addr: T_walletAddr | undefined): (T_userVertoID | null) => {
+const getVertoIDbyAddr = (addr: T_walletAddr | undefined): (T_userVertoID | null) => {
   const vertoUsers = localStorage.getItem('vertoUsers');
 
   if(!vertoUsers)
@@ -59,4 +59,31 @@ const getVertoID = (addr: T_walletAddr | undefined): (T_userVertoID | null) => {
   }
 };
 
-export {decodeData, unionPostsById, getVertoID};
+const getVertoIDbyUsername = (username: string): (T_userVertoID | null) => {
+  const vertoUsers = localStorage.getItem('vertoUsers');
+
+  if(!vertoUsers)
+    return null;
+  else{
+    const user = JSON.parse(vertoUsers)
+    .find((user: T_userVertoID) => user.username === username);
+
+    return user ? user : null;
+  }
+}
+
+const getVertoIDsuggestions = (username: string): T_userVertoID[] | undefined => {
+  const vertoUsers = localStorage.getItem('vertoUsers');
+
+  if(!vertoUsers)
+    return undefined;
+  else{
+    const regex = new RegExp(`^${username}`);
+    const users = JSON.parse(vertoUsers)
+    .filter((user: T_userVertoID) => regex.test(user.username));
+
+    return users.length > 0 ? users : undefined;
+  }
+}
+
+export {decodeData, unionPostsById, getVertoIDbyAddr, getVertoIDbyUsername, getVertoIDsuggestions};

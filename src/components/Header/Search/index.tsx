@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRocket } from '@fortawesome/free-solid-svg-icons'
 import Input from "./Input";
 import { countPostsByPlanet } from "../../../api/arweave";
+import { getVertoIDbyUsername, getVertoIDsuggestions } from "../../../utils";
 
 let typingTimeout: any = null;
 
@@ -15,8 +16,8 @@ function Search({className}: {className?: string}) {
   const {pathBase, planet} = useParams<PathParams>();
   const [value, setValue] = useState<string>("");
   const [showPostsN, setShowPostsN] = useState<number | null>(null);
-  const [planetsList, setPlanetsList] = useState<[T_planet]>();
-  const [isProfile, setIsProfile] = useState(false);
+  const [suggestions, setSuggestions] = useState<T_planet[]>();
+  const [is, setIs] = useState<string | null>(null);
 
   const postsNumber = async (planetName: string) => {
     if(planetName.length < 1)
@@ -31,8 +32,17 @@ function Search({className}: {className?: string}) {
     const val = e.currentTarget.value.trimStart();
     setValue(val);
 
-    const isAddr = /^[a-zA-Z0-9\-_]{43}$/.test(val);
-    isAddr ? setIsProfile(true) : setIsProfile(false);
+    const isAddr = /^[a-zA-Z0-9\-_]{43}$/.test(val.trim());
+    const isVertoUsername = /^(@).*/.test(val);
+    
+    if(isAddr)
+      setIs("profile");
+    else if(isVertoUsername) {
+      setIs("verto ID");
+      const vertoIDsuggestions = getVertoIDsuggestions(val.slice(1))?.map(user => '@' + user.username);
+      setSuggestions(vertoIDsuggestions?.slice(0,10));
+    }
+    else setIs(null);
     
     if(typingTimeout) clearTimeout(typingTimeout);
     typingTimeout = setTimeout(() => postsNumber(val), 300);
@@ -42,7 +52,15 @@ function Search({className}: {className?: string}) {
     e.preventDefault();
     const submitted = value.trim();
     if(submitted.length > 0){
-      history.push(/^[a-zA-Z0-9\-_]{43}$/.test(submitted) ? `/${pathBase}/profile/${submitted}` : `/${pathBase}/${submitted}`);
+      if(/^[a-zA-Z0-9\-_]{43}$/.test(submitted))
+        history.push(`/${pathBase}/profile/${submitted}`);
+      else if(/^(@).*/.test(submitted)){
+        const userVertoID = getVertoIDbyUsername(submitted.slice(1))
+        if(userVertoID)
+          history.push(`/${pathBase}/profile/${userVertoID.addresses[0]}`);
+      }
+      else
+        history.push(`/${pathBase}/${submitted}`);
     }
   }
 
@@ -51,18 +69,18 @@ function Search({className}: {className?: string}) {
     setShowPostsN(null);
     setValue(planet ? planet : "");
     const planetsListLocalStorage = localStorage.getItem('planets');
-    setPlanetsList(planetsListLocalStorage ? JSON.parse(planetsListLocalStorage) : []);
+    setSuggestions(planetsListLocalStorage ? JSON.parse(planetsListLocalStorage) : []);
   }, [planet]);
 
   return(
     <FormS onSubmit={handleSubmit} className={className}>
       <Input
-        showInfo={isProfile ? "profile" : showPostsN}
+        showInfo={is ? is : showPostsN}
         onChange={handleChange}
         value={value}
       />
       <datalist id="search">
-        {planetsList?.map((p, i) => <option value={p} key={i} />)}
+        {suggestions?.map((p, i) => <option value={p} key={i} />)}
       </datalist>
       <ButtonS onClick={handleSubmit}>
         <FontAwesomeIcon icon={faRocket} />

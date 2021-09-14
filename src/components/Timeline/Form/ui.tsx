@@ -4,7 +4,7 @@ import {Main, LeftSide, RightSide, PictureS} from '../../../style/components/Box
 import {Box, PictureCloseButton} from '../../../style/components/BoxForm';
 import {ButtonS, TextareaAutosizeS, AlertS, AvatarS, IconButtonS} from '../../../style/components/material-ui';
 import {Hr} from '../../../style/components/decoration';
-import {ctx, getVertoID} from '../../../utils';
+import {ctx, getVertoIDbyAddr} from '../../../utils';
 import {PathParams, FormType, FormPictureType, T_userVertoID} from '../../../types';
 import Loading from '../../ui/Loading';
 import ImageIcon from '@material-ui/icons/Image';
@@ -66,7 +66,7 @@ function Form({handleSubmit, type, loading}: FormType){
   }, [setPlaceholder, setLoginMessage, type]);
 
   useEffect(() => {
-    setVertoID(() => getVertoID(walletAddr));
+    setVertoID(() => getVertoIDbyAddr(walletAddr));
   },[walletAddr]);
 
   const {pathBase} = useParams<PathParams>();

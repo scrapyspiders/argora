@@ -18,7 +18,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import {CirclesToRhombusesSpinner} from 'react-epic-spinners';
 import Top from './Top';
 import { useContext, useEffect, useState } from 'react';
-import { ctx, decodeData, getVertoID } from '../../utils';
+import { ctx, decodeData, getVertoIDbyAddr } from '../../utils';
 import Username from './Username';
 
 dayjs.extend(relativeTime);
@@ -34,7 +34,7 @@ function Post({type, id, data, owner, time, replyTo, planet}: PostComponent) {
   useEffect(() => {
     // console.log("Post useEffect");
     if(vertoUsersLocalStorage)
-      setVertoID(() => getVertoID(owner));
+      setVertoID(() => getVertoIDbyAddr(owner));
   }, [vertoUsersLocalStorage, owner]);
 
   const isComment = type === "comment" ? {maxWidth: '550px', marginTop: '-10px'} : {};

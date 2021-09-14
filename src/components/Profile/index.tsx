@@ -3,7 +3,7 @@ import {PathParams, T_userVertoID} from '../../types';
 import Info from './info';
 import Timeline from '../Timeline';
 import { useContext, useEffect, useState } from 'react';
-import { ctx, getVertoID } from '../../utils';
+import { ctx, getVertoIDbyAddr } from '../../utils';
 
 function Profile() {
   const {addr} = useParams<PathParams>();
@@ -13,7 +13,7 @@ function Profile() {
   useEffect(() => {
     console.log("Profile useEffect");
     if(vertoUsersLocalStorage)
-      setVertoID(() => getVertoID(addr));
+      setVertoID(() => getVertoIDbyAddr(addr));
   }, [vertoUsersLocalStorage, addr]);
 
   return(
