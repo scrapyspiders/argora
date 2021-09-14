@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { InfoS, InputLeftS, InputS } from "../../../style/components/Header";
 
-const placeHolder = "search: @username / wallet id / planet 🪐";
+const placeHolder = "@username / wallet id / planet 🪐";
 
 function Input({showInfo, onChange, value}: {showInfo: string | number | null, onChange: (e: React.FormEvent<HTMLInputElement>) => void, value: string}){
   const didMount = useRef(false);

@@ -38,7 +38,7 @@ function Search({className}: {className?: string}) {
     if(isAddr)
       setIs("profile");
     else if(isVertoUsername) {
-      setIs("Verto ID");
+      setIs("🧑‍💻 Verto ID");
       const vertoIDsuggestions = getVertoIDsuggestions(val.slice(1))?.map(user => '@' + user.username);
       setSuggestions(vertoIDsuggestions?.slice(0,10));
     }
@@ -70,7 +70,7 @@ function Search({className}: {className?: string}) {
     if(addr){
       const vertoID = getVertoIDbyAddr(addr);
       setValue(vertoID ? '@' + vertoID.username : addr);
-      setIs(vertoID ? "Verto ID" : "profile");
+      setIs(vertoID ? "🧑‍💻 Verto ID" : "profile");
     }
     else if(planet){
       setValue(planet);
@@ -79,7 +79,7 @@ function Search({className}: {className?: string}) {
     // The Metaweave
     else {
       setShowPostsN(null);
-      setIs(null);
+      setIs("search 🔎");
       setValue("");
     }
 
