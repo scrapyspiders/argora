@@ -50,7 +50,7 @@ function Thread() {
       {post && 
         <>
           {post.planet 
-            ? <Link to={`/${pathBase}/${post.planet}`}><ButtonS>Back to planet 🪐 {post.planet}</ButtonS></Link>
+            ? <Link to={`/${pathBase}/planet/${post.planet}`}><ButtonS>Back to planet 🪐 {post.planet}</ButtonS></Link>
             : <Link to={`/${pathBase}`}><ButtonS>Back to Metaweave</ButtonS></Link>
           }
           <Post

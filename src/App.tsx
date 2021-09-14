@@ -56,7 +56,7 @@ function App() {
               <Route exact path='/'><Header /><DevMode /><AppBarBottom /></Route>
               <Route exact path='/:pathBase/profile/:addr'><Header /><Profile /></Route>
               <Route exact path='/:pathBase/thread/:txid'><Header /><Thread /></Route>
-              <Route exact path='/:pathBase/:planet'><Header /><Planet /><AppBarBottom /></Route>
+              <Route exact path='/:pathBase/planet/:planet'><Header /><Planet /><AppBarBottom /></Route>
               <Route exact path='/:pathBase'><Header /><Timeline type="main" txid={C_replyToRootName} /><AppBarBottom /></Route>
             </Switch>
           </Router>

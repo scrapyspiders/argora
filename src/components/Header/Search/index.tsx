@@ -7,13 +7,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRocket } from '@fortawesome/free-solid-svg-icons'
 import Input from "./Input";
 import { countPostsByPlanet } from "../../../api/arweave";
-import { getVertoIDbyUsername, getVertoIDsuggestions } from "../../../utils";
+import { getVertoIDbyAddr, getVertoIDbyUsername, getVertoIDsuggestions } from "../../../utils";
 
 let typingTimeout: any = null;
 
 function Search({className}: {className?: string}) {
   const history = useHistory();
-  const {pathBase, planet} = useParams<PathParams>();
+  const {pathBase, planet, addr} = useParams<PathParams>();
   const [value, setValue] = useState<string>("");
   const [showPostsN, setShowPostsN] = useState<number | null>(null);
   const [suggestions, setSuggestions] = useState<T_planet[]>();
@@ -38,7 +38,7 @@ function Search({className}: {className?: string}) {
     if(isAddr)
       setIs("profile");
     else if(isVertoUsername) {
-      setIs("verto ID");
+      setIs("Verto ID");
       const vertoIDsuggestions = getVertoIDsuggestions(val.slice(1))?.map(user => '@' + user.username);
       setSuggestions(vertoIDsuggestions?.slice(0,10));
     }
@@ -60,17 +60,26 @@ function Search({className}: {className?: string}) {
           history.push(`/${pathBase}/profile/${userVertoID.addresses[0]}`);
       }
       else
-        history.push(`/${pathBase}/${submitted}`);
+        history.push(`/${pathBase}/planet/${submitted}`);
     }
   }
 
   useEffect(() => {
     console.log("useEffect search");
-    setShowPostsN(null);
-    setValue(planet ? planet : "");
+
+    if(!planet && !addr){ // The Metaweave
+      setShowPostsN(null);
+      setIs(null);
+      setValue("");
+    }
+    if(addr){
+      const vertoID = getVertoIDbyAddr(addr);
+      setValue(vertoID ? '@' + vertoID.username : addr);
+    }
+
     const planetsListLocalStorage = localStorage.getItem('planets');
     setSuggestions(planetsListLocalStorage ? JSON.parse(planetsListLocalStorage) : []);
-  }, [planet]);
+  }, [planet, addr]);
 
   return(
     <FormS onSubmit={handleSubmit} className={className}>

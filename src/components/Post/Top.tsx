@@ -17,7 +17,7 @@ function Top({replyTo, planet}: {replyTo?: T_txid | T_replyToRootName | T_replyT
       </>}
       {planet &&
       <>
-        {isReply ? 'f' : 'F'}rom planet <Link to={`/${pathBase}/${planet}`}>🪐 {planet}</Link>
+        {isReply ? 'f' : 'F'}rom planet <Link to={`/${pathBase}/planet/${planet}`}>🪐 {planet}</Link>
       </>}
     </TopS>
     : <></>
