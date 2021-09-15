@@ -22,4 +22,11 @@ const Hr = styled('div')`
   margin-bottom: 10px;
 `;
 
-export {VertLine, Hr};
+const NoPostImgS = styled('img')`
+  width: 300px;
+  display: block;
+  margin: auto;
+  margin-top: 40px;
+`;
+
+export {VertLine, Hr, NoPostImgS};

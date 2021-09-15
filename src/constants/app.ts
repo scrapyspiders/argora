@@ -2,7 +2,9 @@ const img = {
   logoWhite: "https://rlegxo3dwxjxjijpubmitspnypm5dgjhydcnoznb545q4euc4x4q.arweave.net/ishru2O103ShL6BYicntw9nRmSfAxNdloe87DhKC5fk",
   logoBlack: "https://d5w5xofjuf6uvlazitfk5mvgaosjnpmso7j5olb46s2rj6m3rfma.arweave.net/H23buKmhfUqsGUTKrrKmA6SWvZJ309csPPS1FPmbiVg",
   vertoLight: "https://htqcswug7mjyho7hooroh57wy32dy2fbirvoluryze6pq4d2d6ra.arweave.net/POApWob7E4O753Oi4_f2xvQ8aKFEauXSOMk8-HB6H6I",
-  vertoDark: "https://yzgf5fupfy3ai23qlj5rjnuclfnkjw6xwyjebgetyihxivqf5sbq.arweave.net/xkxelo8uNgRrcFp7FLaCWVqk29e2EkCYk8IPdFYF7IM"
+  vertoDark: "https://yzgf5fupfy3ai23qlj5rjnuclfnkjw6xwyjebgetyihxivqf5sbq.arweave.net/xkxelo8uNgRrcFp7FLaCWVqk29e2EkCYk8IPdFYF7IM",
+  emptyPlanetLight: "https://7t3qv4hysxg6dcqng57tzt7u6naqzrkrzmc6a2jwwtessjgvkk7q.arweave.net/_PcK8PiVzeGKDTd_PM_080EMxVHLBeBpNrTJKSTVUr8",
+  emptyPlanetDark: "https://p7zr6onypsfnylrtsibw2tdl5chbzcsqoayj7dchfvksdlsiwauq.arweave.net/f_MfObh8itwuM5IDbUxr6I4cilBwMJ-MRy1VIa5IsCk"
 };
 
 const links = {
