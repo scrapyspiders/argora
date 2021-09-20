@@ -1,7 +1,6 @@
 import { T_planet } from "../types";
 
 const savePlanet = (planet: T_planet) => {
-  console.log(planet);
   const planets = localStorage.getItem('planets');
   if(!planets)
     localStorage.setItem('planets', JSON.stringify([planet]));
@@ -11,7 +10,6 @@ const savePlanet = (planet: T_planet) => {
       updatedPlanets.push(planet);
       localStorage.setItem('planets', JSON.stringify(updatedPlanets));
     }
-    console.log(updatedPlanets);
   }
 };
 
